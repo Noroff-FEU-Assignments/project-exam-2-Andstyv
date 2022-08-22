@@ -1,12 +1,15 @@
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
+
+const url = "https://andsty-noroff-exam2.herokuapp.com/api/auth/local";
 
 const schema = yup.object().shape({
-  username: yup.string().required("Please enter username"),
+  identifier: yup.string().required("Please enter identifier"),
   password: yup.string().required("Please enter password"),
 });
 
@@ -23,32 +26,33 @@ function LoginForm() {
   });
   const history = useNavigate();
 
-  function tryToLogin(data) {
-    axios
-      .post("https://andsty-noroff-exam2.herokuapp.com/api/auth/local", {
-        identifier: "admin@admin.com",
-        password: "admin123",
-      })
-      .then((response) => {
-        console.log("User profile", response.data.user);
-        console.log("User token", response.data.jwt);
-        setSubmitting(false);
-        history("/admin");
-      })
-      .catch((error) => {
-        console.log("An error occured:", error.response);
-        setLoginError(error.toString());
-      });
+  // eslint-disable-next-line
+  const [auth, setAuth] = useContext(AuthContext);
+
+  async function tryToLogin(data) {
+    setLoginError(null);
+    setSubmitting(true);
+    try {
+      const response = await axios.post(url, data);
+      setAuth(response.data);
+      history("/admin");
+    } catch (error) {
+      setLoginError(error.toString());
+      console.log("error");
+    } finally {
+      setSubmitting(false);
+      console.log("Finally");
+    }
   }
 
   return (
     <>
       <form className="login-form" onSubmit={handleSubmit(tryToLogin)}>
         {loginError && <div className="login-error">{loginError}</div>}
-        <fieldset>
+        <fieldset className="login-fieldset" disabled={submitting}>
           <div>
-            <input className="login-form__input" placeholder="Username" {...register("username")} />
-            {errors.username && <div className="login-form__error">{errors.username.message}</div>}
+            <input className="login-form__input" placeholder="Username" {...register("identifier")} />
+            {errors.identifier && <div className="login-form__error">{errors.identifier.message}</div>}
           </div>
           <div>
             <input className="login-form__input" type="password" placeholder="Password" {...register("password")} />
