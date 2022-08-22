@@ -1,5 +1,12 @@
+import TryToLogin from "../login/TryToLogin";
+
 function ContactPage() {
-  return <div>ContactPage</div>;
+  return (
+    <>
+      <div>Contact page</div>
+      <TryToLogin />
+    </>
+  );
 }
 
 export default ContactPage;
