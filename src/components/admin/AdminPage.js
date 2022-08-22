@@ -12,7 +12,7 @@ function AdminPage() {
     }
   });
 
-  return <div>Admin</div>;
+  return <div>This is admin page</div>;
 }
 
 export default AdminPage;
