@@ -31,6 +31,14 @@ function GetProducts() {
   }, [url]);
   console.log(products);
 
+  if (error) {
+    return <div className="fetch-api-error">An error occured: {error}</div>;
+  }
+
+  if (loading) {
+    return <div className="fetch-api-loading">Loading...</div>;
+  }
+
   return (
     <>
       <div>
