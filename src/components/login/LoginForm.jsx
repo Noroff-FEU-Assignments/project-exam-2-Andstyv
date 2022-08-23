@@ -13,7 +13,7 @@ const schema = yup.object().shape({
   password: yup.string().required("Please enter password"),
 });
 
-function LoginForm() {
+export function LoginForm() {
   const [loginError, setLoginError] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -64,5 +64,3 @@ function LoginForm() {
     </>
   );
 }
-
-export default LoginForm;

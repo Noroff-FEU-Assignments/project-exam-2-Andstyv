@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "../../constants/getAuth";
 
-function AdminPage() {
+export function AdminPage() {
   const history = useNavigate();
   const auth = getAuth();
 
@@ -14,5 +14,3 @@ function AdminPage() {
 
   return <div>This is admin page</div>;
 }
-
-export default AdminPage;

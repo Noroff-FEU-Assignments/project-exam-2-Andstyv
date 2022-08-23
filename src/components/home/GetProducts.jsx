@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../../constants/api";
 
-function GetProducts() {
+export function GetProducts() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -49,5 +49,3 @@ function GetProducts() {
     </>
   );
 }
-
-export default GetProducts;

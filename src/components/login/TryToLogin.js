@@ -1,6 +1,6 @@
 import axios from "axios";
 
-function TryToLogin() {
+export function TryToLogin() {
   axios
     .post("https://andsty-noroff-exam2.herokuapp.com/api/auth/local", {
       identifier: "admin@admin.com",
@@ -14,5 +14,3 @@ function TryToLogin() {
       console.log("An error occured:", error.response);
     });
 }
-
-export default TryToLogin;

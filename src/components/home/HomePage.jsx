@@ -1,6 +1,6 @@
 import GetProducts from "./GetProducts";
 
-function HomePage() {
+export function HomePage() {
   return (
     <>
       <h1>Home</h1>
@@ -8,5 +8,3 @@ function HomePage() {
     </>
   );
 }
-
-export default HomePage;

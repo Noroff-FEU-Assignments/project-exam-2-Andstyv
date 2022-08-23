@@ -1,6 +1,6 @@
 import TryToLogin from "../login/TryToLogin";
 
-function ContactPage() {
+export function ContactPage() {
   return (
     <>
       <div>Contact page</div>
@@ -8,5 +8,3 @@ function ContactPage() {
     </>
   );
 }
-
-export default ContactPage;
