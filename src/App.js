@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import { AccommodationsPage } from "./components/accommodations/AccommodationsPage";
 import { AdminPage } from "./components/admin/AdminPage";
 import { ContactPage } from "./components/contact/ContactPage";
 import { HomePage } from "./components/home/HomePage";
@@ -18,6 +19,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/accommodations" element={<AccommodationsPage />} />
         </Routes>
       </div>
     </AuthProvider>
