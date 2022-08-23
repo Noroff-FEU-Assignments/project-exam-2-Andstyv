@@ -14,3 +14,9 @@ export function TryToLogin() {
       console.log("An error occured:", error.response);
     });
 }
+
+export function tryToFetchData(url) {
+  axios.get(url).then((response) => {
+    console.log(response.data);
+  });
+}
