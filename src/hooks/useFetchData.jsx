@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 // }
 
 export function useFetchData(url) {
-  const [products, setProducts] = useState([]);
+  const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -21,11 +21,9 @@ export function useFetchData(url) {
     async function fetchData() {
       try {
         const resp = await axios.get(url);
-        console.log(resp.data);
-        setProducts(resp.data);
+        setData(resp.data);
       } catch (err) {
         setError(err);
-        console.log(err);
       } finally {
         console.log("loading finished");
         setLoading(false);
@@ -33,7 +31,5 @@ export function useFetchData(url) {
     }
     fetchData();
   }, [url]);
-  console.log(products.data);
-  console.log(error.message);
-  return { products, error, loading };
+  return { data, error, loading };
 }
