@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import AdminPage from "./components/admin/AdminPage";
-import ContactPage from "./components/contact/ContactPage";
-import HomePage from "./components/home/HomePage";
+import { AdminPage } from "./components/admin/AdminPage";
+import { ContactPage } from "./components/contact/ContactPage";
+import { HomePage } from "./components/home/HomePage";
 import Nav from "./components/layout/Nav";
-import LoginPage from "./components/login/LoginPage";
+import { LoginPage } from "./components/login/LoginPage";
 import { AuthProvider } from "./context/AuthContext";
 
 function App() {

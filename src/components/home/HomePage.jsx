@@ -1,4 +1,4 @@
-import GetProducts from "./GetProducts";
+import { GetProducts } from "./GetProducts";
 
 export function HomePage() {
   return (
