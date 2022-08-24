@@ -51,11 +51,11 @@ export function LoginForm() {
         {loginError && <div className="login-error">{loginError}</div>}
         <fieldset className="login-fieldset" disabled={submitting}>
           <div>
-            <input className="login-form__input" placeholder="Username" {...register("identifier")} />
+            <input className="login-form__input" placeholder="admin@admin.com" {...register("identifier")} />
             {errors.identifier && <div className="login-form__error">{errors.identifier.message}</div>}
           </div>
           <div>
-            <input className="login-form__input" type="password" placeholder="Password" {...register("password")} />
+            <input className="login-form__input" type="password" placeholder="admin123" {...register("password")} />
             {errors.password && <div className="login-form__error">{errors.password.message}</div>}
           </div>
           <button>{submitting ? "Logging in..." : "Log in"}</button>
