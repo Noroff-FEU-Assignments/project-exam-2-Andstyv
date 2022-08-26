@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Accommodation from "./components/accommodations/Accommodation";
 import { AccommodationsPage } from "./components/accommodations/AccommodationsPage";
 import { AdminPage } from "./components/admin/AdminPage";
 import { ContactPage } from "./components/contact/ContactPage";
@@ -20,6 +21,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/accommodations" element={<AccommodationsPage />} />
+          <Route path="accommodation/:id" element={<Accommodation />} />
         </Routes>
       </div>
     </AuthProvider>

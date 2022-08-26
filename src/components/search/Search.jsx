@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function Search({ placeholder, data }) {
   const [filteredResults, setFilteredResults] = useState([]);
@@ -9,7 +10,8 @@ export function Search({ placeholder, data }) {
     setSearchQuery(searchInput);
 
     const searchFilter = data.filter((value) => {
-      return value.attributes.name.toLowerCase().includes(searchInput.toLowerCase());
+      console.log(value);
+      return value.attributes.title.toLowerCase().includes(searchInput.toLowerCase());
     });
 
     if (searchInput === "") {
@@ -32,9 +34,9 @@ export function Search({ placeholder, data }) {
       <div>
         {filteredResults.slice(0, 10).map((value, key) => {
           return (
-            <a href={value.attributes.name}>
-              <p>{value.attributes.name}</p>
-            </a>
+            <li key={value.id}>
+              <Link to={`accommodation/${value.attributes.title}`}>{value.attributes.title}</Link>
+            </li>
           );
         })}
       </div>

@@ -21,9 +21,6 @@ function Nav() {
           <NavLink to="/contact">Contact</NavLink>
         </li>
         <li>
-          <NavLink to="/login">Login</NavLink>
-        </li>
-        <li>
           <NavLink to="/accommodations">Accommodations</NavLink>
         </li>
         <li id="admin-logout">
