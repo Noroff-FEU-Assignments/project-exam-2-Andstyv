@@ -32,13 +32,14 @@ export function Search({ placeholder, data }) {
         <input type={"text"} placeholder={placeholder} value={searchQuery} onChange={handleSearch} />
       </div>
       <div>
-        {filteredResults.slice(0, 10).map((value, key) => {
-          return (
-            <li key={value.id}>
-              <Link to={`accommodation/${value.attributes.title}`}>{value.attributes.title}</Link>
-            </li>
-          );
-        })}
+        {filteredResults &&
+          filteredResults.slice(0, 10).map((value, key) => {
+            return (
+              <li key={value.id}>
+                <Link to={`accommodation/${value.id}`}>{value.attributes.title}</Link>
+              </li>
+            );
+          })}
       </div>
     </div>
   );
