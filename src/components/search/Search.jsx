@@ -27,20 +27,42 @@ export function Search({ placeholder, data }) {
   //   };
 
   return (
-    <div>
+    <>
       <div>
-        <input type={"text"} placeholder={placeholder} value={searchQuery} onChange={handleSearch} />
+        <div>
+          <input type={"text"} placeholder={placeholder} value={searchQuery} onChange={handleSearch} />
+        </div>
+        <div>
+          {filteredResults &&
+            filteredResults.slice(0, 10).map((value, key) => {
+              return (
+                <li key={value.id}>
+                  <Link to={`accommodation/${value.id}`}>{value.attributes.title}</Link>
+                </li>
+              );
+            })}
+        </div>
       </div>
-      <div>
-        {filteredResults &&
-          filteredResults.slice(0, 10).map((value, key) => {
-            return (
-              <li key={value.id}>
-                <Link to={`accommodation/${value.id}`}>{value.attributes.title}</Link>
-              </li>
-            );
-          })}
+      <div style={{ marginTop: "50px" }}>
+        <form
+          action=""
+          style={{ display: "flex", justifyContent: "space-evenly", border: "1px solid #000", width: "600px", margin: "0 auto", padding: "20px" }}
+        >
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <label htmlFor="location">Location</label>
+            <input type={"text"} id="location" placeholder={"location"} />
+          </div>{" "}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <label htmlFor="from-date">From Date</label>
+            <input type={"date"} id="from-date" placeholder={"from date"} />
+          </div>{" "}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <label htmlFor="to-date">To Date</label>
+            <input type={"date"} id="to-date" placeholder={"to date"} />
+          </div>
+          <button>Søk</button>
+        </form>
       </div>
-    </div>
+    </>
   );
 }

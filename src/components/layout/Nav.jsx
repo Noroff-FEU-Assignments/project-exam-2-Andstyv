@@ -12,8 +12,8 @@ function Nav() {
     history("/");
   }
   return (
-    <nav>
-      <ul>
+    <nav style={{ maxWidth: "600px", margin: "0 auto" }}>
+      <ul style={{ display: "flex", justifyContent: "space-evenly" }}>
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
