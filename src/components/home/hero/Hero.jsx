@@ -4,7 +4,7 @@ import headerImg from "../../../assets/img/header_1600-min.jpg";
 const StyledHeroImg = styled.div`
   width: 100vw;
   height: 500px;
-  background-image: url(${headerImg}), linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  background-image: url(${headerImg}), linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
   background-blend-mode: overlay;
   background-size: cover;
   background-position: center;
@@ -12,11 +12,11 @@ const StyledHeroImg = styled.div`
 
 const StyledHeroH1 = styled.h1`
   position: absolute;
-  top: 200px;
+  top: 175px;
   left: 50%;
   transform: translate(-50%, 0);
   text-align: center;
-  font-size: 48px;
+  font-size: 56px;
   color: #ffda60;
 `;
 

@@ -7,11 +7,19 @@ const StyledSearchForm = styled.form`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   max-width: 600px;
-  box-shadow: 4px 6px 5px;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.234);
   background-color: #fff;
   border-radius: 2px;
   border: none;
-  margin-top: -40px;
+  margin-top: -100px;
+  width: 100%;
+
+  @media only screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    max-width: 800px;
+    margin-top: -35px;
+  }
 `;
 
 const StyledSearchFormDiv = styled.div`
@@ -24,6 +32,11 @@ const StyledSearchFormDiv = styled.div`
   border-bottom: ${(props) => props.borderBottom || "none"};
   grid-row: ${(props) => props.gridRow};
   grid-column: ${(props) => props.gridColumn};
+
+  @media only screen and (min-width: 768px) {
+    border-bottom: none;
+    border-left: ${(props) => props.borderLeftMd};
+  }
 `;
 
 const StyledSearchFormResults = styled.div`
@@ -44,6 +57,12 @@ const StyledSearchFormBtn = styled.button`
   font-size: 36px;
   font-family: monospace;
   font-weight: bold;
+
+  @media only screen and (min-width: 768px) {
+    grid-row: 1;
+    grid-column: 5;
+    border: none;
+  }
 `;
 
 const StyledSearchFormInput = styled.input`
@@ -107,7 +126,7 @@ export function Search({ placeholder, data }) {
                 })}
             </StyledSearchFormResults>
           </StyledSearchFormDiv>{" "}
-          <StyledSearchFormDiv padding="10px 20px 0 20px">
+          <StyledSearchFormDiv padding="10px 20px 0 20px" borderLeftMd="1px solid #000">
             <StyledSearchFormLabel htmlFor="from-date">From Date</StyledSearchFormLabel>
             <StyledSearchFormInput type={"date"} id="from-date" placeholder={"from date"} />
           </StyledSearchFormDiv>{" "}
