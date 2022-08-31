@@ -1,5 +1,61 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const StyledSearchForm = styled.form`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  max-width: 600px;
+  box-shadow: 4px 6px 5px;
+  background-color: #fff;
+  border-radius: 2px;
+  border: none;
+  margin-top: -40px;
+`;
+
+const StyledSearchFormDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-width: ${(props) => props.minWidth || "0px"};
+  position: ${(props) => props.position || "static"};
+  padding: ${(props) => props.padding || "0px"};
+  border-left: ${(props) => props.borderLeft || "none"};
+  border-bottom: ${(props) => props.borderBottom || "none"};
+  grid-row: ${(props) => props.gridRow};
+  grid-column: ${(props) => props.gridColumn};
+`;
+
+const StyledSearchFormResults = styled.div`
+  background: beige;
+  position: absolute;
+  top: 40px;
+  min-width: 200px;
+`;
+
+const StyledSearchFormBtn = styled.button`
+  padding: 10px;
+  grid-column: 1/3;
+  border: none;
+  border-top: 1px solid #000;
+  background: #3b5053;
+  color: #ffda60;
+  text-transform: uppercase;
+  font-size: 36px;
+  font-family: monospace;
+  font-weight: bold;
+`;
+
+const StyledSearchFormInput = styled.input`
+  border: none;
+  border-bottom: ${(props) => props.borderBottom || "none"};
+  margin-top: 5px;
+  padding: 2px 0px;
+`;
+
+const StyledSearchFormLabel = styled.label`
+  text-align: start;
+`;
 
 export function Search({ placeholder, data }) {
   const [filteredResults, setFilteredResults] = useState([]);
@@ -28,30 +84,19 @@ export function Search({ placeholder, data }) {
 
   return (
     <>
-      {/* <div>
-        <div>
-          <input type={"text"} placeholder={placeholder} value={searchQuery} onChange={handleSearch} />
-        </div>
-        <div>
-          {filteredResults &&
-            filteredResults.slice(0, 10).map((value, key) => {
-              return (
-                <li key={value.id}>
-                  <Link to={`accommodation/${value.id}`}>{value.attributes.title}</Link>
-                </li>
-              );
-            })}
-        </div>
-      </div> */}
-      <div style={{ marginTop: "50px" }}>
-        <form
-          action=""
-          style={{ display: "flex", justifyContent: "space-evenly", border: "1px solid #000", width: "600px", margin: "0 auto", padding: "20px" }}
-        >
-          <div style={{ display: "flex", flexDirection: "column", minWidth: "200px", position: "relative" }}>
+      <div style={{ display: "flex", flexDirection: "column", margin: "0 20px", alignItems: "center" }}>
+        <StyledSearchForm action="">
+          <StyledSearchFormDiv
+            minWidth="200px"
+            position="relative"
+            padding="10px 20px 0 20px"
+            gridColumn="1/3"
+            gridRow="1"
+            borderBottom="1px solid #000"
+          >
             <label htmlFor="location">Location</label>
-            <input type={"text"} id="location" placeholder={"location"} value={searchQuery} onChange={handleSearch} />
-            <div style={{ backgroundColor: "beige", position: "absolute", top: "40px", minWidth: "200px" }}>
+            <StyledSearchFormInput type={"text"} id="location" placeholder={"Search accommodations"} value={searchQuery} onChange={handleSearch} />
+            <StyledSearchFormResults>
               {filteredResults &&
                 filteredResults.slice(0, 10).map((value, key) => {
                   return (
@@ -60,18 +105,18 @@ export function Search({ placeholder, data }) {
                     </div>
                   );
                 })}
-            </div>
-          </div>{" "}
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <label htmlFor="from-date">From Date</label>
-            <input type={"date"} id="from-date" placeholder={"from date"} />
-          </div>{" "}
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <label htmlFor="to-date">To Date</label>
-            <input type={"date"} id="to-date" placeholder={"to date"} />
-          </div>
-          <button style={{ height: "50px" }}>Søk</button>
-        </form>
+            </StyledSearchFormResults>
+          </StyledSearchFormDiv>{" "}
+          <StyledSearchFormDiv padding="10px 20px 0 20px">
+            <StyledSearchFormLabel htmlFor="from-date">From Date</StyledSearchFormLabel>
+            <StyledSearchFormInput type={"date"} id="from-date" placeholder={"from date"} />
+          </StyledSearchFormDiv>{" "}
+          <StyledSearchFormDiv padding="10px 20px 0 20px" borderLeft="1px solid #000">
+            <StyledSearchFormLabel htmlFor="to-date">To Date</StyledSearchFormLabel>
+            <StyledSearchFormInput type={"date"} id="to-date" placeholder={"to date"} />
+          </StyledSearchFormDiv>
+          <StyledSearchFormBtn>Search</StyledSearchFormBtn>
+        </StyledSearchForm>
       </div>
     </>
   );

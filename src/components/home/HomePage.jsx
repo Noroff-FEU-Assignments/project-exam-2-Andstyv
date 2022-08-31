@@ -8,7 +8,6 @@ export function HomePage() {
 
   return (
     <div className="container" style={{ textAlign: "center" }}>
-      <h1>Home</h1>
       <Hero />
       <Search placeholder={"Search accommodation"} data={accommodationsData.data.data} />
     </div>
