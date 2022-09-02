@@ -18,6 +18,7 @@ const StyledHeroH1 = styled.h1`
   text-align: center;
   font-size: 56px;
   color: #ffda60;
+  font-weight: bold;
 `;
 
 function Hero() {

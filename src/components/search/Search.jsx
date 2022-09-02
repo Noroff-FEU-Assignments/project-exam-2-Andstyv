@@ -7,7 +7,7 @@ const StyledSearchForm = styled.form`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   max-width: 600px;
-  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.234);
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
   background-color: #fff;
   border-radius: 2px;
   border: none;
@@ -40,10 +40,18 @@ const StyledSearchFormDiv = styled.div`
 `;
 
 const StyledSearchFormResults = styled.div`
-  background: beige;
+  background: rgb(240, 240, 240);
   position: absolute;
-  top: 40px;
+  top: 65px;
   min-width: 200px;
+  width: 100%;
+  margin-left: -20px;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
+  text-align: start;
+
+  div {
+    margin: 25px 0 20px 25px;
+  }
 `;
 
 const StyledSearchFormBtn = styled.button`
@@ -53,9 +61,7 @@ const StyledSearchFormBtn = styled.button`
   border-top: 1px solid #000;
   background: #3b5053;
   color: #ffda60;
-  text-transform: uppercase;
   font-size: 36px;
-  font-family: monospace;
   font-weight: bold;
 
   @media only screen and (min-width: 768px) {
@@ -113,13 +119,13 @@ export function Search({ placeholder, data }) {
             gridRow="1"
             borderBottom="1px solid #000"
           >
-            <label htmlFor="location">Location</label>
+            <StyledSearchFormLabel htmlFor="location">Location</StyledSearchFormLabel>
             <StyledSearchFormInput type={"text"} id="location" placeholder={"Search accommodations"} value={searchQuery} onChange={handleSearch} />
             <StyledSearchFormResults>
               {filteredResults &&
                 filteredResults.slice(0, 10).map((value, key) => {
                   return (
-                    <div key={value.id} style={{ margin: "20px 0px" }}>
+                    <div key={value.id}>
                       <Link to={`accommodation/${value.id}`}>{value.attributes.title}</Link>
                     </div>
                   );

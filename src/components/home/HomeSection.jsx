@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledHomeWrapper = styled.div`
+export const StyledPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@ const StyledHomeDiv = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 400px;
-  margin-bottom: 50px;
+  margin-top: 100px;
 
   img {
     border-radius: 5px;
@@ -42,7 +42,7 @@ const StyledHomeText = styled.div`
 
 function HomeSection() {
   return (
-    <StyledHomeWrapper>
+    <StyledPageWrapper>
       <div style={{ maxWidth: "900px" }}>
         <StyledHomeDiv flexDirection="row">
           <StyledHomeText homeTextPadding="0 20px 0 0">
@@ -67,7 +67,7 @@ function HomeSection() {
           <img src="https://loremflickr.com/320/240" alt="placeholder"></img>
         </StyledHomeDiv>
       </div>
-    </StyledHomeWrapper>
+    </StyledPageWrapper>
   );
 }
 
