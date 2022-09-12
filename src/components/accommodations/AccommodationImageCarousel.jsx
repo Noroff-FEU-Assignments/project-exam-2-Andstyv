@@ -81,6 +81,7 @@ const StyledCarouselArrow = styled.div`
 
 function AccommodationImageCarousel({ accommodationImages }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  console.log(accommodationImages);
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -98,7 +99,7 @@ function AccommodationImageCarousel({ accommodationImages }) {
   };
 
   const ImgBg = {
-    backgroundImage: `url(${accommodationImages[currentIndex].url})`,
+    backgroundImage: `url(${accommodationImages[currentIndex].attributes.url})`,
   };
 
   return (
@@ -113,7 +114,7 @@ function AccommodationImageCarousel({ accommodationImages }) {
           </StyledCarouselArrow>
         </div>
         <div>
-          <StyledCarouselMainImg key={accommodationImages[0].url} style={ImgBg}></StyledCarouselMainImg>
+          <StyledCarouselMainImg key={accommodationImages[0].attributes.url} style={ImgBg}></StyledCarouselMainImg>
         </div>
         <StyledSecondaryImgsContainer>
           {" "}
@@ -121,8 +122,8 @@ function AccommodationImageCarousel({ accommodationImages }) {
             return (
               <StyledCarouselSecondaryImgs
                 onClick={() => goToSlide(imageIndex)}
-                key={image.url}
-                style={{ backgroundImage: `url(${image.url})` }}
+                key={image.attributes.url}
+                style={{ backgroundImage: `url(${image.attributes.url})` }}
               ></StyledCarouselSecondaryImgs>
             );
           })}

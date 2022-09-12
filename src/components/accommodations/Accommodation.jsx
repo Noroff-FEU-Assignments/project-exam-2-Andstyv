@@ -7,23 +7,23 @@ import AccommodationImageCarousel from "./AccommodationImageCarousel";
 
 function Accommodation() {
   const { id } = useParams();
-  const populateApi = "?populate[amenities][populate]=%2A";
+  const populateApi = "?populate=%2A";
   const url = ACCOMMODATIONS_SEARCH_URL + id + populateApi;
   const accommodation = useFetchData(url);
 
-  const placeHolderImgs = [
-    { url: "https://loremflickr.com/g/320/240/hotel" },
-    { url: "https://loremflickr.com/g/320/240/paris" },
-    { url: "https://loremflickr.com/g/320/240/london" },
-    { url: "https://loremflickr.com/g/320/240/dog" },
-    { url: "https://loremflickr.com/g/320/240/cat" },
-  ];
+  // const placeHolderImgs = [
+  //   { url: "https://loremflickr.com/g/320/240/hotel" },
+  //   { url: "https://loremflickr.com/g/320/240/paris" },
+  //   { url: "https://loremflickr.com/g/320/240/london" },
+  //   { url: "https://loremflickr.com/g/320/240/dog" },
+  //   { url: "https://loremflickr.com/g/320/240/cat" },
+  // ];
 
   return accommodation.loading ? (
     <div id="loading">Loading</div>
   ) : (
     <StyledPageWrapper>
-      <AccommodationImageCarousel accommodationImages={placeHolderImgs} />
+      <AccommodationImageCarousel key={1} accommodationImages={accommodation.data.data.attributes.images.data} />
       <h1>{accommodation.data.data.attributes.title}</h1>
       <p>{accommodation.data.data.attributes.description}</p>
       <p>Price per room: {accommodation.data.data.attributes.price}</p>
