@@ -1,5 +1,8 @@
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { useState } from "react";
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
 
 const StyledSearchForm = styled.form`
   display: grid;
@@ -81,16 +84,39 @@ const StyledSearchFormLabel = styled.label`
   text-align: start;
 `;
 
+const schema = yup.object().shape({
+  location: yup.string().required("Enter location"),
+  fromDate: yup.date().optional("Enter from date"),
+  toDate: yup.date().optional("Enter to date"),
+});
+
 export function Search({ placeholder, data }) {
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+
+  const onSubmit = (data, e) => {
+    const formData = {
+      location: searchQuery,
+      fromDate: data.fromDate,
+      toDate: data.fromDate,
+    };
+    console.log(formData);
+    console.log(searchQuery);
+
+    e.target.reset();
+  };
 
   const handleSearch = (e) => {
     const searchInput = e.target.value;
     setSearchQuery(searchInput);
 
     const searchFilter = data.filter((value) => {
-      console.log(value);
       return value.attributes.title.toLowerCase().includes(searchInput.toLowerCase());
     });
 
@@ -102,8 +128,8 @@ export function Search({ placeholder, data }) {
   };
 
   const handleSelect = (value) => {
-    console.log(value.attributes.title);
     setSearchQuery(value.attributes.title);
+
     setFilteredResults([]);
   };
 
@@ -115,7 +141,7 @@ export function Search({ placeholder, data }) {
   return (
     <>
       <div style={{ display: "flex", flexDirection: "column", margin: "0 20px", alignItems: "center" }}>
-        <StyledSearchForm action="">
+        <StyledSearchForm onSubmit={handleSubmit(onSubmit)}>
           <StyledSearchFormDiv
             minWidth="200px"
             position="relative"
@@ -125,7 +151,15 @@ export function Search({ placeholder, data }) {
             borderBottom="1px solid #000"
           >
             <StyledSearchFormLabel htmlFor="location">Location</StyledSearchFormLabel>
-            <StyledSearchFormInput type={"text"} id="location" placeholder={"Search accommodations"} value={searchQuery} onChange={handleSearch} />
+            <StyledSearchFormInput
+              type={"text"}
+              {...register("location")}
+              id="location"
+              placeholder={"Search accommodations"}
+              value={searchQuery}
+              onChange={handleSearch}
+            />
+            {errors.location && <span id="contact-error">{errors.location.message}</span>}
             <StyledSearchFormResults>
               {filteredResults &&
                 filteredResults.slice(0, 10).map((value, key) => {
@@ -140,12 +174,14 @@ export function Search({ placeholder, data }) {
             </StyledSearchFormResults>
           </StyledSearchFormDiv>{" "}
           <StyledSearchFormDiv padding="10px 20px 0 20px" borderLeftMd="1px solid #000">
-            <StyledSearchFormLabel htmlFor="from-date">From Date</StyledSearchFormLabel>
-            <StyledSearchFormInput type={"date"} id="from-date" placeholder={"from date"} />
+            <StyledSearchFormLabel htmlFor="fromDate">From Date</StyledSearchFormLabel>
+            <StyledSearchFormInput type={"date"} {...register("fromDate")} id="fromDate" placeholder={"from date"} />
+            {errors.fromDate && <span id="contact-error">{errors.fromDate.message}</span>}
           </StyledSearchFormDiv>{" "}
           <StyledSearchFormDiv padding="10px 20px 0 20px" borderLeft="1px solid #000">
-            <StyledSearchFormLabel htmlFor="to-date">To Date</StyledSearchFormLabel>
-            <StyledSearchFormInput type={"date"} id="to-date" placeholder={"to date"} />
+            <StyledSearchFormLabel htmlFor="toDate">To Date</StyledSearchFormLabel>
+            <StyledSearchFormInput type={"date"} {...register("toDate")} id="toDate" placeholder={"to date"} />
+            {errors.toDate && <span id="contact-error">{errors.toDate.message}</span>}
           </StyledSearchFormDiv>
           <StyledSearchFormBtn>Search</StyledSearchFormBtn>
         </StyledSearchForm>
