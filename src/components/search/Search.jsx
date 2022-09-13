@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledSearchForm = styled.form`
@@ -102,6 +101,12 @@ export function Search({ placeholder, data }) {
     }
   };
 
+  const handleSelect = (value) => {
+    console.log(value.attributes.title);
+    setSearchQuery(value.attributes.title);
+    setFilteredResults([]);
+  };
+
   //   const clearInput = () => {
   //     setFilteredResults([]);
   //     setSearchQuery("");
@@ -126,7 +131,9 @@ export function Search({ placeholder, data }) {
                 filteredResults.slice(0, 10).map((value, key) => {
                   return (
                     <div key={value.id}>
-                      <Link to={`accommodation/${value.id}`}>{value.attributes.title}</Link>
+                      <div value={value.attributes.title} onClick={() => handleSelect(value)}>
+                        {value.attributes.title}
+                      </div>
                     </div>
                   );
                 })}

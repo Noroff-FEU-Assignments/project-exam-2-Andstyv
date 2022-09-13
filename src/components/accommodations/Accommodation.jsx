@@ -15,18 +15,27 @@ function Accommodation() {
     <div id="loading">Loading</div>
   ) : (
     <StyledPageWrapper>
-      <AccommodationImageCarousel key={1} accommodationImages={accommodation.data.data.attributes.images.data} />
+      <AccommodationImageCarousel key={accommodation.data.data.id} accommodationImages={accommodation.data.data.attributes.images.data} />
       <h1>{accommodation.data.data.attributes.title}</h1>
+      <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+        {accommodation.data.data.attributes.amenities.data.map((amenity) => {
+          return (
+            <div key={amenity.id}>
+              <img src={amenity.attributes.Icon.data[0].attributes.url} alt="Amenity icon" style={{ width: "24px" }}></img>{" "}
+            </div>
+          );
+        })}
+      </div>
+      <h2 style={{ alignSelf: "start", marginBottom: "5px" }}>Info:</h2>
       <p>{accommodation.data.data.attributes.description}</p>
-      <p>Price per room: {accommodation.data.data.attributes.price}</p>
-      <div>
-        <h3>Amenities:</h3>
-        <div>
+      <p style={{ fontSize: "24px", fontWeight: "900" }}>Price per room: {accommodation.data.data.attributes.price}</p>
+      <div style={{ alignSelf: "start", marginBottom: "5px" }}>
+        <h3>List of Amenities:</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
           {accommodation.data.data.attributes.amenities.data.map((amenity) => {
             return (
               <div key={amenity.id} style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                <img src={amenity.attributes.Icon.data[0].attributes.url} alt="Amenity icon" style={{ width: "32px" }}></img>{" "}
-                {amenity.attributes.Amenity}
+                · {amenity.attributes.Amenity}
               </div>
             );
           })}
