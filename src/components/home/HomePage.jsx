@@ -7,6 +7,7 @@ import Footer from "../layout/Footer";
 
 export function HomePage() {
   const accommodationsData = useFetchData(ACCOMMODATIONS_SEARCH_URL);
+  console.log(accommodationsData.data.data);
 
   return (
     <div className="container" style={{ textAlign: "center" }}>
