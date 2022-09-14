@@ -12,6 +12,7 @@ import {
   StyledSearchFormResults,
 } from "./search.styles";
 import { useNavigate } from "react-router-dom";
+import SearcHandler from "./SearcHandler";
 
 const today = new Date();
 today.setHours(0, 0, 0, 0);
@@ -39,6 +40,9 @@ export function Search({ placeholder, data }) {
 
     const location = searchQuery.attributes.title;
     const id = searchQuery.id;
+
+    const searchData = SearcHandler(e);
+    console.log(searchData);
 
     console.log(location);
     console.log(id);

@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { ACCOMMODATIONS_SEARCH_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
+import EnquiryModal from "../elements/EnquiryModal";
 import { StyledPageWrapper } from "../home/HomeSection";
 import AccommodationImageCarousel from "./AccommodationImageCarousel";
 
@@ -12,8 +13,6 @@ function Accommodation() {
   const accommodation = useFetchData(url);
   const item = window.localStorage.getItem("stay");
   const loc = JSON.parse(item);
-
-  const totalPrice = loc.days * accommodation.data.data.attributes.price;
 
   return accommodation.loading ? (
     <div id="loading">Loading</div>
@@ -35,9 +34,10 @@ function Accommodation() {
           <div>From: {loc.fromDate}</div>
           <div>To: {loc.toDate}</div>
           <div>Days: {loc.days}</div>
-          <div>Total: {totalPrice}</div>
+          <div>Total price: {loc.days * accommodation.data.data.attributes.price}</div>
         </>
       )}
+      <EnquiryModal amenity={loc} />
 
       <h2 style={{ alignSelf: "start", marginBottom: "5px" }}>Info:</h2>
       <p>{accommodation.data.data.attributes.description}</p>
