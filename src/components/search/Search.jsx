@@ -1,98 +1,32 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useState } from "react";
-import styled from "styled-components";
+
 import { useForm } from "react-hook-form";
+import {
+  StyledSearchForm,
+  StyledSearchFormBtn,
+  StyledSearchFormDiv,
+  StyledSearchFormInput,
+  StyledSearchFormLabel,
+  StyledSearchFormResults,
+} from "./search.styles";
+import { useNavigate } from "react-router-dom";
 
-const StyledSearchForm = styled.form`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  max-width: 600px;
-  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
-  background-color: #fff;
-  border-radius: 2px;
-  border: none;
-  margin-top: -100px;
-  width: 100%;
-
-  @media only screen and (min-width: 768px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    max-width: 800px;
-    margin-top: -35px;
-  }
-`;
-
-const StyledSearchFormDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-width: ${(props) => props.minWidth || "0px"};
-  position: ${(props) => props.position || "static"};
-  padding: ${(props) => props.padding || "0px"};
-  border-left: ${(props) => props.borderLeft || "none"};
-  border-bottom: ${(props) => props.borderBottom || "none"};
-  grid-row: ${(props) => props.gridRow};
-  grid-column: ${(props) => props.gridColumn};
-
-  @media only screen and (min-width: 768px) {
-    border-bottom: none;
-    border-left: ${(props) => props.borderLeftMd};
-  }
-`;
-
-const StyledSearchFormResults = styled.div`
-  background: rgb(240, 240, 240);
-  position: absolute;
-  top: 65px;
-  min-width: 200px;
-  width: 100%;
-  margin-left: -20px;
-  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
-  text-align: start;
-
-  div {
-    margin: 25px 0 20px 25px;
-  }
-`;
-
-const StyledSearchFormBtn = styled.button`
-  padding: 10px;
-  grid-column: 1/3;
-  border: none;
-  border-top: 1px solid #000;
-  background: #3b5053;
-  color: #ffda60;
-  font-size: 36px;
-  font-weight: bold;
-
-  @media only screen and (min-width: 768px) {
-    grid-row: 1;
-    grid-column: 5;
-    border: none;
-  }
-`;
-
-const StyledSearchFormInput = styled.input`
-  border: none;
-  border-bottom: ${(props) => props.borderBottom || "none"};
-  margin-top: 5px;
-  padding: 2px 0px;
-`;
-
-const StyledSearchFormLabel = styled.label`
-  text-align: start;
-`;
+const today = new Date();
+today.setHours(0, 0, 0, 0);
 
 const schema = yup.object().shape({
   location: yup.string().required("Enter location"),
-  fromDate: yup.date().optional("Enter from date"),
-  toDate: yup.date().optional("Enter to date"),
+  fromDate: yup.date().min(today, "Date cannot be in the past").required("Enter from date").typeError("Enter from date"),
+  toDate: yup.date().required().min(yup.ref("fromDate"), "To date cannot be before start date").typeError("Enter to date"),
 });
 
 export function Search({ placeholder, data }) {
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchTitle, setSearchTitle] = useState("");
+  const navigate = useNavigate();
 
   const {
     register,
@@ -101,20 +35,40 @@ export function Search({ placeholder, data }) {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data, e) => {
+    e.preventDefault();
+
+    const location = searchQuery.attributes.title;
+    const id = searchQuery.id;
+
+    console.log(location);
+    console.log(id);
+    const checkIn = data.fromDate;
+    const checkOut = data.toDate;
+    const stringCheckin = checkIn.toLocaleDateString();
+    const stringCheckout = checkOut.toLocaleDateString();
+    const timeDiff = checkOut.getTime() - checkIn.getTime();
+    const dayDiff = timeDiff / (1000 * 3600 * 24);
+
     const formData = {
-      location: searchQuery,
-      fromDate: data.fromDate,
-      toDate: data.fromDate,
+      accommodationId: id,
+      location: location,
+      fromDate: stringCheckin,
+      toDate: stringCheckout,
+      days: dayDiff,
     };
     console.log(formData);
-    console.log(searchQuery);
+
+    localStorage.setItem("stay", JSON.stringify(formData));
+    navigate(`/accommodation/${id}`);
 
     e.target.reset();
   };
 
   const handleSearch = (e) => {
     const searchInput = e.target.value;
-    setSearchQuery(searchInput);
+    console.log(searchInput);
+
+    setSearchTitle(searchInput);
 
     const searchFilter = data.filter((value) => {
       return value.attributes.title.toLowerCase().includes(searchInput.toLowerCase());
@@ -128,15 +82,10 @@ export function Search({ placeholder, data }) {
   };
 
   const handleSelect = (value) => {
-    setSearchQuery(value.attributes.title);
-
+    setSearchTitle(value.attributes.title);
+    setSearchQuery(value);
     setFilteredResults([]);
   };
-
-  //   const clearInput = () => {
-  //     setFilteredResults([]);
-  //     setSearchQuery("");
-  //   };
 
   return (
     <>
@@ -156,16 +105,16 @@ export function Search({ placeholder, data }) {
               {...register("location")}
               id="location"
               placeholder={"Search accommodations"}
-              value={searchQuery}
+              value={searchTitle}
               onChange={handleSearch}
             />
             {errors.location && <span id="contact-error">{errors.location.message}</span>}
             <StyledSearchFormResults>
               {filteredResults &&
-                filteredResults.slice(0, 10).map((value, key) => {
+                filteredResults.slice(0, 10).map((value, id) => {
                   return (
                     <div key={value.id}>
-                      <div value={value.attributes.title} onClick={() => handleSelect(value)}>
+                      <div value={value.attributes.title} id={value.id} onClick={() => handleSelect(value)}>
                         {value.attributes.title}
                       </div>
                     </div>

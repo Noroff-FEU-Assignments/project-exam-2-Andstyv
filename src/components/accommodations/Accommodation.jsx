@@ -10,6 +10,10 @@ function Accommodation() {
   const populateApi = "?populate[amenities][populate]=*&populate[images]=*";
   const url = ACCOMMODATIONS_SEARCH_URL + id + populateApi;
   const accommodation = useFetchData(url);
+  const item = window.localStorage.getItem("stay");
+  const loc = JSON.parse(item);
+
+  const totalPrice = loc.days * accommodation.data.data.attributes.price;
 
   return accommodation.loading ? (
     <div id="loading">Loading</div>
@@ -26,6 +30,15 @@ function Accommodation() {
           );
         })}
       </div>
+      {loc && (
+        <>
+          <div>From: {loc.fromDate}</div>
+          <div>To: {loc.toDate}</div>
+          <div>Days: {loc.days}</div>
+          <div>Total: {totalPrice}</div>
+        </>
+      )}
+
       <h2 style={{ alignSelf: "start", marginBottom: "5px" }}>Info:</h2>
       <p>{accommodation.data.data.attributes.description}</p>
       <p style={{ fontSize: "24px", fontWeight: "900" }}>Price per room: {accommodation.data.data.attributes.price}</p>
