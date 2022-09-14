@@ -7,6 +7,7 @@ import { ContactPage } from "./components/contact/ContactPage";
 import { HomePage } from "./components/home/HomePage";
 import Nav from "./components/layout/Nav";
 import { LoginPage } from "./components/login/LoginPage";
+import { SearchAccommodationPage } from "./components/search/SearchAccommodationPage";
 import { AuthProvider } from "./context/AuthContext";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/accommodations" element={<AccommodationsPage />} />
           <Route path="accommodation/:id" element={<Accommodation />} />
+          <Route path="search/accommodation/:id" element={<SearchAccommodationPage />} />
         </Routes>
       </div>
     </AuthProvider>

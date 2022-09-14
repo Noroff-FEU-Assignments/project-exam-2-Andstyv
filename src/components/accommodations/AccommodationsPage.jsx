@@ -1,10 +1,10 @@
-import { GetProducts } from "../home/GetProducts";
+import { Accommodations } from "./Accommodations";
 
 export function AccommodationsPage() {
   return (
     <>
       <div>AccommodationsPage</div>
-      <GetProducts />
+      <Accommodations />
     </>
   );
 }

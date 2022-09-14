@@ -63,7 +63,7 @@ export function Search({ placeholder, data }) {
     console.log(formData);
 
     localStorage.setItem("stay", JSON.stringify(formData));
-    navigate(`/accommodation/${id}`);
+    navigate(`/search/accommodation/${id}`);
 
     e.target.reset();
   };
