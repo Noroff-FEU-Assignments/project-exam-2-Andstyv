@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Accommodation from "./components/accommodations/Accommodation";
 import { AccommodationsPage } from "./components/accommodations/AccommodationsPage";
+import AdminContactMessages from "./components/admin/AdminContactMessages";
 import { AdminPage } from "./components/admin/AdminPage";
 import { ContactPage } from "./components/contact/ContactPage";
 import { HomePage } from "./components/home/HomePage";
@@ -19,7 +20,10 @@ function App() {
           <Route exact path="/" element={<HomePage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin" element={<AdminPage />}>
+            <Route path="messages" element={<AdminContactMessages />} />
+          </Route>
+          <Route path="/messages" element={<AdminPage />} />
           <Route path="/accommodations" element={<AccommodationsPage />} />
           <Route path="accommodation/:id" element={<Accommodation />} />
           <Route path="search/accommodation/:id" element={<SearchAccommodationPage />} />

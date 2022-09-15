@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { MESSAGE_FORM_URL } from "../../constants/api";
 import { getAuth } from "../../constants/getAuth";
 import { useFetchData } from "../../hooks/useFetchData";
@@ -22,6 +22,11 @@ export function AdminPage() {
   ) : (
     <>
       <h1>This is admin page</h1>
+      <button>Show messages</button>
+      <button>Show enquiries</button>
+      <button>Add accommodation</button>
+      <Link to="messages">messages</Link>
+      <Outlet />
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         {getMessages &&
           getMessages.data.data.map((message) => {
