@@ -10,7 +10,7 @@ export function Accommodations() {
   return (
     <div>
       <h2>{accommodations && accommodations.data.data[3].attributes.title}</h2>
-      <div>
+      <div className="other">
         <h3>Other alternatives:</h3>
         {accommodations &&
           accommodations.data.data.map((amenity) => {
@@ -21,6 +21,7 @@ export function Accommodations() {
             );
           })}
       </div>
+      <h3>hello</h3>
     </div>
   );
 }

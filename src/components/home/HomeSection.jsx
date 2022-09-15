@@ -7,7 +7,7 @@ export const StyledPageWrapper = styled.div`
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 50px;
-  height: 100vh;
+  height: auto;
 `;
 
 const StyledHomeDiv = styled.div`

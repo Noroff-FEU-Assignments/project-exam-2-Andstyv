@@ -70,7 +70,6 @@ export function Search({ placeholder, data }) {
 
   const handleSearch = (e) => {
     const searchInput = e.target.value;
-    console.log(searchInput);
 
     setSearchTitle(searchInput);
 
@@ -111,6 +110,7 @@ export function Search({ placeholder, data }) {
               placeholder={"Search accommodations"}
               value={searchTitle}
               onChange={handleSearch}
+              style={{ fontSize: "16px", fontWeight: "bold" }}
             />
             {errors.location && <span id="contact-error">{errors.location.message}</span>}
             <StyledSearchFormResults>
@@ -128,12 +128,12 @@ export function Search({ placeholder, data }) {
           </StyledSearchFormDiv>{" "}
           <StyledSearchFormDiv padding="10px 20px 0 20px" borderLeftMd="1px solid #000">
             <StyledSearchFormLabel htmlFor="fromDate">From Date</StyledSearchFormLabel>
-            <StyledSearchFormInput type={"date"} {...register("fromDate")} id="fromDate" placeholder={"from date"} />
+            <StyledSearchFormInput type={"date"} {...register("fromDate")} id="fromDate" />
             {errors.fromDate && <span id="contact-error">{errors.fromDate.message}</span>}
           </StyledSearchFormDiv>{" "}
           <StyledSearchFormDiv padding="10px 20px 0 20px" borderLeft="1px solid #000">
             <StyledSearchFormLabel htmlFor="toDate">To Date</StyledSearchFormLabel>
-            <StyledSearchFormInput type={"date"} {...register("toDate")} id="toDate" placeholder={"to date"} />
+            <StyledSearchFormInput type={"date"} {...register("toDate")} id="toDate" onfocus="(this.type='date')" />
             {errors.toDate && <span id="contact-error">{errors.toDate.message}</span>}
           </StyledSearchFormDiv>
           <StyledSearchFormBtn>Search</StyledSearchFormBtn>
