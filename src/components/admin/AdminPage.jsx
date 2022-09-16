@@ -1,15 +1,10 @@
 import { useEffect } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { MESSAGE_FORM_URL } from "../../constants/api";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { getAuth } from "../../constants/getAuth";
-import { useFetchData } from "../../hooks/useFetchData";
 
 export function AdminPage() {
   const history = useNavigate();
   const auth = getAuth();
-  const getMessages = useFetchData(MESSAGE_FORM_URL);
-
-  console.log(getMessages);
 
   useEffect(() => {
     if (!auth) {
@@ -17,30 +12,13 @@ export function AdminPage() {
     }
   });
 
-  return getMessages.loading ? (
-    <div>Loading</div>
-  ) : (
+  return (
     <>
-      <h1>This is admin page</h1>
-      <button>Show messages</button>
-      <button>Show enquiries</button>
-      <button>Add accommodation</button>
-      <Link to="messages">messages</Link>
+      <h1>Admin Home</h1>
+      <NavLink to="messages">Messages</NavLink>
+      <NavLink to="enquiries">Enquiries</NavLink>
+      <NavLink to="create">Create new accommodation</NavLink>
       <Outlet />
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-        {getMessages &&
-          getMessages.data.data.map((message) => {
-            return (
-              <div key={message.id} style={{ border: "1px solid black", padding: "10px", width: "250px", marginBottom: "20px" }}>
-                <h2>Message:</h2>
-                <div> {message.attributes.firstname} </div>
-                <div> {message.attributes.lastname} </div>
-                <div> {message.attributes.email} </div>
-                <div> {message.attributes.message} </div>
-              </div>
-            );
-          })}
-      </div>
     </>
   );
 }

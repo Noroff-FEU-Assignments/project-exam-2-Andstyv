@@ -125,12 +125,12 @@ export function Search({ placeholder, data }) {
                   );
                 })}
             </StyledSearchFormResults>
-          </StyledSearchFormDiv>{" "}
+          </StyledSearchFormDiv>
           <StyledSearchFormDiv padding="10px 20px 0 20px" borderLeftMd="1px solid #000">
             <StyledSearchFormLabel htmlFor="fromDate">From Date</StyledSearchFormLabel>
             <StyledSearchFormInput type={"date"} {...register("fromDate")} id="fromDate" />
             {errors.fromDate && <span id="contact-error">{errors.fromDate.message}</span>}
-          </StyledSearchFormDiv>{" "}
+          </StyledSearchFormDiv>
           <StyledSearchFormDiv padding="10px 20px 0 20px" borderLeft="1px solid #000">
             <StyledSearchFormLabel htmlFor="toDate">To Date</StyledSearchFormLabel>
             <StyledSearchFormInput type={"date"} {...register("toDate")} id="toDate" onfocus="(this.type='date')" />

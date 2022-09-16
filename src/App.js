@@ -2,7 +2,9 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Accommodation from "./components/accommodations/Accommodation";
 import { AccommodationsPage } from "./components/accommodations/AccommodationsPage";
-import AdminContactMessages from "./components/admin/AdminContactMessages";
+import { AdminContactMessages } from "./components/admin/AdminContactMessages";
+import { AdminCreateAccommodation } from "./components/admin/AdminCreateAccommodation";
+import { AdminEnquiries } from "./components/admin/AdminEnquiries";
 import { AdminPage } from "./components/admin/AdminPage";
 import { ContactPage } from "./components/contact/ContactPage";
 import { HomePage } from "./components/home/HomePage";
@@ -22,6 +24,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin" element={<AdminPage />}>
             <Route path="messages" element={<AdminContactMessages />} />
+            <Route path="enquiries" element={<AdminEnquiries />} />
+            <Route path="create" element={<AdminCreateAccommodation />} />
           </Route>
           <Route path="/messages" element={<AdminPage />} />
           <Route path="/accommodations" element={<AccommodationsPage />} />
