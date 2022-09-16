@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledSearchForm = styled.form`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 80px;
   grid-template-rows: 1fr 1fr 1fr;
   max-width: 600px;
   box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
@@ -54,7 +54,7 @@ export const StyledSearchFormResults = styled.div`
 
 export const StyledSearchFormBtn = styled.button`
   padding: 10px;
-  grid-column: 1/3;
+  grid-column: 1/4;
   border: none;
   border-top: 1px solid #000;
   background: #3b5053;

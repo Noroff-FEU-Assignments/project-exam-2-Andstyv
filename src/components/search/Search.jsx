@@ -21,6 +21,7 @@ const schema = yup.object().shape({
   location: yup.string().required("Enter location"),
   fromDate: yup.date().min(today, "Date cannot be in the past").required("Enter from date").typeError("Enter from date"),
   toDate: yup.date().required().min(yup.ref("fromDate"), "To date cannot be before start date").typeError("Enter to date"),
+  guests: yup.number().required("Enter no. of guests"),
 });
 
 export function Search({ placeholder, data }) {
@@ -48,6 +49,7 @@ export function Search({ placeholder, data }) {
     console.log(id);
     const checkIn = data.fromDate;
     const checkOut = data.toDate;
+    const guests = data.guests;
     const stringCheckin = checkIn.toLocaleDateString();
     const stringCheckout = checkOut.toLocaleDateString();
     const timeDiff = checkOut.getTime() - checkIn.getTime();
@@ -59,6 +61,7 @@ export function Search({ placeholder, data }) {
       fromDate: stringCheckin,
       toDate: stringCheckout,
       days: dayDiff,
+      guests: guests,
     };
     console.log(formData);
 
@@ -98,7 +101,7 @@ export function Search({ placeholder, data }) {
             minWidth="200px"
             position="relative"
             padding="10px 20px 0 20px"
-            gridColumn="1/3"
+            gridColumn="1/4"
             gridRow="1"
             borderBottom="1px solid #000"
           >
@@ -133,8 +136,13 @@ export function Search({ placeholder, data }) {
           </StyledSearchFormDiv>
           <StyledSearchFormDiv padding="10px 20px 0 20px" borderLeft="1px solid #000">
             <StyledSearchFormLabel htmlFor="toDate">To Date</StyledSearchFormLabel>
-            <StyledSearchFormInput type={"date"} {...register("toDate")} id="toDate" onfocus="(this.type='date')" />
+            <StyledSearchFormInput type={"date"} {...register("toDate")} id="toDate" />
             {errors.toDate && <span id="contact-error">{errors.toDate.message}</span>}
+          </StyledSearchFormDiv>
+          <StyledSearchFormDiv padding="10px 20px 0 20px" borderLeft="1px solid #000">
+            <StyledSearchFormLabel htmlFor="guests">Guests</StyledSearchFormLabel>
+            <StyledSearchFormInput type={"number"} {...register("guests")} id="guests" />
+            {errors.guests && <span id="contact-error">{errors.guests.message}</span>}
           </StyledSearchFormDiv>
           <StyledSearchFormBtn>Search</StyledSearchFormBtn>
         </StyledSearchForm>

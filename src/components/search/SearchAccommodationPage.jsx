@@ -3,6 +3,19 @@ import { Link, useParams } from "react-router-dom";
 
 import { ACCOMMODATIONS_SEARCH_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
+import {
+  StyledAccommodationsAltCardImgContainer,
+  StyledAccommodationsAltCardInfo,
+  StyledAccommodationsAltCardInfoAmenities,
+  StyledAccommodationsAltCardInfoAmenitiesText,
+  StyledAccommodationsAltCards,
+  StyledAccommodationsMain,
+  StyledAccommodationsMainCardAmenitiesIcons,
+  StyledAccommodationsMainCardInfo,
+  StyledAccommodationsMainCardStayData,
+  StyledAccommodationsMainImg,
+  StyledAccommodationsWrapper,
+} from "./searchAccommodationsPage.styles";
 
 export function SearchAccommodationPage() {
   const populateApi = "?populate[amenities][populate]=*&populate[images]=*";
@@ -22,9 +35,9 @@ export function SearchAccommodationPage() {
   const loc = JSON.parse(item);
   const searchInput = newId;
   let mainResult = [];
+  const rooms = Math.ceil(loc.guests / 2);
 
-  function newTest() {
-    console.log("hello");
+  function filterAccommodations() {
     const searchFilter = results.data.filter((value) => {
       return value.id === searchInput;
     });
@@ -34,35 +47,30 @@ export function SearchAccommodationPage() {
     });
     mainResult = searchFilter;
     results = restFilter;
-    console.log(searchFilter);
   }
-  newTest();
+  filterAccommodations();
 
   if (error) {
     return <div>Error</div>;
   }
 
   return (
-    <div className="wrapper" style={{ margin: "0 20px" }}>
-      <div className="main" style={{ display: "flex", flexDirection: "column", boxShadow: "5px 5px 10px 2px rgba(0, 0, 0, 0.25)" }}>
+    <StyledAccommodationsWrapper>
+      <StyledAccommodationsMain>
         <div>
-          <img
-            src={mainResult[0].attributes.images.data[0].attributes.url}
-            alt="Hotel"
-            style={{ width: "100%", height: "auto", maxHeight: "200px", objectFit: "cover" }}
-          />
+          <StyledAccommodationsMainImg src={mainResult[0].attributes.images.data[0].attributes.url} alt={mainResult[0].attributes.title} />
         </div>
-        <div className="card-info" style={{ padding: "10px" }}>
+        <StyledAccommodationsMainCardInfo>
           <h2 style={{ marginTop: "0", marginBottom: "5px" }}>{mainResult[0].attributes.title}</h2>
-          <div className="amenities" style={{ display: "flex", gap: "10px" }}>
+          <StyledAccommodationsMainCardAmenitiesIcons>
             {mainResult[0].attributes.amenities.data.map((amenity) => {
               return (
                 <div key={amenity.id}>
-                  <img src={amenity.attributes.Icon.data[0].attributes.url} alt="Amenity icon" style={{ width: "16px" }}></img>{" "}
+                  <img src={amenity.attributes.Icon.data[0].attributes.url} alt={amenity.attributes.Amenity}></img>{" "}
                 </div>
               );
             })}
-          </div>
+          </StyledAccommodationsMainCardAmenitiesIcons>
           <div className="desc" style={{ fontSize: "14px" }}>
             <p style={{ margin: "10px 0" }}>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil sunt deleniti sit, quasi facere repellendus quaerat voluptate aspernatur
@@ -75,17 +83,7 @@ export function SearchAccommodationPage() {
               })}
             </div>
           </div>
-          <div
-            className="stay-data"
-            style={{
-              display: "flex",
-              fontSize: "14px",
-              justifyContent: "space-between",
-              marginTop: "20px",
-              borderTop: "1px solid #000",
-              paddingTop: "10px",
-            }}
-          >
+          <StyledAccommodationsMainCardStayData borderTop="1px solid #000">
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div>From:</div>
               <div>{loc.fromDate}</div>
@@ -94,18 +92,28 @@ export function SearchAccommodationPage() {
               <div>To:</div>
               <div>{loc.toDate}</div>
             </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ display: "flex", flexDirection: "column", width: "50px" }}>
               <div>Nights:</div>
               <div>{loc.days}</div>
             </div>
+          </StyledAccommodationsMainCardStayData>
+          <StyledAccommodationsMainCardStayData marginTop="0">
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <div>Total:</div>
-              <div>${mainResult[0].attributes.price * loc.days}</div>
+              <div>Guests:</div>
+              <div>{loc.guests}</div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="rest" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <div>Rooms:</div>
+              <div>{rooms}</div>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", fontSize: "16px", fontWeight: "900", width: "50px" }}>
+              <div>Total:</div>
+              <div>${mainResult[0].attributes.price * loc.days * rooms}</div>
+            </div>
+          </StyledAccommodationsMainCardStayData>
+        </StyledAccommodationsMainCardInfo>
+      </StyledAccommodationsMain>
+      <StyledAccommodationsAltCards>
         <h3 style={{ marginTop: "40px", marginBottom: "10px" }}>Other alternatives:</h3>
         {results &&
           results.map((accommodation) => {
@@ -122,16 +130,12 @@ export function SearchAccommodationPage() {
                 }}
               >
                 <div style={{ display: "flex", gap: "10px" }}>
-                  <div>
-                    <img
-                      src={accommodation.attributes.images.data[0].attributes.url}
-                      alt="Hotel"
-                      style={{ width: "100px", height: "100%", maxHeight: "200px", objectFit: "cover" }}
-                    />
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "column", padding: "5px" }}>
-                    <h4 style={{ margin: "0" }}>{accommodation.attributes.title}</h4>
-                    <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "5px", flexWrap: "wrap" }}>
+                  <StyledAccommodationsAltCardImgContainer>
+                    <img src={accommodation.attributes.images.data[0].attributes.url} alt={accommodation.attributes.title} />
+                  </StyledAccommodationsAltCardImgContainer>
+                  <StyledAccommodationsAltCardInfo>
+                    <h4>{accommodation.attributes.title}</h4>
+                    <StyledAccommodationsAltCardInfoAmenities>
                       {accommodation.attributes.amenities.data.map((amenity) => {
                         return (
                           <div key={amenity.id}>
@@ -139,21 +143,21 @@ export function SearchAccommodationPage() {
                           </div>
                         );
                       })}
-                      <div style={{ display: "flex", flexWrap: "wrap", gap: "5px", fontSize: "12px" }}>
+                      <StyledAccommodationsAltCardInfoAmenitiesText>
                         {accommodation.attributes.amenities.data.map((amenity) => {
                           return <div key={amenity.id}>· {amenity.attributes.Amenity}</div>;
                         })}
-                      </div>
-                    </div>
+                      </StyledAccommodationsAltCardInfoAmenitiesText>
+                    </StyledAccommodationsAltCardInfoAmenities>
                     <div style={{ justifyItems: "flex-end", marginTop: "25px" }}>
-                      Total for {loc.days} nights: {accommodation.attributes.price * loc.days}
+                      Total for {loc.days} {loc.days > 1 ? "nights" : "night"} {accommodation.attributes.price * loc.days * rooms}
                     </div>
-                  </div>
+                  </StyledAccommodationsAltCardInfo>
                 </div>
               </Link>
             );
           })}
-      </div>
-    </div>
+      </StyledAccommodationsAltCards>
+    </StyledAccommodationsWrapper>
   );
 }

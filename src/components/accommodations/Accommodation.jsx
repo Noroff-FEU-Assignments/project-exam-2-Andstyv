@@ -33,7 +33,9 @@ function Accommodation() {
         <>
           <div>From: {loc.fromDate}</div>
           <div>To: {loc.toDate}</div>
-          <div>Days: {loc.days}</div>
+          <div>
+            {loc.days > 1 ? "Nights" : "Night"} {loc.days}
+          </div>
           <div>Total price: {loc.days * accommodation.data.data.attributes.price}</div>
         </>
       )}
