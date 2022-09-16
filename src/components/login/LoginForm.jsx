@@ -32,6 +32,7 @@ export function LoginForm() {
   async function tryToLogin(data) {
     setLoginError(null);
     setSubmitting(true);
+    console.log(data);
     try {
       const response = await axios.post(url, data);
       setAuth(response.data);

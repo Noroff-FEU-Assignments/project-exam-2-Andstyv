@@ -33,6 +33,7 @@ function Accommodation() {
         <>
           <div>From: {loc.fromDate}</div>
           <div>To: {loc.toDate}</div>
+          <div>Guests: {loc.guests}</div>
           <div>
             {loc.days > 1 ? "Nights" : "Night"} {loc.days}
           </div>

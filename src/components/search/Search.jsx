@@ -21,7 +21,7 @@ const schema = yup.object().shape({
   location: yup.string().required("Enter location"),
   fromDate: yup.date().min(today, "Date cannot be in the past").required("Enter from date").typeError("Enter from date"),
   toDate: yup.date().required().min(yup.ref("fromDate"), "To date cannot be before start date").typeError("Enter to date"),
-  guests: yup.number().required("Enter no. of guests"),
+  guests: yup.number().min(1, "Must be at least 1 guest").required("Enter no. of guests").typeError("Enter no. of guests"),
 });
 
 export function Search({ placeholder, data }) {
@@ -97,14 +97,7 @@ export function Search({ placeholder, data }) {
     <>
       <div style={{ display: "flex", flexDirection: "column", margin: "0 20px", alignItems: "center" }}>
         <StyledSearchForm onSubmit={handleSubmit(onSubmit)}>
-          <StyledSearchFormDiv
-            minWidth="200px"
-            position="relative"
-            padding="10px 20px 0 20px"
-            gridColumn="1/4"
-            gridRow="1"
-            borderBottom="1px solid #000"
-          >
+          <StyledSearchFormDiv minWidth="200px" position="relative" padding="10px" gridColumn="1/4" gridRow="1" borderBottom="1px solid #000">
             <StyledSearchFormLabel htmlFor="location">Location</StyledSearchFormLabel>
             <StyledSearchFormInput
               type={"text"}
@@ -129,19 +122,24 @@ export function Search({ placeholder, data }) {
                 })}
             </StyledSearchFormResults>
           </StyledSearchFormDiv>
-          <StyledSearchFormDiv padding="10px 20px 0 20px" borderLeftMd="1px solid #000">
-            <StyledSearchFormLabel htmlFor="fromDate">From Date</StyledSearchFormLabel>
+          <StyledSearchFormDiv padding="5px" borderLeftMd="1px solid #000">
+            <StyledSearchFormLabel htmlFor="fromDate">From</StyledSearchFormLabel>
             <StyledSearchFormInput type={"date"} {...register("fromDate")} id="fromDate" />
             {errors.fromDate && <span id="contact-error">{errors.fromDate.message}</span>}
           </StyledSearchFormDiv>
-          <StyledSearchFormDiv padding="10px 20px 0 20px" borderLeft="1px solid #000">
-            <StyledSearchFormLabel htmlFor="toDate">To Date</StyledSearchFormLabel>
-            <StyledSearchFormInput type={"date"} {...register("toDate")} id="toDate" />
+          <StyledSearchFormDiv padding="5px" borderLeft="1px solid #000">
+            <StyledSearchFormLabel htmlFor="toDate">To</StyledSearchFormLabel>
+            <StyledSearchFormInput type={"date"} {...register("toDate")} id="toDate" placeholder="tests" />
             {errors.toDate && <span id="contact-error">{errors.toDate.message}</span>}
           </StyledSearchFormDiv>
-          <StyledSearchFormDiv padding="10px 20px 0 20px" borderLeft="1px solid #000">
+          <StyledSearchFormDiv padding="5px" borderLeft="1px solid #000">
             <StyledSearchFormLabel htmlFor="guests">Guests</StyledSearchFormLabel>
-            <StyledSearchFormInput type={"number"} {...register("guests")} id="guests" />
+            <StyledSearchFormInput
+              type={"number"}
+              {...register("guests")}
+              id="guests"
+              style={{ borderBottom: "1px solid black", width: "20px", textAlign: "center", margin: "5px auto" }}
+            />
             {errors.guests && <span id="contact-error">{errors.guests.message}</span>}
           </StyledSearchFormDiv>
           <StyledSearchFormBtn>Search</StyledSearchFormBtn>

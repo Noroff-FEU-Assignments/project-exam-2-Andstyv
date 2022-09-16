@@ -1,3 +1,5 @@
+import { NewForm } from "./NewForm";
+
 export function AdminEnquiries() {
-  return <div>AdminEnquiries</div>;
+  return <NewForm />;
 }
