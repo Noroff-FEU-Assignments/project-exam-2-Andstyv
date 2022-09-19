@@ -1,40 +1,30 @@
-import { useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import AuthContext from "../../context/AuthContext";
+import React from "react";
+import styled from "styled-components";
+import { HamburgerMenu } from "./HamburgerMenu";
 
-function Nav() {
-  const [auth, setAuth] = useContext(AuthContext);
-  const history = useNavigate();
-
-  function logout() {
-    setAuth(null);
-    localStorage.removeItem("auth");
-    history("/");
+const Nav = styled.nav`
+  height: 55px;
+  border-bottom: 2px solid #f1f1f1;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #3b5053;
+  border-bottom: 0;
+  .logo {
+    padding: 15px 0;
+    color: #fff;
+    font-size: 36px;
   }
-  return (
-    <nav style={{ maxWidth: "600px", margin: "0 auto" }}>
-      <ul style={{ display: "flex", justifyContent: "space-evenly" }}>
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
-        <li>
-          <NavLink to="/contact">Contact</NavLink>
-        </li>
-        <li id="admin-logout">
-          {auth ? (
-            <>
-              <NavLink to="/admin">Admin</NavLink>{" "}
-              <button id="logout__btn" onClick={logout}>
-                Log out
-              </button>
-            </>
-          ) : (
-            <NavLink to="/login">Login</NavLink>
-          )}
-        </li>
-      </ul>
-    </nav>
-  );
-}
+`;
 
-export default Nav;
+const Navbar = () => {
+  return (
+    <Nav>
+      <div className="logo">Holidaze</div>
+      <HamburgerMenu />
+    </Nav>
+  );
+};
+
+export default Navbar;
