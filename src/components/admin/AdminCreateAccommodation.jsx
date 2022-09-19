@@ -93,20 +93,22 @@ export const AdminCreateAccommodation = () => {
         </select>
         {errors.type && <span id="acoommodation-form-error">{errors.type.message}</span>}
         <label htmlFor="amenities">Amenities: </label>
-        {amenities.data.map((amenity) => {
-          return (
-            <div key={amenity.id}>
-              <input
-                type={"checkbox"}
-                name={amenity.attributes.Amenity}
-                id={amenity.attributes.Amenity}
-                {...register("amenities")}
-                value={amenity.id}
-              />
-              <label htmlFor={amenity.id}>{amenity.attributes.Amenity}</label>
-            </div>
-          );
-        })}
+        <div>
+          {amenities.data.map((amenity) => {
+            return (
+              <div key={amenity.id}>
+                <input
+                  type={"checkbox"}
+                  name={amenity.attributes.Amenity}
+                  id={amenity.attributes.Amenity}
+                  {...register("amenities")}
+                  value={amenity.id}
+                />
+                <label htmlFor={amenity.id}>{amenity.attributes.Amenity}</label>
+              </div>
+            );
+          })}
+        </div>
         {errors.amenities && <span id="acoommodation-form-error">{errors.amenities.message}</span>}
         <label htmlFor="images">Images: </label>
         <input type="file" multiple name="images" id="images" onChange={(e) => setImages(e.target.files)}></input>

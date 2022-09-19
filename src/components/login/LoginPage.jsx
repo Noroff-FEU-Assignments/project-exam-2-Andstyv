@@ -1,9 +1,14 @@
+import { StyledPageWrapper } from "../home/HomeSection";
+import Footer from "../layout/Footer";
 import { LoginForm } from "./LoginForm";
 
 export function LoginPage() {
   return (
     <>
-      <LoginForm />
+      <StyledPageWrapper>
+        <LoginForm />
+      </StyledPageWrapper>
+      <Footer />
     </>
   );
 }
