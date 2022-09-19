@@ -41,7 +41,7 @@ const Ul = styled.ul`
   }
 `;
 
-const RightNavMenu = ({ open }) => {
+const RightNavMenu = ({ open, setOpen }) => {
   const [auth, setAuth] = useContext(AuthContext);
 
   const history = useNavigate();
@@ -50,15 +50,20 @@ const RightNavMenu = ({ open }) => {
     localStorage.removeItem("auth");
     history("/");
   }
+
+  const closeMenu = (e) => {
+    e.preventDefault();
+    setOpen(false);
+  };
   return (
     <Ul open={open}>
-      <li>
+      <li onClick={closeMenu}>
         <NavLink to="/">Home</NavLink>
       </li>
-      <li>
+      <li onClick={closeMenu}>
         <NavLink to="/contact">Contact</NavLink>
       </li>
-      <li id="admin-logout">
+      <li id="admin-logout" onClick={closeMenu}>
         {auth ? (
           <>
             <NavLink to="/admin">Admin</NavLink>{" "}

@@ -50,7 +50,7 @@ export const HamburgerMenu = () => {
         <div id="hamburger-line" />
         <div id="hamburger-line" />
       </StyledBurger>
-      <RightNavMenu open={open} />
+      <RightNavMenu open={open} setOpen={setOpen} />
     </>
   );
 };

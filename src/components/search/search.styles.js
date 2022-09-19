@@ -13,7 +13,7 @@ export const StyledSearchForm = styled.form`
   width: 100%;
 
   @media only screen and (min-width: 768px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 100px 1fr;
     grid-template-rows: 1fr;
     max-width: 800px;
     margin-top: -35px;
@@ -34,6 +34,8 @@ export const StyledSearchFormDiv = styled.div`
   @media only screen and (min-width: 768px) {
     border-bottom: none;
     border-left: ${(props) => props.borderLeftMd};
+    grid-row: ${(props) => props.gridRowLg};
+    grid-column: ${(props) => props.gridColumnLg};
   }
 `;
 

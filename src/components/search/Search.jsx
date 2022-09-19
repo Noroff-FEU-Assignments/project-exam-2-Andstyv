@@ -97,7 +97,15 @@ export function Search({ placeholder, data }) {
     <>
       <div style={{ display: "flex", flexDirection: "column", margin: "0 20px", alignItems: "center" }}>
         <StyledSearchForm onSubmit={handleSubmit(onSubmit)}>
-          <StyledSearchFormDiv minWidth="200px" position="relative" padding="10px" gridColumn="1/4" gridRow="1" borderBottom="1px solid #000">
+          <StyledSearchFormDiv
+            minWidth="200px"
+            position="relative"
+            padding="10px"
+            gridColumn="1/4"
+            gridRow="1"
+            borderBottom="1px solid #000"
+            gridColumnLg="1"
+          >
             <StyledSearchFormLabel htmlFor="location">Location</StyledSearchFormLabel>
             <StyledSearchFormInput
               type={"text"}
@@ -122,7 +130,7 @@ export function Search({ placeholder, data }) {
                 })}
             </StyledSearchFormResults>
           </StyledSearchFormDiv>
-          <StyledSearchFormDiv padding="5px" borderLeftMd="1px solid #000">
+          <StyledSearchFormDiv padding="5px" borderLeftMd="1px solid #000" gridColumnLg="2">
             <StyledSearchFormLabel htmlFor="fromDate">From</StyledSearchFormLabel>
             <StyledSearchFormInput type={"date"} {...register("fromDate")} id="fromDate" />
             {errors.fromDate && <span id="contact-error">{errors.fromDate.message}</span>}
