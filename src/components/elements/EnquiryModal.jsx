@@ -4,21 +4,22 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const schema = yup.object().shape({
-  location: yup.string(),
-  fromDate: yup.string(),
-  toDate: yup.string(),
-  guests: yup.string(),
-  nights: yup.string(),
-  firstname: yup.string().required("Enter first name"),
-  lastname: yup.string().required("Enter last name"),
-  email: yup.string().email().required("Enter E-mail"),
+  accommodation: yup.string(),
+  name: yup.string(),
+  email: yup.string().email(),
+  telephone: yup.number(),
+  checkin: yup.date(),
+  checkout: yup.date(),
+  guests: yup.number(),
 });
 
 function EnquiryModal({ amenity }) {
   const [showModal, setShowModal] = useState(false);
   const [sentForm, setSentForm] = useState(false);
+  console.log(amenity);
 
   useEffect(() => {
     document.addEventListener("keydown", (e) => {
@@ -36,9 +37,25 @@ function EnquiryModal({ amenity }) {
 
   const onSubmit = (data, e) => {
     e.preventDefault();
+
     const formData = JSON.stringify({ data });
     console.log(formData);
     setSentForm(true);
+
+    axios({
+      method: "post",
+      url: "https://andsty-noroff-exam2.herokuapp.com/api/enquiries?populate[accommodation]=*",
+      data: formData,
+      headers: { "Content-Type": "application/json" },
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (response) {
+        alert("An error occured");
+        console.log(response);
+      });
+    e.target.reset();
   };
 
   return (
@@ -82,29 +99,38 @@ function EnquiryModal({ amenity }) {
             </button>
             <div className="modal-body">
               <form onSubmit={handleSubmit(onSubmit)}>
-                <label htmlFor="location">Location</label>
-                <input {...register("location")} id="location" readOnly value={amenity.location} style={{ fontStyle: "italic" }} />
-                <label htmlFor="fromDate">From</label>
-                <input {...register("fromDate")} id="fromDate" readOnly value={amenity.fromDate} style={{ fontStyle: "italic" }} />
-                <label htmlFor="toDate">Till</label>
-                <input {...register("toDate")} id="toDate" readOnly value={amenity.toDate} style={{ fontStyle: "italic" }} />
+                <label htmlFor="accommodation">accommodation</label>
+                <input readOnly id="accommodation" value={amenity.location} />
+                <input
+                  {...register("accommodation")}
+                  hidden
+                  placeholder={amenity.location}
+                  id={amenity.accommodationId}
+                  readOnly
+                  value={amenity.accommodationId}
+                  style={{ fontStyle: "italic" }}
+                />
+                <label htmlFor="checkin">From</label>
+                <input {...register("checkin")} id="checkin" readOnly value={amenity.fromDate} style={{ fontStyle: "italic" }} />
+                <label htmlFor="checkout">Till</label>
+                <input {...register("checkout")} id="checkout" readOnly value={amenity.toDate} style={{ fontStyle: "italic" }} />
                 <label htmlFor="guests">Guests</label>
                 <input {...register("guests")} id="guests" readOnly value={amenity.guests} style={{ fontStyle: "italic" }} />
-                <label htmlFor="nights">Nights</label>
-                <input {...register("nights")} id="nights" readOnly value={amenity.days} style={{ fontStyle: "italic" }} />
-                <label htmlFor="firstname">Firstname</label>
-                <input {...register("firstname")} id="firstname" />
-                {errors.firstname && <span id="contact-error">{errors.firstname.message}</span>}
-                <label htmlFor="lastname">Lastname</label>
-                <input {...register("lastname")} id="lastname" />
-                {errors.lastname && <span id="contact-error">{errors.lastname.message}</span>}
+                <label htmlFor="name">Name</label>
+                <input {...register("name")} id="name" />
+                {errors.name && <span id="contact-error">{errors.name.message}</span>}
                 <label htmlFor="email">Email</label>
                 <input {...register("email")} id="email" />
                 {errors.email && <span id="contact-error">{errors.email.message}</span>}
+                <label htmlFor="tel">Telephone</label>
+                <input {...register("telephone")} id="tel" type="number" />
+                {errors.tel && <span id="contact-error">{errors.tel.message}</span>}
+                <label htmlFor="message">Message</label>
+                <textarea {...register("message")} id="message" />
+                {errors.message && <span id="contact-error">{errors.message.message}</span>}
                 <div style={{ color: "green", margin: "10px 0" }}>{sentForm ? "Form submitted" : ""}</div>
-                {sentForm ? <button disabled>Sent</button> : <button>Send</button>}
 
-                {/* <button>Send</button> */}
+                <button>Send</button>
               </form>
             </div>
           </div>

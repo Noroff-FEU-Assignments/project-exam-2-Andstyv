@@ -50,16 +50,16 @@ export function Search({ placeholder, data }) {
     const checkIn = data.fromDate;
     const checkOut = data.toDate;
     const guests = data.guests;
-    const stringCheckin = checkIn.toLocaleDateString();
-    const stringCheckout = checkOut.toLocaleDateString();
+    // const stringCheckin = checkIn.toLocaleDateString();
+    // const stringCheckout = checkOut.toLocaleDateString();
     const timeDiff = checkOut.getTime() - checkIn.getTime();
     const dayDiff = timeDiff / (1000 * 3600 * 24);
 
     const formData = {
       accommodationId: id,
       location: location,
-      fromDate: stringCheckin,
-      toDate: stringCheckout,
+      fromDate: checkIn,
+      toDate: checkOut,
       days: dayDiff,
       guests: guests,
     };

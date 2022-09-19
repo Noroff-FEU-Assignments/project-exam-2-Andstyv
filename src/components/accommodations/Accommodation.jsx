@@ -14,6 +14,12 @@ function Accommodation() {
   const item = window.localStorage.getItem("stay");
   const loc = JSON.parse(item);
 
+  const checkIn = new Date(loc.fromDate);
+  const checkOut = new Date(loc.toDate);
+
+  const parsedCheckIn = checkIn.toLocaleDateString();
+  const parsedCheckOut = checkOut.toLocaleDateString();
+
   return accommodation.loading ? (
     <div id="loading">Loading</div>
   ) : (
@@ -31,8 +37,8 @@ function Accommodation() {
       </div>
       {loc && (
         <>
-          <div>From: {loc.fromDate}</div>
-          <div>To: {loc.toDate}</div>
+          <div>From: {parsedCheckIn}</div>
+          <div>To: {parsedCheckOut}</div>
           <div>Guests: {loc.guests}</div>
           <div>
             {loc.days > 1 ? "Nights" : "Night"} {loc.days}

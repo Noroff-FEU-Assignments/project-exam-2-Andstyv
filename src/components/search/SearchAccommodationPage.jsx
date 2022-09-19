@@ -33,6 +33,15 @@ export function SearchAccommodationPage() {
   }
   const item = window.localStorage.getItem("stay");
   const loc = JSON.parse(item);
+
+  const checkIn = new Date(loc.fromDate);
+  const checkOut = new Date(loc.toDate);
+
+  const parsedCheckIn = checkIn.toLocaleDateString();
+  const parsedCheckOut = checkOut.toLocaleDateString();
+
+  console.log(parsedCheckIn);
+
   const searchInput = newId;
   let mainResult = [];
   const rooms = Math.ceil(loc.guests / 2);
@@ -86,11 +95,11 @@ export function SearchAccommodationPage() {
           <StyledAccommodationsMainCardStayData borderTop="1px solid #000">
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div>From:</div>
-              <div>{loc.fromDate}</div>
+              <div>{parsedCheckIn}</div>
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div>To:</div>
-              <div>{loc.toDate}</div>
+              <div>{parsedCheckOut}</div>
             </div>
             <div style={{ display: "flex", flexDirection: "column", width: "50px" }}>
               <div>Nights:</div>
