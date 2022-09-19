@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Accommodation from "./components/accommodations/Accommodation";
-import { AccommodationsPage } from "./components/accommodations/AccommodationsPage";
 import { AdminContactMessages } from "./components/admin/AdminContactMessages";
 import { AdminCreateAccommodation } from "./components/admin/AdminCreateAccommodation";
 import { AdminEnquiries } from "./components/admin/AdminEnquiries";
@@ -28,7 +27,6 @@ function App() {
             <Route path="create" element={<AdminCreateAccommodation />} />
           </Route>
           <Route path="/messages" element={<AdminPage />} />
-          <Route path="/accommodations" element={<AccommodationsPage />} />
           <Route path="accommodation/:id" element={<Accommodation />} />
           <Route path="search/accommodation/:id" element={<SearchAccommodationPage />} />
         </Routes>

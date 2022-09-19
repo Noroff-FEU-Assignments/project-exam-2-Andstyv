@@ -5,15 +5,25 @@ import { useFetchData } from "../../hooks/useFetchData";
 export function Accommodations() {
   const populateApi = "?populate[amenities][populate]=*&populate[images]=*";
   const url = ACCOMMODATIONS_SEARCH_URL + populateApi;
-  const accommodations = useFetchData(url);
+  const { data, loading, error } = useFetchData(url);
+
+  const accommodations = data;
+
+  if (loading) {
+    return <div>Loading</div>;
+  }
+
+  if (error) {
+    return <div>Error</div>;
+  }
 
   return (
     <div>
-      <h2>{accommodations && accommodations.data.data[3].attributes.title}</h2>
+      <h2>Title</h2>
       <div className="other">
         <h3>Other alternatives:</h3>
         {accommodations &&
-          accommodations.data.data.map((amenity) => {
+          accommodations.data.map((amenity) => {
             return (
               <div key={amenity.id} style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
                 {amenity.attributes.title}
