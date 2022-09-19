@@ -1,24 +1,33 @@
+import axios from "axios";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AMENITIES_SEARCH_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
 
-export function AdminCreateAccommodation() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+const schema = yup.object().shape({
+  title: yup.string().required("Enter title"),
+  description: yup.string().required("Enter description"),
+  price: yup.number().required("Enter price").typeError("Enter a number"),
+  type: yup.string().required("Select type of accommodation"),
+});
 
-  const onSubmit = (data, e) => {
-    e.preventDefault();
-    const formData = data;
-    console.log(formData);
-  };
+export const AdminCreateAccommodation = () => {
+  //eslint-disable-next-line
+  const [message, setMessage] = useState("");
+  const [images, setImages] = useState([]);
 
   const url = AMENITIES_SEARCH_URL;
   const { data, loading, error } = useFetchData(url);
 
   let amenities = data;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
 
   if (loading) {
     return <div>Loading</div>;
@@ -27,40 +36,85 @@ export function AdminCreateAccommodation() {
   if (error) {
     return <div>Error</div>;
   }
-  console.log(amenities);
+  const formData = new FormData();
+
+  const onSubmit = async (data, e) => {
+    e.preventDefault();
+
+    const newFormData = {
+      title: data.title,
+      description: data.description,
+      price: data.price,
+      amenities: data.amenities,
+      type: data.type,
+    };
+
+    for (const image of images) {
+      formData.append(`files.images`, image, image.name);
+    }
+    formData.append("data", JSON.stringify(newFormData));
+
+    setMessage("Loading");
+
+    axios({
+      method: "post",
+      url: "https://andsty-noroff-exam2.herokuapp.com/api/accommodations/?populate[amenities][populate]=*&populate[images]=*",
+      data: formData,
+      headers: { "Content-Type": "application/json" },
+    })
+      .then(function (response) {
+        setMessage("Accommodation added successfully");
+        console.log(response);
+      })
+      .catch(function (response) {
+        alert("An error occured");
+        console.log(response);
+      });
+    e.target.reset();
+  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-      <label htmlFor="title">Title</label>
-      <input {...register("title")} id="title" />
-      {errors.title && <span id="contact-error">{errors.title.message}</span>}
-      <label htmlFor="description">Description</label>
-      <input {...register("description")} id="description" />
-      {errors.description && <span id="contact-error">{errors.description.message}</span>}
-      <label htmlFor="price">Price per room</label>
-      <input {...register("price")} id="price" />
-      {errors.price && <span id="contact-error">{errors.price.message}</span>}
-      <label htmlFor="type">Type</label>
-      <input {...register("type")} id="type" />
-      {errors.type && <span id="contact-error">{errors.type.message}</span>}
+    <div className="App">
+      <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <label htmlFor="title">Title: </label>
+        <input type="text" placeholder="Title" id="title" {...register("title")} />
+        {errors.title && <span id="acoommodation-form-error">{errors.title.message}</span>}
+        <label htmlFor="description">Description: </label>
+        <input type="text" placeholder="Description" id="description" {...register("description")} />
+        {errors.description && <span id="acoommodation-form-error">{errors.description.message}</span>}
+        <label htmlFor="price">Price: </label>
+        <input type="number" placeholder="Price" id="price" {...register("price")} />
+        {errors.price && <span id="acoommodation-form-error">{errors.price.message}</span>}
+        <label htmlFor="type">Type: </label>
+        <select placeholder="Type" id="type" {...register("type")}>
+          <option value="Hotel">Hotel</option>
+          <option value="Guesthouse">Guesthouse</option>
+          <option value="BnB">BnB</option>
+        </select>
+        {errors.type && <span id="acoommodation-form-error">{errors.type.message}</span>}
+        <label htmlFor="amenities">Amenities: </label>
+        {amenities.data.map((amenity) => {
+          return (
+            <div key={amenity.id}>
+              <input
+                type={"checkbox"}
+                name={amenity.attributes.Amenity}
+                id={amenity.attributes.Amenity}
+                {...register("amenities")}
+                value={amenity.id}
+              />
+              <label htmlFor={amenity.id}>{amenity.attributes.Amenity}</label>
+            </div>
+          );
+        })}
+        {errors.amenities && <span id="acoommodation-form-error">{errors.amenities.message}</span>}
+        <label htmlFor="images">Images: </label>
+        <input type="file" multiple name="images" id="images" onChange={(e) => setImages(e.target.files)}></input>
 
-      <div>Amenities: </div>
-      {amenities.data.map((amenity) => {
-        return (
-          <div key={amenity.id}>
-            <input type={"checkbox"} id={amenity.id} {...register("amenities")} value={amenity.id} />
-            <label htmlFor={amenity.id}>{amenity.attributes.Amenity}</label>
-          </div>
-        );
-      })}
-      <button>Send</button>
-    </form>
+        <button type="submit">Create accommodation</button>
+
+        <div className="message">{message ? <p>{message}</p> : null}</div>
+      </form>
+    </div>
   );
-}
-
-// Amenities (icons + links), main-image (main + rest), type
-
-/* <label htmlFor="main-image">Main image</label>
-<input {...register("main-image")} id="secondary-images" type={"file"} />
-<label htmlFor="secondary-images">Secondary images</label>
-<input {...register("secondary-images")} id="secondary-images" type={"file"} multiple /> */
+};
