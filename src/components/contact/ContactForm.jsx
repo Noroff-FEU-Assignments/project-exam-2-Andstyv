@@ -38,7 +38,10 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "80vh" }}
+    >
       <label htmlFor="firstname">First Name</label>
       <input {...register("firstname")} id="firstname" />
       {errors.firstname && <span id="contact-error">{errors.firstname.message}</span>}

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { HamburgerMenu } from "./HamburgerMenu";
 
@@ -15,13 +16,16 @@ const Nav = styled.nav`
     padding: 0;
     color: #fff;
     font-size: 24px;
+    text-decoration: none;
   }
 `;
 
 const Navbar = () => {
   return (
     <Nav>
-      <div className="logo">Holidaze</div>
+      <Link to="/" className="logo">
+        Holidaze
+      </Link>
       <HamburgerMenu />
     </Nav>
   );
