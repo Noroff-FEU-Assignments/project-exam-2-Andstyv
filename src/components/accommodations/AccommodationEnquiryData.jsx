@@ -6,7 +6,9 @@ const StyledEnquiryContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  border: 1px solid black;
+  bottom: 20px;
+  margin-top: 30px;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
 `;
 
 export function AccommodationEnquiryData({ data }) {
@@ -21,24 +23,26 @@ export function AccommodationEnquiryData({ data }) {
   const parsedCheckIn = checkIn.toLocaleDateString();
   const parsedCheckOut = checkOut.toLocaleDateString();
   return (
-    <StyledEnquiryContainer style={{ border: "1px solid black", borderRadius: "10px", position: "absolute", bottom: "20px" }}>
+    <StyledEnquiryContainer style={{ borderRadius: "10px" }}>
       {accommodationData && (
         <>
-          <div style={{ display: "flex", flexDirection: "column", padding: "5px" }}>
+          <div style={{ display: "flex", flexDirection: "column", padding: "10px" }}>
             <label htmlFor="checkin">From:</label>
             <div id="checkin">{parsedCheckIn}</div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", padding: "5px" }}>
+          <div style={{ display: "flex", flexDirection: "column", padding: "10px" }}>
             <label htmlFor="checkout">To:</label>
             <div id="checkout">{parsedCheckOut}</div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", padding: "5px", alignItems: "center" }}>
+          <div style={{ display: "flex", flexDirection: "column", padding: "10px", alignItems: "center" }}>
             <label htmlFor="guests">Guests:</label>
             <div id="guests">{accommodationData.guests}</div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", padding: "5px", alignItems: "center" }}>
+          <div style={{ display: "flex", flexDirection: "column", padding: "10px", alignItems: "center" }}>
             <label htmlFor="total-price">Total:</label>
-            <div id="total-price">{accommodationData.days * accommodation.data.data.attributes.price}</div>
+            <div id="total-price" style={{ fontWeight: "bold" }}>
+              ${accommodationData.days * accommodation.data.data.attributes.price}
+            </div>
           </div>
         </>
       )}

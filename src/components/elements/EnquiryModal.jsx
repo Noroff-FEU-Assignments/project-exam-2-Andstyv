@@ -72,7 +72,7 @@ function EnquiryModal({ amenity }) {
           alignItems: "center",
         }}
       >
-        <div style={{ color: "yellow" }}>Send enquiry</div>
+        <div style={{ color: "yellow" }}>Enquire about this accommodation</div>
       </div>
       {showModal && (
         <>
