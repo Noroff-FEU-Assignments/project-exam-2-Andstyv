@@ -5,15 +5,51 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import styled from "styled-components";
+
+const StyledEnquiryModal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  max-width: 300px;
+  max-height: 600px;
+  padding: 20px 40px;
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
+  overflowy: auto;
+  background-color: #fff;
+  z-index: 99;
+  border-radius: 20px;
+
+  input {
+    font-size: 16px;
+  }
+  button {
+    margin: 20px 0;
+  }
+`;
+
+const StyledEnquiryModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  zindex: 5;
+  transform: translateZ(0);
+  background-color: rgba(0, 0, 0, 0.8);
+`;
 
 const schema = yup.object().shape({
   accommodation: yup.string(),
-  name: yup.string(),
-  email: yup.string().email(),
-  telephone: yup.number(),
   checkin: yup.date(),
   checkout: yup.date(),
   guests: yup.number(),
+  name: yup.string().required("Enter name"),
+  email: yup.string().email().required("Enter Email").typeError("Enter valid Email"),
+  telephone: yup.number().required("Enter telephone no.").typeError("Enter a valid number"),
+  message: yup.string(),
 });
 
 function EnquiryModal({ amenity }) {
@@ -76,77 +112,90 @@ function EnquiryModal({ amenity }) {
       </div>
       {showModal && (
         <>
-          <div
-            className="overlay"
-            style={{
-              position: "fixed",
-              top: "0",
-              left: "0",
-              width: "100%",
-              height: "100%",
-              zIndex: "5",
-              transform: "translateZ(0)",
-              backgroundColor: "rgba(0, 0, 0, 0.8)",
-            }}
-            onClick={() => setShowModal(false)}
-          ></div>
-          <div
-            className="modal"
-            style={{
-              position: "fixed",
-              top: "50%",
-              left: "50%",
-              height: "auto",
-              transform: "translate(-50%, -50%)",
-              maxWidth: "250px",
-              maxHeight: "450px",
-              padding: "2.5em 1.5em 1.5em 1.5em",
-              boxShadow: "0 0 10px 3px rgba(0, 0, 0, 0.1)",
-              overflowY: "auto",
-              backgroundColor: "#fff",
-              zIndex: "99",
-            }}
-          >
+          <StyledEnquiryModalOverlay onClick={() => setShowModal(false)}></StyledEnquiryModalOverlay>
+          <StyledEnquiryModal>
             <button className="modal-close" type="button" onClick={() => setShowModal(false)}>
               X
             </button>
             <div className="modal-body">
               <form onSubmit={handleSubmit(onSubmit)}>
-                <label htmlFor="accommodation">accommodation</label>
-                <input readOnly id="accommodation" value={amenity.location} />
-                <input
-                  {...register("accommodation")}
-                  hidden
-                  placeholder={amenity.location}
-                  id={amenity.accommodationId}
-                  readOnly
-                  value={amenity.accommodationId}
-                  style={{ fontStyle: "italic" }}
-                />
-                <label htmlFor="checkin">From</label>
-                <input {...register("checkin")} id="checkin" readOnly value={amenity.fromDate} style={{ fontStyle: "italic" }} />
-                <label htmlFor="checkout">Till</label>
-                <input {...register("checkout")} id="checkout" readOnly value={amenity.toDate} style={{ fontStyle: "italic" }} />
-                <label htmlFor="guests">Guests</label>
-                <input {...register("guests")} id="guests" readOnly value={amenity.guests} style={{ fontStyle: "italic" }} />
-                <label htmlFor="name">Name</label>
-                <input {...register("name")} id="name" />
-                {errors.name && <span id="contact-error">{errors.name.message}</span>}
-                <label htmlFor="email">Email</label>
-                <input {...register("email")} id="email" />
-                {errors.email && <span id="contact-error">{errors.email.message}</span>}
-                <label htmlFor="tel">Telephone</label>
-                <input {...register("telephone")} id="tel" type="number" />
-                {errors.tel && <span id="contact-error">{errors.tel.message}</span>}
-                <label htmlFor="message">Message</label>
-                <textarea {...register("message")} id="message" />
-                {errors.message && <span id="contact-error">{errors.message.message}</span>}
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  {" "}
+                  <label htmlFor="accommodation">Accommodation</label>
+                  <input
+                    readOnly
+                    id="accommodation"
+                    value={amenity.location}
+                    style={{ fontStyle: "italic", border: "none", borderBottom: "1px solid #000", borderRadius: "0px,", marginTop: "5px" }}
+                  />
+                  <input
+                    {...register("accommodation")}
+                    hidden
+                    placeholder={amenity.location}
+                    id={amenity.accommodationId}
+                    readOnly
+                    value={amenity.accommodationId}
+                    style={{ fontStyle: "italic", border: "none", borderBottom: "1px solid #000", borderRadius: "0px,", marginTop: "5px" }}
+                  />
+                </div>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <label htmlFor="checkin">From</label>
+                  <input
+                    {...register("checkin")}
+                    id="checkin"
+                    readOnly
+                    value={amenity.fromDate}
+                    style={{ fontStyle: "italic", border: "none", borderBottom: "1px solid #000", borderRadius: "0px,", marginTop: "5px" }}
+                  />
+                </div>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <label htmlFor="checkout">To</label>
+                  <input
+                    {...register("checkout")}
+                    id="checkout"
+                    readOnly
+                    value={amenity.toDate}
+                    style={{ fontStyle: "italic", border: "none", borderBottom: "1px solid #000", borderRadius: "0px,", marginTop: "5px" }}
+                  />
+                </div>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <label htmlFor="guests">Guests</label>
+                  <input
+                    {...register("guests")}
+                    id="guests"
+                    readOnly
+                    value={amenity.guests}
+                    style={{ fontStyle: "italic", border: "none", borderBottom: "1px solid #000", borderRadius: "0px,", marginTop: "5px" }}
+                  />
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
+                  <label htmlFor="name">Name</label>
+                  <input {...register("name")} id="name" />
+                  {errors.name && <span id="contact-error">{errors.name.message}</span>}
+                </div>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  {" "}
+                  <label htmlFor="email">Email</label>
+                  <input {...register("email")} id="email" />
+                  {errors.email && <span id="contact-error">{errors.email.message}</span>}
+                </div>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  {" "}
+                  <label htmlFor="telephone">Telephone</label>
+                  <input {...register("telephone")} id="telephone" type="number" />
+                  {errors.telephone && <span id="contact-error">{errors.telephone.message}</span>}
+                </div>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <label htmlFor="message">Message (optional)</label>
+                  <textarea {...register("message")} id="message" style={{ minHeight: "50px" }} />
+                  {errors.message && <span id="contact-error">{errors.message.message}</span>}
+                </div>
                 <div style={{ color: "green", margin: "10px 0" }}>{sentForm ? "Form submitted" : ""}</div>
 
                 <button>Send</button>
               </form>
             </div>
-          </div>
+          </StyledEnquiryModal>
         </>
       )}
     </>
