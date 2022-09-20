@@ -4,12 +4,14 @@ import styled from "styled-components";
 
 export const StyledAccommodationsWrapper = styled.div`
   margin: 0 20px;
+  margin-top: 30px;
 `;
 
 export const StyledAccommodationsMain = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
 `;
 
 export const StyledAccommodationsMainImg = styled.img`
@@ -17,6 +19,7 @@ export const StyledAccommodationsMainImg = styled.img`
   height: auto;
   max-height: 200px;
   object-fit: cover;
+  border-radius: 5px 5px 0 0;
 `;
 
 export const StyledAccommodationsMainCardInfo = styled.div`
@@ -47,6 +50,7 @@ export const StyledAccommodationsAltCards = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border-radius: 5px;
 `;
 
 export const StyledAccommodationsAltCardImgContainer = styled.div`
@@ -55,6 +59,7 @@ export const StyledAccommodationsAltCardImgContainer = styled.div`
     height: 100%;
     max-height: 200px;
     object-fit: cover;
+    border-radius: 5px 0 0 5px;
   }
 `;
 

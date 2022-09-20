@@ -12,8 +12,6 @@ export function AdminEnquiries() {
   if (error) {
     return <div>Error</div>;
   }
-  // console.log(getEnquiries);
-  console.log(getEnquiries.data[0].attributes.accommodation.data.attributes.title);
 
   return (
     <>
@@ -22,6 +20,7 @@ export function AdminEnquiries() {
           return (
             <div key={enquiry.id} style={{ border: "1px solid black", padding: "10px", width: "250px", marginBottom: "20px" }}>
               <h2>enquiry:</h2>
+              <div>{enquiry.attributes.accommodation.data?.attributes?.title}</div>
               <div> {enquiry.attributes.name} </div>
               <div> {enquiry.attributes.email} </div>
               <div> {enquiry.attributes.telephone} </div>
