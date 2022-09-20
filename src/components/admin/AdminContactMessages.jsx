@@ -1,13 +1,18 @@
 import React from "react";
 import { MESSAGE_FORM_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
+import { BounceLoader } from "react-spinners";
 
 export function AdminContactMessages() {
   const { data, loading, error } = useFetchData(MESSAGE_FORM_URL);
   const getMessages = data;
 
   if (loading) {
-    return <div>Loading</div>;
+    return (
+      <div>
+        <BounceLoader />
+      </div>
+    );
   }
 
   if (error) {

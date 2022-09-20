@@ -1,12 +1,17 @@
 import { ENQUIRIES_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
+import { BounceLoader } from "react-spinners";
 
 export function AdminEnquiries() {
   const { data, loading, error } = useFetchData(ENQUIRIES_URL);
   const getEnquiries = data;
 
   if (loading) {
-    return <div>Loading</div>;
+    return (
+      <div>
+        <BounceLoader />
+      </div>
+    );
   }
 
   if (error) {

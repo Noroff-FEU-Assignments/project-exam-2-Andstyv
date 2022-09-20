@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AMENITIES_SEARCH_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
+import { BounceLoader } from "react-spinners";
 
 const schema = yup.object().shape({
   title: yup.string().required("Enter title"),
@@ -30,7 +31,11 @@ export const AdminCreateAccommodation = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   if (loading) {
-    return <div>Loading</div>;
+    return (
+      <div>
+        <BounceLoader />
+      </div>
+    );
   }
 
   if (error) {
