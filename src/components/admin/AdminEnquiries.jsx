@@ -21,20 +21,56 @@ export function AdminEnquiries() {
   return (
     <>
       <h1>Accommodation enquiries</h1>
-      <p>(Most recent first)</p>
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <p style={{ fontStyle: "italic" }}>(Most recent first)</p>
+
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", maxWidth: "400px" }}>
         {sortedAccommodations.map((enquiry) => {
           return (
-            <div key={enquiry.id} style={{ border: "1px solid black", padding: "10px", width: "250px", marginBottom: "20px" }}>
-              <h2>enquiry:</h2>
-              <div>{enquiry.attributes.accommodation.data?.attributes?.title}</div>
-              <div> {enquiry.attributes.name} </div>
-              <div> {enquiry.attributes.email} </div>
-              <div> {enquiry.attributes.telephone} </div>
-              <div> {enquiry.attributes.guests} </div>
-              <div> {enquiry.attributes.checkin} </div>
-              <div> {enquiry.attributes.checkout} </div>
-              <div> {enquiry.attributes.message} </div>
+            <div
+              key={enquiry.id}
+              style={{
+                padding: "10px",
+                width: "100%",
+                marginBottom: "20px",
+                borderRadius: "10px",
+                boxShadow: "5px 5px 10px 2px rgba(0, 0, 0, 0.25)",
+              }}
+            >
+              <div style={{ fontWeight: "bold", marginBottom: "10px", fontSize: "24px" }}>
+                {enquiry.attributes.accommodation.data?.attributes?.title}
+              </div>
+              <div style={{ margin: "10px 0" }}>
+                <div style={{ display: "flex" }}>
+                  <div style={{ minWidth: "60px", fontWeight: "bold" }}>Name:</div>
+                  <div>{enquiry.attributes.name}</div>
+                </div>
+                <div style={{ display: "flex" }}>
+                  <div style={{ minWidth: "60px", fontWeight: "bold" }}>Email:</div>
+                  <div>{enquiry.attributes.email} </div>
+                </div>
+                <div style={{ display: "flex" }}>
+                  <div style={{ minWidth: "60px", fontWeight: "bold" }}>Tel:</div>
+                  <div>{enquiry.attributes.telephone}</div>
+                </div>
+              </div>
+              <div style={{ display: "flex", gap: "20px" }}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <div style={{ minWidth: "60px", fontWeight: "bold" }}>Check in:</div>
+                  <div>{enquiry.attributes.checkin} </div>
+                </div>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <div style={{ minWidth: "60px", fontWeight: "bold" }}>Check out:</div>
+                  <div>{enquiry.attributes.checkout}</div>
+                </div>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
+                <div style={{ minWidth: "60px", fontWeight: "bold" }}>No. of guests:</div>
+                <div>{enquiry.attributes.guests}</div>
+              </div>
+              <div>
+                <div style={{ marginTop: "20px", fontWeight: "bold" }}>Message (optional):</div>
+                <div style={{ fontStyle: "italic", marginTop: "5px" }}> {enquiry.attributes.message} </div>
+              </div>
             </div>
           );
         })}
