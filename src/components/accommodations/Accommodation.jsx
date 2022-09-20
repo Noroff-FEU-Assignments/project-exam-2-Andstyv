@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { ACCOMMODATIONS_SEARCH_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
-import { StyledPageWrapper } from "../home/HomeSection";
+import { StyledPageWrapper } from "../home/homeSection.styles";
 import { AccommodationEnquiryData } from "./AccommodationEnquiryData";
 import AccommodationImageCarousel from "./AccommodationImageCarousel";
 

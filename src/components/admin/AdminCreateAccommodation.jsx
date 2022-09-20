@@ -79,7 +79,7 @@ export const AdminCreateAccommodation = () => {
   };
 
   return (
-    <div className="App">
+    <div className="create-acc-container" style={{ border: "1px solid #000", width: "100%", borderRadius: "10px", marginBottom: "40px" }}>
       <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <label htmlFor="title">Title: </label>
         <input type="text" placeholder="Title" id="title" {...register("title")} />

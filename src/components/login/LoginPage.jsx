@@ -1,4 +1,4 @@
-import { StyledPageWrapper } from "../home/HomeSection";
+import { StyledPageWrapper } from "../home/homeSection.styles";
 import Footer from "../layout/Footer";
 import { LoginForm } from "./LoginForm";
 

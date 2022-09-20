@@ -7,11 +7,7 @@ import Footer from "../layout/Footer";
 import { SkeletonSearch } from "../search/SkeletonSearch";
 
 export function HomePage() {
-  // const accommodationsData = useFetchData(ACCOMMODATIONS_SEARCH_URL);
-  // console.log(accommodationsData.data.data);
-
   const { data, loading, error } = useFetchData(ACCOMMODATIONS_SEARCH_URL);
-  console.log(data.data);
 
   if (loading) {
     return (
@@ -25,7 +21,7 @@ export function HomePage() {
   }
 
   if (error) {
-    return <div>ERROR</div>;
+    return <div>{`Error: ${error}`}</div>;
   }
 
   return (

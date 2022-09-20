@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { getAuth } from "../../constants/getAuth";
-import { StyledPageWrapper } from "../home/HomeSection";
+import { StyledPageWrapper } from "../home/homeSection.styles";
 import Footer from "../layout/Footer";
 
 const StyledAdminBtnsContainer = styled.div`
