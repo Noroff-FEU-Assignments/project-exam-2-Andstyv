@@ -1,9 +1,9 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 import { ACCOMMODATIONS_SEARCH_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
-import EnquiryModal from "../elements/EnquiryModal";
 import { StyledPageWrapper } from "../home/HomeSection";
+import { AccommodationEnquiryData } from "./AccommodationEnquiryData";
 import AccommodationImageCarousel from "./AccommodationImageCarousel";
 
 function Accommodation() {
@@ -11,22 +11,14 @@ function Accommodation() {
   const populateApi = "?populate[amenities][populate]=*&populate[images]=*";
   const url = ACCOMMODATIONS_SEARCH_URL + id + populateApi;
   const accommodation = useFetchData(url);
-  const item = window.localStorage.getItem("stay");
-  const loc = JSON.parse(item);
-
-  const checkIn = new Date(loc.fromDate);
-  const checkOut = new Date(loc.toDate);
-
-  const parsedCheckIn = checkIn.toLocaleDateString();
-  const parsedCheckOut = checkOut.toLocaleDateString();
 
   return accommodation.loading ? (
     <div id="loading">Loading</div>
   ) : (
-    <StyledPageWrapper>
+    <StyledPageWrapper style={{ marginTop: "20px" }}>
       <AccommodationImageCarousel key={accommodation.data.data.id} accommodationImages={accommodation.data.data.attributes.images.data} />
-      <h1>{accommodation.data.data.attributes.title}</h1>
-      <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+      <h1 style={{ alignSelf: "start", marginBottom: "5px" }}>{accommodation.data.data.attributes.title}</h1>
+      <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "10px", flexWrap: "wrap", alignSelf: "start" }}>
         {accommodation.data.data.attributes.amenities.data.map((amenity) => {
           return (
             <div key={amenity.id}>
@@ -35,22 +27,20 @@ function Accommodation() {
           );
         })}
       </div>
-      {loc && (
-        <>
-          <div>From: {parsedCheckIn}</div>
-          <div>To: {parsedCheckOut}</div>
-          <div>Guests: {loc.guests}</div>
-          <div>
-            {loc.days > 1 ? "Nights" : "Night"} {loc.days}
-          </div>
-          <div>Total price: {loc.days * accommodation.data.data.attributes.price}</div>
-        </>
-      )}
-      <EnquiryModal amenity={loc} />
-
-      <h2 style={{ alignSelf: "start", marginBottom: "5px" }}>Info:</h2>
-      <p>{accommodation.data.data.attributes.description}</p>
-      <p style={{ fontSize: "24px", fontWeight: "900" }}>Price per room: {accommodation.data.data.attributes.price}</p>
+      <NavLink to="enquiries">Enquiries</NavLink>
+      <NavLink to="create">Create new accommodation</NavLink>
+      <Outlet />
+      <div style={{ display: "flex", alignSelf: "flex-start", gap: "20px" }}>
+        <h2 style={{ alignSelf: "start", marginBottom: "5px" }}>Description</h2>
+        <h2 style={{ alignSelf: "start", marginBottom: "5px" }}>Amenities</h2>
+      </div>
+      <p style={{ fontSize: "12px" }}>
+        {" "}
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur ipsum mollitia soluta sint sit eum architecto repellendus tempora ad a!
+        Perspiciatis consequatur id, laudantium error laboriosam obcaecati vero reprehenderit autem eaque ab delectus, ratione at cumque. Eum dolor
+        nemo blanditiis consectetur fuga nam quidem reprehenderit deleniti soluta reiciendis, magnam quibusdam.
+      </p>
+      {/* <p style={{ fontSize: "24px", fontWeight: "900" }}>Price per room: {accommodation.data.data.attributes.price}</p>
       <div style={{ alignSelf: "start", marginBottom: "5px" }}>
         <h3>List of Amenities:</h3>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
@@ -62,7 +52,8 @@ function Accommodation() {
             );
           })}
         </div>
-      </div>
+      </div> */}
+      <AccommodationEnquiryData data={accommodation} />
     </StyledPageWrapper>
   );
 }

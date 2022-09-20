@@ -16,7 +16,7 @@ const StyledCarouselContainer = styled.div`
 
 const StyledCarouselMainImg = styled.div`
   width: 100%;
-  height: 400px;
+  height: 350px;
   background-size: cover;
   background-position: center;
   border-radius: 6px;
@@ -32,7 +32,7 @@ const StyledSecondaryImgsContainer = styled.div`
   margin-top: 20px;
   justify-content: space-between;
   max-width: 100%;
-  height: 75px;
+  height: 50px;
   gap: 5px;
   flex-wrap: wrap;
 
@@ -54,8 +54,9 @@ const StyledCarouselSecondaryImgs = styled.div`
   background-position: center;
   background-size: cover;
   border-radius: 3px;
-  min-width: 75px;
-  max-width: 100px;
+  min-width: 50px;
+  max-width: 75px;
+  max-height: 50px;
   @media only screen and (min-width: 768px) {
     height: 100%;
     width: 125px;

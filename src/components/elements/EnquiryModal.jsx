@@ -60,7 +60,20 @@ function EnquiryModal({ amenity }) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Send enquiry</button>
+      <div
+        onClick={() => setShowModal(true)}
+        style={{
+          gridRow: "2",
+          gridColumn: "1/5",
+          background: "#3b5053",
+          borderRadius: "0 0 7.5px 7.5px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ color: "yellow" }}>Send enquiry</div>
+      </div>
       {showModal && (
         <>
           <div
