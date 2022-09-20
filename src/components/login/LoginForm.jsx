@@ -36,7 +36,7 @@ export function LoginForm() {
     try {
       const response = await axios.post(url, data);
       setAuth(response.data);
-      history("/admin");
+      history("/admin/messages");
     } catch (error) {
       setLoginError(error.toString());
       console.log("error");

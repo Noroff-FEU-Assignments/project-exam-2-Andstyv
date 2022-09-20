@@ -66,7 +66,7 @@ const RightNavMenu = ({ open, setOpen }) => {
       <li id="admin-logout" onClick={closeMenu}>
         {auth ? (
           <>
-            <NavLink to="/admin">Admin</NavLink>{" "}
+            <NavLink to="/admin/messages">Admin</NavLink>{" "}
             <button id="logout__btn" onClick={logout}>
               Log out
             </button>

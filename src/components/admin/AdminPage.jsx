@@ -46,7 +46,7 @@ export function AdminPage() {
 
   return (
     <>
-      <StyledPageWrapper style={{ marginTop: "20px", height: "80vh" }}>
+      <StyledPageWrapper style={{ marginTop: "20px", height: "100%" }}>
         <h1 style={{ marginTop: "0" }}>Admin Home</h1>
         <StyledAdminBtnsContainer>
           <NavLink to="messages">

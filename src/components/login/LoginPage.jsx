@@ -5,7 +5,7 @@ import { LoginForm } from "./LoginForm";
 export function LoginPage() {
   return (
     <>
-      <StyledPageWrapper>
+      <StyledPageWrapper style={{ height: "80vh" }}>
         <LoginForm />
       </StyledPageWrapper>
       <Footer />
