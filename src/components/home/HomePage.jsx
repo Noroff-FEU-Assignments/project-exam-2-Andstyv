@@ -4,6 +4,7 @@ import { ACCOMMODATIONS_SEARCH_URL } from "../../constants/api";
 import Hero from "./hero/Hero";
 import HomeSection from "./HomeSection";
 import Footer from "../layout/Footer";
+import { SkeletonSearch } from "../search/SkeletonSearch";
 
 export function HomePage() {
   // const accommodationsData = useFetchData(ACCOMMODATIONS_SEARCH_URL);
@@ -16,7 +17,7 @@ export function HomePage() {
     return (
       <div className="container" style={{ textAlign: "center" }}>
         <Hero />
-        <div>Loading spinner</div>
+        <SkeletonSearch />
         <HomeSection />
         <Footer />
       </div>

@@ -1,5 +1,7 @@
 import React from "react";
+import Skeleton from "react-loading-skeleton";
 import { Link, useParams } from "react-router-dom";
+import "react-loading-skeleton/dist/skeleton.css";
 
 import { ACCOMMODATIONS_SEARCH_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
@@ -29,7 +31,19 @@ export function SearchAccommodationPage() {
   let results = data;
 
   if (loading) {
-    return <div>Loading</div>;
+    return (
+      <>
+        <StyledAccommodationsWrapper>
+          <StyledAccommodationsMain>
+            <Skeleton height={542} />
+          </StyledAccommodationsMain>
+          <Skeleton width={120} height={24} style={{ marginTop: "40px", marginBottom: "10px" }} />
+          <StyledAccommodationsAltCards>
+            <Skeleton height={400} />
+          </StyledAccommodationsAltCards>
+        </StyledAccommodationsWrapper>
+      </>
+    );
   }
   const item = window.localStorage.getItem("stay");
   const loc = JSON.parse(item);
