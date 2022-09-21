@@ -6,15 +6,19 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { ACCOMMODATIONS_SEARCH_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
 import {
+  StyledAccommodationsAltCard,
   StyledAccommodationsAltCardImgContainer,
   StyledAccommodationsAltCardInfo,
   StyledAccommodationsAltCardInfoAmenities,
   StyledAccommodationsAltCardInfoAmenitiesText,
+  StyledAccommodationsAltCardInfoTotal,
   StyledAccommodationsAltCards,
   StyledAccommodationsMain,
   StyledAccommodationsMainCardAmenitiesIcons,
+  StyledAccommodationsMainCardDesc,
   StyledAccommodationsMainCardInfo,
   StyledAccommodationsMainCardStayData,
+  StyledAccommodationsMainCardStayTotal,
   StyledAccommodationsMainImg,
   StyledAccommodationsWrapper,
 } from "./searchAccommodationsPage.styles";
@@ -78,7 +82,7 @@ export function SearchAccommodationPage() {
   }
 
   return (
-    <div className="searc-acc-wrap" style={{ margin: "50px 20px 0 20px" }}>
+    <div className="searc-acc-wrap" style={{ margin: "50px 20px 0 20px", maxWidth: "900px" }}>
       <StyledAccommodationsMain>
         <div>
           <StyledAccommodationsMainImg src={mainResult[0].attributes.images.data[0].attributes.url} alt={mainResult[0].attributes.title} />
@@ -94,7 +98,7 @@ export function SearchAccommodationPage() {
               );
             })}
           </StyledAccommodationsMainCardAmenitiesIcons>
-          <div className="desc" style={{ fontSize: "14px" }}>
+          <StyledAccommodationsMainCardDesc>
             <p style={{ margin: "10px 0" }}>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil sunt deleniti sit, quasi facere repellendus quaerat voluptate aspernatur
               assumenda evenie ...
@@ -105,7 +109,7 @@ export function SearchAccommodationPage() {
                 return <div key={amenity.id}>· {amenity.attributes.Amenity}</div>;
               })}
             </div>
-          </div>
+          </StyledAccommodationsMainCardDesc>
           <StyledAccommodationsMainCardStayData borderTop="1px solid #000">
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div>From:</div>
@@ -129,10 +133,10 @@ export function SearchAccommodationPage() {
               <div>Rooms:</div>
               <div>{rooms}</div>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", fontSize: "16px", fontWeight: "900", width: "50px" }}>
+            <StyledAccommodationsMainCardStayTotal>
               <div>Total:</div>
               <div>${mainResult[0].attributes.price * loc.days * rooms}</div>
-            </div>
+            </StyledAccommodationsMainCardStayTotal>
           </StyledAccommodationsMainCardStayData>
         </StyledAccommodationsMainCardInfo>
       </StyledAccommodationsMain>
@@ -152,7 +156,7 @@ export function SearchAccommodationPage() {
                   marginBottom: "20px",
                 }}
               >
-                <div style={{ display: "flex", gap: "10px" }}>
+                <StyledAccommodationsAltCard>
                   <StyledAccommodationsAltCardImgContainer>
                     <img src={accommodation.attributes.images.data[0].attributes.url} alt={accommodation.attributes.title} />
                   </StyledAccommodationsAltCardImgContainer>
@@ -166,17 +170,17 @@ export function SearchAccommodationPage() {
                           </div>
                         );
                       })}
-                      <StyledAccommodationsAltCardInfoAmenitiesText>
-                        {accommodation.attributes.amenities.data.map((amenity) => {
-                          return <div key={amenity.id}>· {amenity.attributes.Amenity}</div>;
-                        })}
-                      </StyledAccommodationsAltCardInfoAmenitiesText>
                     </StyledAccommodationsAltCardInfoAmenities>
-                    <div style={{ justifyItems: "flex-end", marginTop: "25px" }}>
-                      Total for {loc.days} {loc.days > 1 ? "nights" : "night"} {accommodation.attributes.price * loc.days * rooms}
-                    </div>
+                    <StyledAccommodationsAltCardInfoAmenitiesText>
+                      {accommodation.attributes.amenities.data.map((amenity) => {
+                        return <div key={amenity.id}>· {amenity.attributes.Amenity}</div>;
+                      })}
+                    </StyledAccommodationsAltCardInfoAmenitiesText>
+                    <StyledAccommodationsAltCardInfoTotal>
+                      Total: ${accommodation.attributes.price * loc.days * rooms}
+                    </StyledAccommodationsAltCardInfoTotal>
                   </StyledAccommodationsAltCardInfo>
-                </div>
+                </StyledAccommodationsAltCard>
               </Link>
             );
           })}
