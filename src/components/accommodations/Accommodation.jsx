@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { ACCOMMODATIONS_SEARCH_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
-import { StyledPageWrapper } from "../home/homeSection.styles";
 import { AccommodationEnquiryData } from "./AccommodationEnquiryData";
 import AccommodationImageCarousel from "./AccommodationImageCarousel";
 
@@ -11,19 +10,26 @@ function Accommodation() {
   const { id } = useParams();
   const populateApi = "?populate[amenities][populate]=*&populate[images]=*";
   const url = ACCOMMODATIONS_SEARCH_URL + id + populateApi;
-  const accommodation = useFetchData(url);
+  const { data, loading, error } = useFetchData(url);
+
+  const accommodation = data;
 
   const [showDesc, setShowDesc] = useState(true);
   const [showAms, setShowAms] = useState(false);
+  if (loading) {
+    return <div>loading</div>;
+  }
 
-  return accommodation.loading ? (
-    <div id="loading">Loading</div>
-  ) : (
-    <StyledPageWrapper style={{ marginTop: "20px", marginBottom: "300px" }}>
-      <AccommodationImageCarousel key={accommodation.data.data.id} accommodationImages={accommodation.data.data.attributes.images.data} />
-      <h1 style={{ alignSelf: "start", marginBottom: "5px" }}>{accommodation.data.data.attributes.title}</h1>
+  if (error) {
+    return <div>Error</div>;
+  }
+
+  return (
+    <div className="acc-wrapper" style={{ margin: "50px 20px 0 20px" }}>
+      <AccommodationImageCarousel key={accommodation.data.id} accommodationImages={accommodation.data.attributes.images.data} />
+      <h1 style={{ alignSelf: "start", marginBottom: "5px" }}>{accommodation.data.attributes.title}</h1>
       <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "10px", flexWrap: "wrap", alignSelf: "start" }}>
-        {accommodation.data.data.attributes.amenities.data.map((amenity) => {
+        {accommodation.data.attributes.amenities.data.map((amenity) => {
           return (
             <div key={amenity.id}>
               <img src={amenity.attributes.Icon.data[0].attributes.url} alt="Amenity icon" style={{ width: "16px" }}></img>{" "}
@@ -76,7 +82,7 @@ function Accommodation() {
       ) : null}
 
       <AccommodationEnquiryData data={accommodation} />
-    </StyledPageWrapper>
+    </div>
   );
 }
 

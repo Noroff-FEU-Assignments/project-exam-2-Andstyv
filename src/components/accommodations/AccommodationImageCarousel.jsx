@@ -66,15 +66,15 @@ const StyledCarouselSecondaryImgs = styled.div`
 
 const StyledCarouselArrow = styled.div`
   position: absolute;
-  top: 50%;
+  top: 45%;
   transform: translate(0, -50%);
   z-index: 1;
   left: ${(props) => props.leftPx || ""};
   right: ${(props) => props.rightPx || ""};
-  color: #fff;
+  color: #000;
   padding: 3px;
-  background: brown;
-
+  text-shadow: 1px 1px 3px #000;
+  font-size: 36px;
   @media only screen and (min-width: 768px) {
     left: ${(props) => props.leftPxLg || ""};
     right: ${(props) => props.rightPxLg || ""};
@@ -109,11 +109,11 @@ function AccommodationImageCarousel({ accommodationImages }) {
     <>
       <StyledCarouselContainer>
         <div>
-          <StyledCarouselArrow leftPx={"32px"} leftPxLg={"16px"} onClick={goToPrevious}>
-            LEFT
+          <StyledCarouselArrow leftPx={"5px"} leftPxLg={"16px"} onClick={goToPrevious}>
+            <i class="fas fa-angle-double-left"></i>
           </StyledCarouselArrow>
-          <StyledCarouselArrow rightPx={"32px"} rightPxLg={"0"} leftPxLg={"90px"} onClick={goToNext}>
-            RIGHT
+          <StyledCarouselArrow rightPx={"5px"} rightPxLg={"0"} leftPxLg={"90px"} onClick={goToNext}>
+            <i class="fas fa-angle-double-right"></i>
           </StyledCarouselArrow>
         </div>
         <div>

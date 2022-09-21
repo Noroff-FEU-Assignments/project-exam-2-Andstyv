@@ -1,14 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-
-const schema = yup.object().shape({
-  firstname: yup.string().required("Enter first name"),
-  lastname: yup.string().required("Enter last name"),
-  email: yup.string().email().required("Enter email"),
-  message: yup.string().required("Enter message").min(10, "Must containt at least 10 characters"),
-});
+import { contactSchema as schema } from "../validation/schemas";
 
 export function ContactForm() {
   const {

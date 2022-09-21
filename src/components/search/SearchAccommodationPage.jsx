@@ -78,7 +78,7 @@ export function SearchAccommodationPage() {
   }
 
   return (
-    <StyledAccommodationsWrapper>
+    <div className="searc-acc-wrap" style={{ margin: "50px 20px 0 20px" }}>
       <StyledAccommodationsMain>
         <div>
           <StyledAccommodationsMainImg src={mainResult[0].attributes.images.data[0].attributes.url} alt={mainResult[0].attributes.title} />
@@ -181,6 +181,6 @@ export function SearchAccommodationPage() {
             );
           })}
       </StyledAccommodationsAltCards>
-    </StyledAccommodationsWrapper>
+    </div>
   );
 }

@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { getAuth } from "../../constants/getAuth";
-import { StyledPageWrapper } from "../home/homeSection.styles";
-import Footer from "../layout/Footer";
 
 const StyledAdminBtnsContainer = styled.div`
   display: flex;
@@ -46,7 +44,7 @@ export function AdminPage() {
 
   return (
     <>
-      <StyledPageWrapper style={{ marginTop: "20px", height: "100%" }}>
+      <div className="admin-wrap" style={{ margin: "50px 20px 0 20px", maxWidth: "900px" }}>
         <h1 style={{ marginTop: "0" }}>Admin Home</h1>
         <StyledAdminBtnsContainer>
           <NavLink to="messages">
@@ -75,8 +73,7 @@ export function AdminPage() {
           </NavLink>
         </StyledAdminBtnsContainer>
         <Outlet />
-      </StyledPageWrapper>
-      <Footer />
+      </div>
     </>
   );
 }

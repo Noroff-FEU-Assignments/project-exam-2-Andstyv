@@ -29,7 +29,25 @@ export const StyledEnquiryModalOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  zindex: 5;
+  z-index: 5;
   transform: translateZ(0);
   background-color: rgba(0, 0, 0, 0.8);
+`;
+
+export const StyledEnquiryModalInput = styled.input`
+  font-style: italic;
+  border: none;
+  border-bottom: 1px solid #000;
+  border-radius: 0px;
+  margin-top: 5px;
+`;
+
+export const StyledEnquiryBtn = styled.div`
+  grid-row: 2;
+  grid-column: 1/5;
+  background: #3b5053;
+  border-radius: 0 0 7.5px 7.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

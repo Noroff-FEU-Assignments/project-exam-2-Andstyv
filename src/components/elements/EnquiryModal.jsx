@@ -1,22 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { StyledEnquiryModal, StyledEnquiryModalOverlay } from "./enquiryModal.styles";
-
-const schema = yup.object().shape({
-  accommodation: yup.string(),
-  checkin: yup.date(),
-  checkout: yup.date(),
-  guests: yup.number(),
-  name: yup.string().required("Enter name"),
-  email: yup.string().email().required("Enter Email").typeError("Enter valid Email"),
-  telephone: yup.number().required("Enter telephone no.").typeError("Enter a valid number"),
-  message: yup.string(),
-});
+import { StyledEnquiryBtn, StyledEnquiryModal, StyledEnquiryModalInput, StyledEnquiryModalOverlay } from "./enquiryModal.styles";
+import { enquirySchema as schema } from "../validation/schemas";
 
 function EnquiryModal({ amenity }) {
   const [showModal, setShowModal] = useState(false);
@@ -62,20 +51,9 @@ function EnquiryModal({ amenity }) {
 
   return (
     <>
-      <div
-        onClick={() => setShowModal(true)}
-        style={{
-          gridRow: "2",
-          gridColumn: "1/5",
-          background: "#3b5053",
-          borderRadius: "0 0 7.5px 7.5px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <StyledEnquiryBtn onClick={() => setShowModal(true)}>
         <div style={{ color: "yellow" }}>Enquire about this accommodation</div>
-      </div>
+      </StyledEnquiryBtn>
       {showModal && (
         <>
           <StyledEnquiryModalOverlay onClick={() => setShowModal(false)}></StyledEnquiryModalOverlay>
@@ -88,51 +66,27 @@ function EnquiryModal({ amenity }) {
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   {" "}
                   <label htmlFor="accommodation">Accommodation</label>
-                  <input
-                    readOnly
-                    id="accommodation"
-                    value={amenity.location}
-                    style={{ fontStyle: "italic", border: "none", borderBottom: "1px solid #000", borderRadius: "0px,", marginTop: "5px" }}
-                  />
-                  <input
+                  <StyledEnquiryModalInput readOnly id="accommodation" value={amenity.location} />
+                  <StyledEnquiryModalInput
                     {...register("accommodation")}
                     hidden
                     placeholder={amenity.location}
                     id={amenity.accommodationId}
                     readOnly
                     value={amenity.accommodationId}
-                    style={{ fontStyle: "italic", border: "none", borderBottom: "1px solid #000", borderRadius: "0px,", marginTop: "5px" }}
                   />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <label htmlFor="checkin">From</label>
-                  <input
-                    {...register("checkin")}
-                    id="checkin"
-                    readOnly
-                    value={amenity.fromDate}
-                    style={{ fontStyle: "italic", border: "none", borderBottom: "1px solid #000", borderRadius: "0px,", marginTop: "5px" }}
-                  />
+                  <StyledEnquiryModalInput {...register("checkin")} id="checkin" readOnly value={amenity.fromDate} />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <label htmlFor="checkout">To</label>
-                  <input
-                    {...register("checkout")}
-                    id="checkout"
-                    readOnly
-                    value={amenity.toDate}
-                    style={{ fontStyle: "italic", border: "none", borderBottom: "1px solid #000", borderRadius: "0px,", marginTop: "5px" }}
-                  />
+                  <StyledEnquiryModalInput {...register("checkout")} id="checkout" readOnly value={amenity.toDate} />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <label htmlFor="guests">Guests</label>
-                  <input
-                    {...register("guests")}
-                    id="guests"
-                    readOnly
-                    value={amenity.guests}
-                    style={{ fontStyle: "italic", border: "none", borderBottom: "1px solid #000", borderRadius: "0px,", marginTop: "5px" }}
-                  />
+                  <StyledEnquiryModalInput {...register("guests")} id="guests" readOnly value={amenity.guests} />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
                   <label htmlFor="name">Name</label>

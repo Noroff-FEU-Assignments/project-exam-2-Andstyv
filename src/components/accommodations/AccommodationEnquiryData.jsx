@@ -41,7 +41,7 @@ export function AccommodationEnquiryData({ data }) {
           <div style={{ display: "flex", flexDirection: "column", padding: "10px", alignItems: "center" }}>
             <label htmlFor="total-price">Total:</label>
             <div id="total-price" style={{ fontWeight: "bold" }}>
-              ${accommodationData.days * accommodation.data.data.attributes.price}
+              ${accommodationData.days * accommodation.data.attributes.price}
             </div>
           </div>
         </>

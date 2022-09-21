@@ -1,12 +1,10 @@
 import styled from "styled-components";
 
 export const StyledPageWrapper = styled.div`
+  min-height: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 50px;
+  flex-dirextion: column;
+  align-items: stretch;
 `;
 
 export const StyledHomeDiv = styled.div`

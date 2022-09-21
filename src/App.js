@@ -7,6 +7,7 @@ import { AdminEnquiries } from "./components/admin/AdminEnquiries";
 import { AdminPage } from "./components/admin/AdminPage";
 import { ContactPage } from "./components/contact/ContactPage";
 import { HomePage } from "./components/home/HomePage";
+import Footer from "./components/layout/Footer";
 import Nav from "./components/layout/Nav";
 import { LoginPage } from "./components/login/LoginPage";
 import { SearchAccommodationPage } from "./components/search/SearchAccommodationPage";
@@ -31,6 +32,7 @@ function App() {
           <Route path="search/accommodation/:id" element={<SearchAccommodationPage />} />
         </Routes>
       </div>
+      <Footer />
     </AuthProvider>
   );
 }

@@ -4,6 +4,8 @@ const StyledFooter = styled.footer`
   width: 100%;
   height: 100px;
   background: #3b5053;
+  flex-shrink: 0;
+  margin-top: 100px;
 `;
 
 function Footer() {

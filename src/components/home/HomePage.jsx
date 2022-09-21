@@ -25,11 +25,10 @@ export function HomePage() {
   }
 
   return (
-    <div className="container" style={{ textAlign: "center" }}>
+    <>
       <Hero />
       <Search placeholder={"Search accommodation"} data={data.data} />
       <HomeSection />
-      <Footer />
-    </div>
+    </>
   );
 }

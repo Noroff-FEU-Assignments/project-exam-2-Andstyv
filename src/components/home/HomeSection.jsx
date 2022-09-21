@@ -1,8 +1,8 @@
-import { StyledHomeDiv, StyledHomeText, StyledPageWrapper } from "./homeSection.styles";
+import { StyledHomeDiv, StyledHomeText } from "./homeSection.styles";
 
 function HomeSection() {
   return (
-    <StyledPageWrapper>
+    <div className="body-wrapper" style={{ margin: "0 20px", display: "flex", justifyContent: "center" }}>
       <div style={{ maxWidth: "900px" }}>
         <StyledHomeDiv flexDirection="row">
           <StyledHomeText homeTextPadding="0 20px 0 0">
@@ -27,7 +27,7 @@ function HomeSection() {
           <img src="https://loremflickr.com/320/240" alt="placeholder"></img>
         </StyledHomeDiv>
       </div>
-    </StyledPageWrapper>
+    </div>
   );
 }
 

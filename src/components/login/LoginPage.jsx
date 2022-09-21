@@ -1,5 +1,5 @@
 import { StyledPageWrapper } from "../home/homeSection.styles";
-import Footer from "../layout/Footer";
+
 import { LoginForm } from "./LoginForm";
 
 export function LoginPage() {
@@ -8,7 +8,6 @@ export function LoginPage() {
       <StyledPageWrapper style={{ height: "80vh" }}>
         <LoginForm />
       </StyledPageWrapper>
-      <Footer />
     </>
   );
 }

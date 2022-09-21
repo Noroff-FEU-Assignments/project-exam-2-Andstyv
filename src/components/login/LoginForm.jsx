@@ -1,17 +1,11 @@
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
-
-const url = "https://andsty-noroff-exam2.herokuapp.com/api/auth/local";
-
-const schema = yup.object().shape({
-  identifier: yup.string().required("Please enter identifier"),
-  password: yup.string().required("Please enter password"),
-});
+import { loginSchema as schema } from "../validation/schemas";
+import { LOGIN_URL as url } from "../../constants/api";
 
 export function LoginForm() {
   const [loginError, setLoginError] = useState(null);
@@ -32,17 +26,15 @@ export function LoginForm() {
   async function tryToLogin(data) {
     setLoginError(null);
     setSubmitting(true);
-    console.log(data);
     try {
       const response = await axios.post(url, data);
       setAuth(response.data);
       history("/admin/messages");
     } catch (error) {
       setLoginError(error.toString());
-      console.log("error");
+      console.log(loginError);
     } finally {
       setSubmitting(false);
-      console.log("Finally");
     }
   }
 
@@ -50,16 +42,31 @@ export function LoginForm() {
     <>
       <form className="login-form" onSubmit={handleSubmit(tryToLogin)}>
         {loginError && <div className="login-error">{loginError}</div>}
-        <fieldset className="login-fieldset" disabled={submitting}>
-          <div>
-            <input className="login-form__input" placeholder="admin@admin.com" {...register("identifier")} />
+
+        <fieldset
+          className="login-fieldset"
+          disabled={submitting}
+          style={{
+            borderRadius: "10px",
+            padding: "25px",
+            boxShadow: "5px 5px 10px 2px rgba(0, 0, 0, 0.25)",
+            border: "none",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <h1 style={{ marginTop: "0" }}>Log in as admin:</h1>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <label htmlFor="admin-username">Username: </label>
+            <input className="login-form__input" placeholder="admin@admin.com" id="admin-username" {...register("identifier")} />
             {errors.identifier && <div className="login-form__error">{errors.identifier.message}</div>}
           </div>
-          <div>
-            <input className="login-form__input" type="password" placeholder="admin123" {...register("password")} />
+          <div style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
+            <label htmlFor="admin-password">Password: </label>
+            <input className="login-form__input" type="password" placeholder="admin123" id="admin-password" {...register("password")} />
             {errors.password && <div className="login-form__error">{errors.password.message}</div>}
           </div>
-          <button>{submitting ? "Logging in..." : "Log in"}</button>
+          <button style={{ marginTop: "50px" }}>{submitting ? "Logging in..." : "Log in"}</button>
         </fieldset>
       </form>
     </>
