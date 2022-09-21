@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { ACCOMMODATIONS_SEARCH_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
 import { AccommodationEnquiryData } from "./AccommodationEnquiryData";
-import AccommodationImageCarousel from "./AccommodationImageCarousel";
+import { AccommodationImageCarousel } from "./AccommodationImageCarousel";
 
 function Accommodation() {
   const { id } = useParams();

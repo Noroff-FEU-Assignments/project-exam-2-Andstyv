@@ -1,90 +1,14 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import {
+  StyledCarouselArrow,
+  StyledCarouselContainer,
+  StyledCarouselMainImg,
+  StyledCarouselSecondaryImgs,
+  StyledSecondaryImgsContainer,
+} from "./accommodationImageCarousel.styles";
 
-const StyledCarouselContainer = styled.div`
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-
-  @media only screen and (min-width: 768px) {
-    flex-direction: row;
-    max-width: 900px;
-  }
-`;
-
-const StyledCarouselMainImg = styled.div`
-  width: 100%;
-  height: 300px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 6px;
-
-  @media only screen and (min-width: 768px) {
-    width: 400px;
-    height: 400px;
-  }
-`;
-
-const StyledSecondaryImgsContainer = styled.div`
-  display: flex;
-  margin-top: 20px;
-  justify-content: space-between;
-  max-width: 100%;
-  height: 50px;
-  gap: 5px;
-  flex-wrap: nowrap;
-
-  @media only screen and (min-width: 768px) {
-    height: 200px;
-    width: 100%;
-    margin-top: 0px;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-left: 25px;
-    gap: 5px;
-  }
-`;
-
-const StyledCarouselSecondaryImgs = styled.div`
-  width: 100%;
-  height: auto;
-  background-position: center;
-  background-size: cover;
-  border-radius: 3px;
-  min-width: 30px;
-  max-width: 75px;
-  max-height: 50px;
-  @media only screen and (min-width: 768px) {
-    height: 100%;
-    width: 125px;
-    max-height: 125px;
-  }
-`;
-
-const StyledCarouselArrow = styled.div`
-  position: absolute;
-  top: 45%;
-  transform: translate(0, -50%);
-  z-index: 1;
-  left: ${(props) => props.leftPx || ""};
-  right: ${(props) => props.rightPx || ""};
-  color: #000;
-  padding: 3px;
-  text-shadow: 1px 1px 3px #000;
-  font-size: 36px;
-  @media only screen and (min-width: 768px) {
-    left: ${(props) => props.leftPxLg || ""};
-    right: ${(props) => props.rightPxLg || ""};
-    display: none;
-  }
-`;
-
-function AccommodationImageCarousel({ accommodationImages }) {
+export function AccommodationImageCarousel({ accommodationImages }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  console.log(accommodationImages);
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -135,5 +59,3 @@ function AccommodationImageCarousel({ accommodationImages }) {
     </>
   );
 }
-
-export default AccommodationImageCarousel;
