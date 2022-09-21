@@ -1,13 +1,14 @@
-import { useFetchData } from "../../hooks/useFetchData";
 import { ContactForm } from "./ContactForm";
-
-const url = "https://webapi.no/api/v1/zipcode/0565";
+import { ContactInfo } from "./ContactInfo";
+import { StyledContactWrapper } from "./contactWrapper.syles";
 
 export function ContactPage() {
-  useFetchData(url);
   return (
     <>
-      <ContactForm />
+      <StyledContactWrapper>
+        <ContactInfo />
+        <ContactForm />
+      </StyledContactWrapper>
     </>
   );
 }

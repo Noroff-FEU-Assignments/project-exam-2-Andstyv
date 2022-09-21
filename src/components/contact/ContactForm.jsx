@@ -2,6 +2,23 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { contactSchema as schema } from "../validation/schemas";
+import styled from "styled-components";
+
+const StyledContactFormInput = styled.input`
+  border: none;
+  border-bottom: 1px solid #333;
+  margin-top: 10px;
+  font-size: 16px;
+`;
+
+const StyledContactFormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  @media (min-width: 768px) {
+    min-width: 300px;
+  }
+`;
 
 export function ContactForm() {
   const {
@@ -31,23 +48,57 @@ export function ContactForm() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100vh" }}
-    >
-      <label htmlFor="firstname">First Name</label>
-      <input {...register("firstname")} id="firstname" />
-      {errors.firstname && <span id="contact-error">{errors.firstname.message}</span>}
-      <label htmlFor="lastname">Last Name</label>
-      <input {...register("lastname")} id="lastname" />
-      {errors.lastname && <span id="contact-error">{errors.lastname.message}</span>}
-      <label htmlFor="email">Email</label>
-      <input {...register("email")} id="email" />
-      {errors.email && <span id="contact-error">{errors.email.message}</span>}
-      <label htmlFor="message">Message</label>
-      <textarea {...register("message")} id="message" />
-      {errors.message && <span id="contact-error">{errors.message.message}</span>}
-      <button>Send</button>
-    </form>
+    <div style={{ padding: "30px" }}>
+      <h2>Contact us:</h2>
+      <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+          <StyledContactFormContainer>
+            <label htmlFor="firstname" style={{ fontWeight: "bold", paddingLeft: "2px" }}>
+              First Name
+            </label>
+            <StyledContactFormInput {...register("firstname")} id="firstname" placeholder="John" />
+            {errors.firstname && <span id="contact-error">{errors.firstname.message}</span>}
+          </StyledContactFormContainer>
+          <StyledContactFormContainer>
+            <label htmlFor="lastname" style={{ fontWeight: "bold", paddingLeft: "2px" }}>
+              Last Name
+            </label>
+            <StyledContactFormInput {...register("lastname")} id="lastname" placeholder="Doe" />
+            {errors.lastname && <span id="contact-error">{errors.lastname.message}</span>}
+          </StyledContactFormContainer>
+          <StyledContactFormContainer>
+            <label htmlFor="email" style={{ fontWeight: "bold", paddingLeft: "2px" }}>
+              Email
+            </label>
+            <StyledContactFormInput {...register("email")} id="email" placeholder="john.doe@mail.com" />
+            {errors.email && <span id="contact-error">{errors.email.message}</span>}
+          </StyledContactFormContainer>
+          <StyledContactFormContainer>
+            <label htmlFor="message" style={{ fontWeight: "bold", paddingLeft: "2px", paddingBottom: "5px" }}>
+              Message
+            </label>
+            <textarea {...register("message")} id="message" style={{ minHeight: "100px" }} />
+            {errors.message && <span id="contact-error">{errors.message.message}</span>}
+          </StyledContactFormContainer>
+          <button
+            style={{
+              marginTop: "30px",
+              padding: "10px",
+              background: "#",
+              border: "none",
+              borderRadius: "5px",
+              backgroundColor: "#3b5053",
+              color: "#ffda60",
+              fontWeight: "bold",
+              textTransform: "uppercase",
+              fontSize: "18px",
+              cursor: "pointer",
+            }}
+          >
+            Send
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
