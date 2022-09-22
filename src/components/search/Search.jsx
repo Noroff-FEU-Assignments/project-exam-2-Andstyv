@@ -13,6 +13,7 @@ import {
 } from "./search.styles";
 import { useNavigate } from "react-router-dom";
 import SearcHandler from "./SearcHandler";
+import Skeleton from "react-loading-skeleton";
 
 const today = new Date();
 today.setHours(0, 0, 0, 0);
@@ -24,7 +25,7 @@ const schema = yup.object().shape({
   guests: yup.number().min(1, "Must be at least 1 guest").required("Enter no. of guests").typeError("Enter no. of guests"),
 });
 
-export function Search({ placeholder, data }) {
+export function Search({ data, loading }) {
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchTitle, setSearchTitle] = useState("");
@@ -117,18 +118,25 @@ export function Search({ placeholder, data }) {
               style={{ fontSize: "16px", fontWeight: "bold" }}
             />
             {errors.location && <span id="contact-error">{errors.location.message}</span>}
-            <StyledSearchFormResults>
-              {filteredResults &&
-                filteredResults.slice(0, 10).map((value, id) => {
-                  return (
-                    <div key={value.id}>
-                      <div value={value.attributes.title} id={value.id} onClick={() => handleSelect(value)}>
-                        {value.attributes.title}
+
+            {loading ? (
+              <StyledSearchFormResults>
+                <Skeleton height={200}> </Skeleton>
+              </StyledSearchFormResults>
+            ) : (
+              <StyledSearchFormResults>
+                {filteredResults &&
+                  filteredResults.slice(0, 10).map((value, id) => {
+                    return (
+                      <div key={value.id}>
+                        <div value={value.attributes.title} id={value.id} onClick={() => handleSelect(value)}>
+                          {value.attributes.title}
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
-            </StyledSearchFormResults>
+                    );
+                  })}{" "}
+              </StyledSearchFormResults>
+            )}
           </StyledSearchFormDiv>
           <StyledSearchFormDiv padding="5px" borderLeftMd="1px solid #000" gridColumnLg="2">
             <StyledSearchFormLabel htmlFor="fromDate">From</StyledSearchFormLabel>

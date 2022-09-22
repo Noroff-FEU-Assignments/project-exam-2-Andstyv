@@ -27,7 +27,7 @@ export function HomePage() {
   return (
     <>
       <Hero />
-      <Search placeholder={"Search accommodation"} data={data.data} />
+      <Search placeholder={"Search accommodation"} data={data.data} loading={loading} />
       <HomeSection />
     </>
   );

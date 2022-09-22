@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import headerImg from "../../../assets/img/header_1600-min.jpg";
+import headerImg from "../../../assets/img/header_3_1600.webp";
 
 const StyledHeroImg = styled.div`
   width: 100vw;
   height: 500px;
-  background-image: url(${headerImg}), linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  background-image: url(${headerImg}), linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2));
   background-blend-mode: overlay;
   background-size: cover;
   background-position: center;

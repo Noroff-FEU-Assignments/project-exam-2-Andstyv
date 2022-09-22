@@ -16,23 +16,23 @@ export function SkeletonSearch() {
             borderBottom="1px solid #000"
             gridColumnLg="1"
           >
-            <Skeleton width={100} height={18}></Skeleton>
-            <Skeleton width={449} height={18}></Skeleton>
+            <Skeleton width={100} height={21}></Skeleton>
+            <Skeleton width={320} height={22}></Skeleton>
           </StyledSearchFormDiv>
           <StyledSearchFormDiv padding="5px" borderLeftMd="1px solid #000" gridColumnLg="2">
             <Skeleton width={40} height={18}></Skeleton>
-            <Skeleton width={183} height={17}></Skeleton>
+            <Skeleton width={83} height={17}></Skeleton>
           </StyledSearchFormDiv>
           <StyledSearchFormDiv padding="5px" borderLeft="1px solid #000">
             <Skeleton width={20} height={18}></Skeleton>
-            <Skeleton width={183} height={17}></Skeleton>
+            <Skeleton width={83} height={17}></Skeleton>
           </StyledSearchFormDiv>
           <StyledSearchFormDiv padding="5px" borderLeft="1px solid #000">
             <Skeleton width={50} height={18}></Skeleton>
             <Skeleton width={20} height={15}></Skeleton>
           </StyledSearchFormDiv>
           <StyledSearchFormBtn>
-            <Skeleton width={120} height={35}></Skeleton>
+            <Skeleton width={120} height={40}></Skeleton>
           </StyledSearchFormBtn>
         </StyledSearchForm>
       </div>

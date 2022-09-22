@@ -15,7 +15,7 @@ export const StyledAccommodationsMain = styled.div`
 
   @media only screen and (min-width: 768px) {
     flex-direction: row;
-    max-height: 400px;
+    max-height: 450px;
   }
 `;
 
@@ -28,7 +28,8 @@ export const StyledAccommodationsMainImg = styled.img`
 
   @media only screen and (min-width: 768px) {
     height: 100%;
-    max-height: 400px;
+    max-height: 100%;
+    max-width: 350px;
     width: auto;
     border-radius: 5px 0 0 5px;
   }

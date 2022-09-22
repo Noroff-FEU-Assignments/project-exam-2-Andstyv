@@ -1,5 +1,4 @@
 import React from "react";
-import Skeleton from "react-loading-skeleton";
 import { Link, useParams } from "react-router-dom";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -20,8 +19,8 @@ import {
   StyledAccommodationsMainCardStayData,
   StyledAccommodationsMainCardStayTotal,
   StyledAccommodationsMainImg,
-  StyledAccommodationsWrapper,
 } from "./searchAccommodationsPage.styles";
+import { SkeletonSearchAccommodations } from "./SkeletonSearchAccommodations";
 
 export function SearchAccommodationPage() {
   const populateApi = "?populate[amenities][populate]=*&populate[images]=*";
@@ -35,19 +34,7 @@ export function SearchAccommodationPage() {
   let results = data;
 
   if (loading) {
-    return (
-      <>
-        <StyledAccommodationsWrapper>
-          <StyledAccommodationsMain>
-            <Skeleton height={542} />
-          </StyledAccommodationsMain>
-          <Skeleton width={120} height={24} style={{ marginTop: "40px", marginBottom: "10px" }} />
-          <StyledAccommodationsAltCards>
-            <Skeleton height={400} />
-          </StyledAccommodationsAltCards>
-        </StyledAccommodationsWrapper>
-      </>
-    );
+    return <SkeletonSearchAccommodations />;
   }
   const item = window.localStorage.getItem("stay");
   const loc = JSON.parse(item);

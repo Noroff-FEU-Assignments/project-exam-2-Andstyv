@@ -45,7 +45,7 @@ export const StyledSearchFormResults = styled.div`
   top: 65px;
   min-width: 200px;
   width: 100%;
-  margin-left: -20px;
+  margin-left: -10px;
   box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
   text-align: start;
 
