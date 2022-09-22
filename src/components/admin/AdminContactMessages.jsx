@@ -9,7 +9,7 @@ export function AdminContactMessages() {
 
   if (loading) {
     return (
-      <div>
+      <div style={{ marginTop: "100px", display: "flex", justifyContent: "center" }}>
         <BounceLoader />
       </div>
     );

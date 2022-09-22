@@ -6,6 +6,30 @@ import { useForm } from "react-hook-form";
 import { AMENITIES_SEARCH_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
 import { BounceLoader } from "react-spinners";
+import styled from "styled-components";
+
+const StyledCreateNewAccForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  max-width: 400px;
+
+  input {
+    border: none;
+    border-bottom: 1px solid #000;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  label {
+    font-weight: bolder;
+    margin-bottom: 10px;
+  }
+`;
+
+const StyledAmenitiesLabels = styled.label`
+  font-weight: 400 !important;
+`;
 
 const schema = yup.object().shape({
   title: yup.string().required("Enter title"),
@@ -79,49 +103,85 @@ export const AdminCreateAccommodation = () => {
   };
 
   return (
-    <div className="create-acc-container" style={{ border: "1px solid #000", width: "100%", borderRadius: "10px", marginBottom: "40px" }}>
-      <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-        <label htmlFor="title">Title: </label>
-        <input type="text" placeholder="Title" id="title" {...register("title")} />
-        {errors.title && <span id="acoommodation-form-error">{errors.title.message}</span>}
-        <label htmlFor="description">Description: </label>
-        <input type="text" placeholder="Description" id="description" {...register("description")} />
-        {errors.description && <span id="acoommodation-form-error">{errors.description.message}</span>}
-        <label htmlFor="price">Price: </label>
-        <input type="number" placeholder="Price" id="price" {...register("price")} />
-        {errors.price && <span id="acoommodation-form-error">{errors.price.message}</span>}
-        <label htmlFor="type">Type: </label>
-        <select placeholder="Type" id="type" {...register("type")}>
-          <option value="Hotel">Hotel</option>
-          <option value="Guesthouse">Guesthouse</option>
-          <option value="BnB">BnB</option>
-        </select>
-        {errors.type && <span id="acoommodation-form-error">{errors.type.message}</span>}
-        <label htmlFor="amenities">Amenities: </label>
-        <div>
-          {amenities.data.map((amenity) => {
-            return (
-              <div key={amenity.id}>
-                <input
-                  type={"checkbox"}
-                  name={amenity.attributes.Amenity}
-                  id={amenity.attributes.Amenity}
-                  {...register("amenities")}
-                  value={amenity.id}
-                />
-                <label htmlFor={amenity.id}>{amenity.attributes.Amenity}</label>
-              </div>
-            );
-          })}
+    <div className="create-acc-container" style={{ border: "1px solid #000", borderRadius: "10px", marginBottom: "40px" }}>
+      <StyledCreateNewAccForm onSubmit={handleSubmit(onSubmit)}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <label htmlFor="title">Title: </label>
+          <input type="text" id="title" {...register("title")} />
+          {errors.title && <span id="acoommodation-form-error">{errors.title.message}</span>}
         </div>
-        {errors.amenities && <span id="acoommodation-form-error">{errors.amenities.message}</span>}
-        <label htmlFor="images">Images: </label>
-        <input type="file" multiple name="images" id="images" onChange={(e) => setImages(e.target.files)}></input>
 
-        <button type="submit">Create accommodation</button>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <label htmlFor="description">Description: </label>
+          <input type="text" id="description" {...register("description")} />
+          {errors.description && <span id="acoommodation-form-error">{errors.description.message}</span>}
+        </div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <label htmlFor="price">Price: </label>
+          <input type="number" id="price" {...register("price")} />
+          {errors.price && <span id="acoommodation-form-error">{errors.price.message}</span>}
+        </div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <label htmlFor="type">Type: </label>
+          <select id="type" {...register("type")}>
+            <option value="Hotel">Hotel</option>
+            <option value="Guesthouse">Guesthouse</option>
+            <option value="BnB">BnB</option>
+          </select>
+          {errors.type && <span id="acoommodation-form-error">{errors.type.message}</span>}
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", marginTop: "20px" }}>
+          <label htmlFor="amenities">Amenities: </label>
+          <div>
+            {amenities.data.map((amenity) => {
+              return (
+                <div key={amenity.id}>
+                  <input
+                    type={"checkbox"}
+                    name={amenity.attributes.Amenity}
+                    id={amenity.attributes.Amenity}
+                    {...register("amenities")}
+                    value={amenity.id}
+                  />
+                  <StyledAmenitiesLabels htmlFor={amenity.id}>{amenity.attributes.Amenity}</StyledAmenitiesLabels>
+                </div>
+              );
+            })}
+          </div>
+          {errors.amenities && <span id="acoommodation-form-error">{errors.amenities.message}</span>}
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", marginTop: "20px" }}>
+          <label htmlFor="images">Images: </label>
+          <input
+            type="file"
+            multiple
+            name="images"
+            id="images"
+            onChange={(e) => setImages(e.target.files)}
+            style={{ borderBottom: "none", maxWidth: "200px" }}
+          />
+        </div>
+        <button
+          style={{
+            marginTop: "30px",
+            padding: "10px",
+            background: "#",
+            border: "none",
+            borderRadius: "5px",
+            backgroundColor: "#3b5053",
+            color: "#ffda60",
+            fontWeight: "bold",
+            textTransform: "uppercase",
+            fontSize: "18px",
+            cursor: "pointer",
+          }}
+        >
+          Create accommodation
+        </button>
 
         <div className="message">{message ? <p>{message}</p> : null}</div>
-      </form>
+      </StyledCreateNewAccForm>
     </div>
   );
 };
