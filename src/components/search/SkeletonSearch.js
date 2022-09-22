@@ -17,7 +17,7 @@ export function SkeletonSearch() {
             gridColumnLg="1"
           >
             <Skeleton width={100} height={21}></Skeleton>
-            <Skeleton width={320} height={22}></Skeleton>
+            <Skeleton width={200} height={22}></Skeleton>
           </StyledSearchFormDiv>
           <StyledSearchFormDiv padding="5px" borderLeftMd="1px solid #000" gridColumnLg="2">
             <Skeleton width={40} height={18}></Skeleton>

@@ -1,7 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { useState } from "react";
-
 import { useForm } from "react-hook-form";
 import {
   StyledSearchForm,
@@ -12,18 +10,8 @@ import {
   StyledSearchFormResults,
 } from "./search.styles";
 import { useNavigate } from "react-router-dom";
-import SearcHandler from "./SearcHandler";
 import Skeleton from "react-loading-skeleton";
-
-const today = new Date();
-today.setHours(0, 0, 0, 0);
-
-const schema = yup.object().shape({
-  location: yup.string().required("Enter location"),
-  fromDate: yup.date().min(today, "Date cannot be in the past").required("Enter from date").typeError("Enter from date"),
-  toDate: yup.date().required().min(yup.ref("fromDate"), "To date cannot be before start date").typeError("Enter to date"),
-  guests: yup.number().min(1, "Must be at least 1 guest").required("Enter no. of guests").typeError("Enter no. of guests"),
-});
+import { searchSchema } from "../validation/schemas";
 
 export function Search({ data, loading }) {
   const [filteredResults, setFilteredResults] = useState([]);
@@ -35,7 +23,7 @@ export function Search({ data, loading }) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({ resolver: yupResolver(searchSchema) });
 
   const onSubmit = (data, e) => {
     e.preventDefault();
@@ -43,16 +31,10 @@ export function Search({ data, loading }) {
     const location = searchQuery.attributes.title;
     const id = searchQuery.id;
 
-    const searchData = SearcHandler(e);
-    console.log(searchData);
-
-    console.log(location);
-    console.log(id);
     const checkIn = data.fromDate;
     const checkOut = data.toDate;
     const guests = data.guests;
-    // const stringCheckin = checkIn.toLocaleDateString();
-    // const stringCheckout = checkOut.toLocaleDateString();
+
     const timeDiff = checkOut.getTime() - checkIn.getTime();
     const dayDiff = timeDiff / (1000 * 3600 * 24);
 
@@ -64,7 +46,6 @@ export function Search({ data, loading }) {
       days: dayDiff,
       guests: guests,
     };
-    console.log(formData);
 
     localStorage.setItem("stay", JSON.stringify(formData));
     navigate(`/search/accommodation/${id}`);
@@ -126,7 +107,7 @@ export function Search({ data, loading }) {
             ) : (
               <StyledSearchFormResults>
                 {filteredResults &&
-                  filteredResults.slice(0, 10).map((value, id) => {
+                  filteredResults.slice(0, 10).map((value) => {
                     return (
                       <div key={value.id}>
                         <div value={value.attributes.title} id={value.id} onClick={() => handleSelect(value)}>

@@ -6,6 +6,44 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import { loginSchema as schema } from "../validation/schemas";
 import { LOGIN_URL as url } from "../../constants/api";
+import styled from "styled-components";
+
+const StyledLoginFieldset = styled.fieldset`
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
+  border: none;
+  display: flex;
+  flex-direction: column;
+
+  input {
+    border: none;
+    border-bottom: 1px solid #000;
+    font-size: 16px;
+    margin-top: 5px;
+  }
+
+  button {
+    margin-top: 30px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3b5053;
+    color: #ffda60;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  #form-error {
+    color: red;
+    margin-top: 3px;
+
+    i {
+      margin-right: 5px;
+    }
+  }
+`;
 
 export function LoginForm() {
   const [loginError, setLoginError] = useState(null);
@@ -40,35 +78,35 @@ export function LoginForm() {
 
   return (
     <>
-      <form className="login-form" onSubmit={handleSubmit(tryToLogin)}>
-        {loginError && <div className="login-error">{loginError}</div>}
-
-        <fieldset
-          className="login-fieldset"
-          disabled={submitting}
-          style={{
-            borderRadius: "10px",
-            padding: "25px",
-            boxShadow: "5px 5px 10px 2px rgba(0, 0, 0, 0.25)",
-            border: "none",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <h1 style={{ marginTop: "0" }}>Log in as admin:</h1>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <label htmlFor="admin-username">Username: </label>
-            <input className="login-form__input" placeholder="admin@admin.com" id="admin-username" {...register("identifier")} />
-            {errors.identifier && <div className="login-form__error">{errors.identifier.message}</div>}
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
-            <label htmlFor="admin-password">Password: </label>
-            <input className="login-form__input" type="password" placeholder="admin123" id="admin-password" {...register("password")} />
-            {errors.password && <div className="login-form__error">{errors.password.message}</div>}
-          </div>
-          <button style={{ marginTop: "50px" }}>{submitting ? "Logging in..." : "Log in"}</button>
-        </fieldset>
-      </form>
+      <div className="login-wrap" style={{ margin: "50px 20px 0 20px", maxWidth: "900px" }}>
+        <form className="login-form" onSubmit={handleSubmit(tryToLogin)}>
+          {loginError && <div className="login-error">{loginError}</div>}
+          <StyledLoginFieldset className="login-fieldset" disabled={submitting}>
+            <h1 style={{ marginTop: "0" }}>Log in as admin:</h1>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <label htmlFor="admin-username">Username: </label>
+              <input className="login-form__input" placeholder="admin@admin.com" id="admin-username" {...register("identifier")} />
+              {errors.identifier && (
+                <div id="form-error">
+                  <i class="fas fa-exclamation-circle"></i>
+                  {errors.identifier.message}
+                </div>
+              )}
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
+              <label htmlFor="admin-password">Password: </label>
+              <input className="login-form__input" type="password" placeholder="admin123" id="admin-password" {...register("password")} />
+              {errors.password && (
+                <div id="form-error">
+                  <i class="fas fa-exclamation-circle"></i>
+                  {errors.password.message}
+                </div>
+              )}
+            </div>
+            <button style={{ marginTop: "50px" }}>{submitting ? "Logging in..." : "Log in"}</button>
+          </StyledLoginFieldset>
+        </form>
+      </div>
     </>
   );
 }
