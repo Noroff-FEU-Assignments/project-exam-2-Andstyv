@@ -50,7 +50,7 @@ export function AdminPage() {
           <NavLink to="messages">
             <StyledAdminBtn>
               <div>
-                <i class="far fa-comment-alt"></i>
+                <i className="far fa-comment-alt"></i>
               </div>
               <div>Messages</div>
             </StyledAdminBtn>
@@ -58,7 +58,7 @@ export function AdminPage() {
           <NavLink to="enquiries">
             <StyledAdminBtn>
               <div>
-                <i class="fas fa-hotel"></i>
+                <i className="fas fa-hotel"></i>
               </div>
               <div>Enquiries</div>
             </StyledAdminBtn>
@@ -66,7 +66,7 @@ export function AdminPage() {
           <NavLink to="create">
             <StyledAdminBtn maxWidth={"120px"} flexWrap={"wrap"}>
               <div>
-                <i class="fas fa-plus-circle"></i>
+                <i className="fas fa-plus-circle"></i>
               </div>
               <div style={{ textAlign: "center" }}>Create new accommodation</div>
             </StyledAdminBtn>

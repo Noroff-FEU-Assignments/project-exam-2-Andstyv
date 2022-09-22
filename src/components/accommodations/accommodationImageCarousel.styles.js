@@ -8,7 +8,7 @@ export const StyledCarouselContainer = styled.div`
   flex-direction: column;
 
   @media only screen and (min-width: 768px) {
-    flex-direction: row;
+    flex-direction: column;
     max-width: 900px;
   }
 `;
@@ -34,13 +34,12 @@ export const StyledSecondaryImgsContainer = styled.div`
   flex-wrap: nowrap;
 
   @media only screen and (min-width: 768px) {
-    height: 200px;
+    height: 75px;
     width: 100%;
-    margin-top: 0px;
+    margin-top: 10px;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-left: 25px;
+    justify-content: space-between;
     gap: 5px;
   }
 `;

@@ -40,7 +40,7 @@ export function AdminContactMessages() {
               style={{
                 borderRadius: "10px",
                 padding: "10px",
-                width: "250px",
+                width: "100%",
                 marginBottom: "20px",
                 boxShadow: "5px 5px 10px 2px rgba(0, 0, 0, 0.25)",
               }}

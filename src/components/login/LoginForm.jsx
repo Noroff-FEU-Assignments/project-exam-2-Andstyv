@@ -51,7 +51,7 @@ export function LoginForm() {
               <input className="login-form__input" placeholder="admin@admin.com" id="admin-username" {...register("identifier")} />
               {errors.identifier && (
                 <div id="form-error">
-                  <i class="fas fa-exclamation-circle"></i>
+                  <i className="fas fa-exclamation-circle"></i>
                   {errors.identifier.message}
                 </div>
               )}
@@ -61,7 +61,7 @@ export function LoginForm() {
               <input className="login-form__input" type="password" placeholder="admin123" id="admin-password" {...register("password")} />
               {errors.password && (
                 <div id="form-error">
-                  <i class="fas fa-exclamation-circle"></i>
+                  <i className="fas fa-exclamation-circle"></i>
                   {errors.password.message}
                 </div>
               )}

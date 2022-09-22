@@ -1,9 +1,19 @@
 import React from "react";
 import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 import AuthContext from "../../context/AuthContext";
 import { StyledHambOverlayUl } from "./hamburgerOverlayMenu.styles";
+
+const StyledNavLogoutBtn = styled.button`
+  background-color: yellow;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+`;
 
 export const HamburgerOverlayMenu = ({ open, setOpen }) => {
   const [auth, setAuth] = useContext(AuthContext);
@@ -31,9 +41,9 @@ export const HamburgerOverlayMenu = ({ open, setOpen }) => {
         {auth ? (
           <>
             <NavLink to="/admin/messages">Admin</NavLink>{" "}
-            <button id="logout__btn" onClick={logout}>
+            <StyledNavLogoutBtn id="logout__btn" onClick={logout}>
               Log out
-            </button>
+            </StyledNavLogoutBtn>
           </>
         ) : (
           <NavLink to="/login">Login</NavLink>

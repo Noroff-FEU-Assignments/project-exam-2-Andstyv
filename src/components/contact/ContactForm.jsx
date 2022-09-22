@@ -3,8 +3,13 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { contactSchema as schema } from "../validation/schemas";
 import { StyledContactFormContainer, StyledContactFormInput, StyledLoginFieldset } from "../forms/forms.styles";
+import { useState } from "react";
 
 export function ContactForm() {
+  const [submitting, setSubmitting] = useState(false);
+  const [submitForm, setSubmitForm] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -12,6 +17,7 @@ export function ContactForm() {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data, e) => {
+    setSubmitting(true);
     const formData = JSON.stringify({ data });
 
     axios({
@@ -20,13 +26,13 @@ export function ContactForm() {
       data: formData,
       headers: { "Content-Type": "application/json" },
     })
-      .then(function (response) {
-        alert("Form submitted successfully");
-        console.log(response);
+      .then(function () {
+        setSubmitting(false);
+        setSubmitForm(true);
       })
       .catch(function (response) {
-        alert("An error occured");
-        console.log(response);
+        setSubmitError(response.message);
+        setSubmitting(false);
       });
     e.target.reset();
   };
@@ -35,7 +41,7 @@ export function ContactForm() {
     <div style={{ padding: "30px" }}>
       <h2>Contact us:</h2>
       <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-        <StyledLoginFieldset style={{ boxShadow: "none", width: "100%" }}>
+        <StyledLoginFieldset style={{ boxShadow: "none", width: "100%" }} disabled={submitting}>
           <StyledContactFormContainer>
             <label htmlFor="firstname" style={{ fontWeight: "bold", paddingLeft: "2px" }}>
               First Name
@@ -43,7 +49,7 @@ export function ContactForm() {
             <StyledContactFormInput {...register("firstname")} id="firstname" placeholder="John" />
             {errors.firstname && (
               <div id="form-error">
-                <i class="fas fa-exclamation-circle"></i>
+                <i className="fas fa-exclamation-circle"></i>
                 {errors.firstname.message}
               </div>
             )}
@@ -55,7 +61,7 @@ export function ContactForm() {
             <StyledContactFormInput {...register("lastname")} id="lastname" placeholder="Doe" />
             {errors.lastname && (
               <div id="form-error">
-                <i class="fas fa-exclamation-circle"></i>
+                <i className="fas fa-exclamation-circle"></i>
                 {errors.lastname.message}
               </div>
             )}
@@ -67,7 +73,7 @@ export function ContactForm() {
             <StyledContactFormInput {...register("email")} id="email" placeholder="john.doe@mail.com" />
             {errors.email && (
               <div id="form-error">
-                <i class="fas fa-exclamation-circle"></i>
+                <i className="fas fa-exclamation-circle"></i>
                 {errors.email.message}
               </div>
             )}
@@ -76,15 +82,17 @@ export function ContactForm() {
             <label htmlFor="message" style={{ fontWeight: "bold", paddingLeft: "2px", paddingBottom: "5px" }}>
               Message
             </label>
-            <textarea {...register("message")} id="message" style={{ minHeight: "100px" }} />
+            <textarea {...register("message")} id="message" style={{ minHeight: "100px", fontSize: "16px" }} />
             {errors.message && (
               <div id="form-error">
-                <i class="fas fa-exclamation-circle"></i>
+                <i className="fas fa-exclamation-circle"></i>
                 {errors.message.message}
               </div>
             )}
           </StyledContactFormContainer>
-          <button>Send</button>
+          <button>{submitting ? "Sending" : "Send"}</button>
+          <div style={{ textAlign: "center", marginTop: "10px", color: "darkgreen" }}>{submitForm ? "Sent successfully" : ""}</div>
+          <div style={{ textAlign: "center", marginTop: "10px", color: "red" }}>{submitError ? `Error: ${submitError}` : ""}</div>
         </StyledLoginFieldset>
       </form>
     </div>

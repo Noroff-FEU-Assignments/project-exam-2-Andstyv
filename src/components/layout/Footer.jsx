@@ -37,14 +37,14 @@ function Footer() {
   return (
     <StyledFooter>
       <StyledFooterMainDiv>
-        <div class="footer__left">
-          <div class="footer__contact">hello@holidaze.com</div>
+        <div className="footer__left">
+          <div className="footer__contact">hello@holidaze.com</div>
         </div>
-        <div class="footer__mid">
-          <div class="footer__copyright">Copyright © 2022</div>
+        <div className="footer__mid">
+          <div className="footer__copyright">Copyright © 2022</div>
         </div>
-        <div class="footer__right">
-          <div class="footer__address">221B Baker St, Marylebone, London NW1 6XE, UK</div>
+        <div className="footer__right">
+          <div className="footer__address">221B Baker St, Marylebone, London NW1 6XE, UK</div>
         </div>
       </StyledFooterMainDiv>
     </StyledFooter>

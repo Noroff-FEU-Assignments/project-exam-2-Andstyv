@@ -9,6 +9,10 @@ const StyledEnquiryContainer = styled.div`
   bottom: 20px;
   margin-top: 30px;
   box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
+
+  @media only screen and (min-width: 768px) {
+    margin-top: auto;
+  }
 `;
 
 export function AccommodationEnquiryData({ data }) {
@@ -26,19 +30,19 @@ export function AccommodationEnquiryData({ data }) {
     <StyledEnquiryContainer style={{ borderRadius: "10px" }}>
       {accommodationData && (
         <>
-          <div style={{ display: "flex", flexDirection: "column", padding: "10px" }}>
+          <div style={{ display: "flex", flexDirection: "column", padding: "5px" }}>
             <label htmlFor="checkin">From:</label>
             <div id="checkin">{parsedCheckIn}</div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", padding: "10px" }}>
+          <div style={{ display: "flex", flexDirection: "column", padding: "5px" }}>
             <label htmlFor="checkout">To:</label>
             <div id="checkout">{parsedCheckOut}</div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", padding: "10px", alignItems: "center" }}>
+          <div style={{ display: "flex", flexDirection: "column", padding: "5px", alignItems: "center" }}>
             <label htmlFor="guests">Guests:</label>
             <div id="guests">{accommodationData.guests}</div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", padding: "10px", alignItems: "center" }}>
+          <div style={{ display: "flex", flexDirection: "column", padding: "5px", alignItems: "center" }}>
             <label htmlFor="total-price">Total:</label>
             <div id="total-price" style={{ fontWeight: "bold" }}>
               ${accommodationData.days * accommodation.data.attributes.price}

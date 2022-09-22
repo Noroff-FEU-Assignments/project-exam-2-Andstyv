@@ -27,7 +27,7 @@ export function ContactInfo() {
         <div className="contact-info" style={{ padding: "20px", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <div>
-              <i class="fas fa-map-marked-alt"></i>
+              <i className="fas fa-map-marked-alt"></i>
             </div>
             <div>
               <label htmlFor="address">Address:</label>
@@ -36,7 +36,7 @@ export function ContactInfo() {
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "20px" }}>
             <div>
-              <i class="fas fa-phone"></i>
+              <i className="fas fa-phone"></i>
             </div>
             <div>
               <label htmlFor="address">Telephone:</label>
@@ -45,7 +45,7 @@ export function ContactInfo() {
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "20px" }}>
             <div>
-              <i class="fas fa-envelope"></i>
+              <i className="fas fa-envelope"></i>
             </div>
             <div>
               <label htmlFor="address">E-mail:</label>

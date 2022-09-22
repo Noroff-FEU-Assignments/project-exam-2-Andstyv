@@ -34,10 +34,10 @@ export function AccommodationImageCarousel({ accommodationImages }) {
       <StyledCarouselContainer>
         <div>
           <StyledCarouselArrow leftPx={"5px"} leftPxLg={"16px"} onClick={goToPrevious}>
-            <i class="fas fa-angle-double-left"></i>
+            <i className="fas fa-angle-double-left"></i>
           </StyledCarouselArrow>
           <StyledCarouselArrow rightPx={"5px"} rightPxLg={"0"} leftPxLg={"90px"} onClick={goToNext}>
-            <i class="fas fa-angle-double-right"></i>
+            <i className="fas fa-angle-double-right"></i>
           </StyledCarouselArrow>
         </div>
         <div>

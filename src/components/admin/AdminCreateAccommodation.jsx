@@ -24,6 +24,7 @@ export const AdminCreateAccommodation = () => {
   //eslint-disable-next-line
   const [message, setMessage] = useState("");
   const [images, setImages] = useState([]);
+  const [submitting, setSubmitting] = useState(false);
 
   const url = AMENITIES_SEARCH_URL;
   const { data, loading, error } = useFetchData(url);
@@ -51,6 +52,7 @@ export const AdminCreateAccommodation = () => {
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
+    setSubmitting(true);
 
     const newFormData = {
       title: data.title,
@@ -73,13 +75,12 @@ export const AdminCreateAccommodation = () => {
       data: formData,
       headers: { "Content-Type": "application/json" },
     })
-      .then(function (response) {
+      .then(function () {
         setMessage("Accommodation added successfully");
-        console.log(response);
+        setSubmitting(false);
       })
       .catch(function (response) {
-        alert("An error occured");
-        console.log(response);
+        setMessage(response.message);
       });
     e.target.reset();
   };
@@ -87,14 +88,14 @@ export const AdminCreateAccommodation = () => {
   return (
     <div className="create-acc-container" style={{ borderRadius: "10px", marginBottom: "40px" }}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <StyledLoginFieldset>
+        <StyledLoginFieldset disabled={submitting}>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <label htmlFor="title">Title: </label>
             <input type="text" id="title" {...register("title")} />
             {errors.title && (
               <span id="form-error">
                 <div id="form-error">
-                  <i class="fas fa-exclamation-circle"></i>
+                  <i className="fas fa-exclamation-circle"></i>
                   {errors.title.message}
                 </div>
               </span>
@@ -107,7 +108,7 @@ export const AdminCreateAccommodation = () => {
             {errors.description && (
               <span id="form-error">
                 <div id="form-error">
-                  <i class="fas fa-exclamation-circle"></i>
+                  <i className="fas fa-exclamation-circle"></i>
                   {errors.description.message}
                 </div>
               </span>
@@ -119,7 +120,7 @@ export const AdminCreateAccommodation = () => {
             {errors.price && (
               <span id="form-error">
                 <div id="form-error">
-                  <i class="fas fa-exclamation-circle"></i>
+                  <i className="fas fa-exclamation-circle"></i>
                   {errors.price.message}
                 </div>
               </span>
@@ -135,7 +136,7 @@ export const AdminCreateAccommodation = () => {
             {errors.type && (
               <span id="form-error">
                 <div id="form-error">
-                  <i class="fas fa-exclamation-circle"></i>
+                  <i className="fas fa-exclamation-circle"></i>
                   {errors.type.message}
                 </div>
               </span>
@@ -162,7 +163,7 @@ export const AdminCreateAccommodation = () => {
             {errors.amenities && (
               <span id="form-error">
                 <div id="form-error">
-                  <i class="fas fa-exclamation-circle"></i>
+                  <i className="fas fa-exclamation-circle"></i>
                   {errors.amenities.message}
                 </div>
               </span>
@@ -195,10 +196,12 @@ export const AdminCreateAccommodation = () => {
               cursor: "pointer",
             }}
           >
-            Create accommodation
+            {submitting ? "Creating..." : "Create Accommodation"}
           </button>
 
-          <div className="message">{message ? <p>{message}</p> : null}</div>
+          <div className="message" style={{ textAlign: "center" }}>
+            {message ? <p>{message}</p> : null}
+          </div>
         </StyledLoginFieldset>
       </form>
     </div>
