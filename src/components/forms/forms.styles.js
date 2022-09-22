@@ -13,6 +13,7 @@ export const StyledLoginFieldset = styled.fieldset`
     border-bottom: 1px solid #000;
     font-size: 16px;
     margin-top: 5px;
+    border-radius: 0;
   }
 
   button {
@@ -42,6 +43,7 @@ export const StyledContactFormInput = styled.input`
   border-bottom: 1px solid #333;
   margin-top: 10px;
   font-size: 16px;
+  border-radius: 0;
 `;
 
 export const StyledContactFormContainer = styled.div`

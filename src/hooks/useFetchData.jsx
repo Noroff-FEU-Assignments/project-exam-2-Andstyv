@@ -17,7 +17,7 @@ export function useFetchData(url) {
         console.log("loading finished");
         setTimeout(() => {
           setLoading(false);
-        }, "5000");
+        }, "2000");
       }
     }
     fetchData();

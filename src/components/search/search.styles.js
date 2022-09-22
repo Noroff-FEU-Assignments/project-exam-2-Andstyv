@@ -101,6 +101,7 @@ export const StyledSearchFormInput = styled.input`
   border-bottom: ${(props) => props.borderBottom || "none"};
   margin-top: 5px;
   padding: 2px 0px;
+  font-size: 16px;
 `;
 
 export const StyledSearchFormLabel = styled.label`

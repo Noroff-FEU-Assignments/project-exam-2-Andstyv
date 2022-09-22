@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import "react-loading-skeleton/dist/skeleton.css";
+import PlaceHolderImg from "../../assets/img/placeholder_accommodation_img.jpg";
 
 import { ACCOMMODATIONS_SEARCH_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
@@ -72,18 +73,23 @@ export function SearchAccommodationPage() {
     <div className="searc-acc-wrap" style={{ margin: "50px 20px 0 20px", maxWidth: "900px" }}>
       <StyledAccommodationsMain>
         <div>
-          <StyledAccommodationsMainImg src={mainResult[0].attributes.images.data[0].attributes.url} alt={mainResult[0].attributes.title} />
+          <StyledAccommodationsMainImg
+            src={mainResult[0].attributes.images.data ? mainResult[0].attributes.images.data[0].attributes.url : PlaceHolderImg}
+            alt={mainResult[0].attributes.title}
+          />
         </div>
         <StyledAccommodationsMainCardInfo>
           <h2 style={{ marginTop: "0", marginBottom: "5px" }}>{mainResult[0].attributes.title}</h2>
           <StyledAccommodationsMainCardAmenitiesIcons>
-            {mainResult[0].attributes.amenities.data.map((amenity) => {
-              return (
-                <div key={amenity.id}>
-                  <img src={amenity.attributes.Icon.data[0].attributes.url} alt={amenity.attributes.Amenity}></img>{" "}
-                </div>
-              );
-            })}
+            {mainResult[0].attributes.amenities
+              ? mainResult[0].attributes.amenities.data.map((amenity) => {
+                  return (
+                    <div key={amenity.id}>
+                      <img src={amenity.attributes.Icon.data[0].attributes.url} alt={amenity.attributes.Amenity}></img>{" "}
+                    </div>
+                  );
+                })
+              : ""}
           </StyledAccommodationsMainCardAmenitiesIcons>
           <StyledAccommodationsMainCardDesc>
             <p style={{ margin: "10px 0" }}>
@@ -92,9 +98,11 @@ export function SearchAccommodationPage() {
             </p>
             <p style={{ fontWeight: "900", margin: "10px 0" }}>Amenities:</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
-              {mainResult[0].attributes.amenities.data.map((amenity) => {
-                return <div key={amenity.id}>· {amenity.attributes.Amenity}</div>;
-              })}
+              {mainResult[0].attributes.amenities
+                ? mainResult[0].attributes.amenities.data.map((amenity) => {
+                    return <div key={amenity.id}>· {amenity.attributes.Amenity}</div>;
+                  })
+                : ""}
             </div>
           </StyledAccommodationsMainCardDesc>
           <StyledAccommodationsMainCardStayData borderTop="1px solid #000">
@@ -145,23 +153,30 @@ export function SearchAccommodationPage() {
               >
                 <StyledAccommodationsAltCard>
                   <StyledAccommodationsAltCardImgContainer>
-                    <img src={accommodation.attributes.images.data[0].attributes.url} alt={accommodation.attributes.title} />
+                    <img
+                      src={accommodation.attributes.images.data ? accommodation.attributes.images.data[0].attributes.url : PlaceHolderImg}
+                      alt={accommodation.attributes.title}
+                    />
                   </StyledAccommodationsAltCardImgContainer>
                   <StyledAccommodationsAltCardInfo>
                     <h4>{accommodation.attributes.title}</h4>
                     <StyledAccommodationsAltCardInfoAmenities>
-                      {accommodation.attributes.amenities.data.map((amenity) => {
-                        return (
-                          <div key={amenity.id}>
-                            <img src={amenity.attributes.Icon.data[0].attributes.url} alt="Amenity icon" style={{ width: "12px" }}></img>{" "}
-                          </div>
-                        );
-                      })}
+                      {accommodation.attributes.amenities
+                        ? accommodation.attributes.amenities.data.map((amenity) => {
+                            return (
+                              <div key={amenity.id}>
+                                <img src={amenity.attributes.Icon.data[0].attributes.url} alt="Amenity icon" style={{ width: "12px" }}></img>{" "}
+                              </div>
+                            );
+                          })
+                        : ""}
                     </StyledAccommodationsAltCardInfoAmenities>
                     <StyledAccommodationsAltCardInfoAmenitiesText>
-                      {accommodation.attributes.amenities.data.map((amenity) => {
-                        return <div key={amenity.id}>· {amenity.attributes.Amenity}</div>;
-                      })}
+                      {accommodation.attributes.amenities
+                        ? accommodation.attributes.amenities.data.map((amenity) => {
+                            return <div key={amenity.id}>· {amenity.attributes.Amenity}</div>;
+                          })
+                        : ""}
                     </StyledAccommodationsAltCardInfoAmenitiesText>
                     <StyledAccommodationsAltCardInfoTotal>
                       Total: ${accommodation.attributes.price * loc.days * rooms}
