@@ -1,5 +1,19 @@
 import styled from "styled-components";
 
+export const StyledSearchDiv = styled.div`
+display: flex;
+flex-direction: column,
+margin: 0 20px;
+align-items: center;
+width: 90%;
+max-width: 400px;
+
+@media only screen and (min-width: 768px) {
+  width: auto;
+  max-width: 100%;
+}
+
+`;
 export const StyledSearchForm = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr 80px;
@@ -49,8 +63,19 @@ export const StyledSearchFormResults = styled.div`
   box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
   text-align: start;
 
+  .search-result {
+    width: auto;
+    padding: 10px;
+    border-top: 1px solid #000;
+
+    :hover {
+      background-color: #ffda60;
+      cursor: pointer;
+    }
+  }
+
   div {
-    margin: 25px 0 20px 25px;
+    margin: 0;
   }
 `;
 

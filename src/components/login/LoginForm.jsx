@@ -6,44 +6,7 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import { loginSchema as schema } from "../validation/schemas";
 import { LOGIN_URL as url } from "../../constants/api";
-import styled from "styled-components";
-
-const StyledLoginFieldset = styled.fieldset`
-  border-radius: 10px;
-  padding: 25px;
-  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
-  border: none;
-  display: flex;
-  flex-direction: column;
-
-  input {
-    border: none;
-    border-bottom: 1px solid #000;
-    font-size: 16px;
-    margin-top: 5px;
-  }
-
-  button {
-    margin-top: 30px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #3b5053;
-    color: #ffda60;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 18px;
-    cursor: pointer;
-  }
-  #form-error {
-    color: red;
-    margin-top: 3px;
-
-    i {
-      margin-right: 5px;
-    }
-  }
-`;
+import { StyledLoginFieldset } from "../forms/forms.styles";
 
 export function LoginForm() {
   const [loginError, setLoginError] = useState(null);

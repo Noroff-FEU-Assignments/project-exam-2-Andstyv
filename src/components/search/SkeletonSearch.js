@@ -1,11 +1,11 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { StyledSearchForm, StyledSearchFormBtn, StyledSearchFormDiv } from "./search.styles";
+import { StyledSearchDiv, StyledSearchForm, StyledSearchFormBtn, StyledSearchFormDiv } from "./search.styles";
 
 export function SkeletonSearch() {
   return (
     <>
-      <div style={{ display: "flex", flexDirection: "column", margin: "0 20px", alignItems: "center", textAlign: "left" }}>
+      <StyledSearchDiv style={{ textAlign: "start" }}>
         <StyledSearchForm>
           <StyledSearchFormDiv
             minWidth="200px"
@@ -35,7 +35,7 @@ export function SkeletonSearch() {
             <Skeleton width={120} height={40}></Skeleton>
           </StyledSearchFormBtn>
         </StyledSearchForm>
-      </div>
+      </StyledSearchDiv>
     </>
   );
 }

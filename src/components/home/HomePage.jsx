@@ -3,7 +3,6 @@ import { useFetchData } from "../../hooks/useFetchData";
 import { ACCOMMODATIONS_SEARCH_URL } from "../../constants/api";
 import Hero from "./hero/Hero";
 import HomeSection from "./HomeSection";
-import Footer from "../layout/Footer";
 import { SkeletonSearch } from "../search/SkeletonSearch";
 
 export function HomePage() {
@@ -15,7 +14,6 @@ export function HomePage() {
         <Hero />
         <SkeletonSearch />
         <HomeSection />
-        <Footer />
       </div>
     );
   }

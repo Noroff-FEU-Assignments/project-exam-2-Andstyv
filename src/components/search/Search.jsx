@@ -2,6 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
+  StyledSearchDiv,
   StyledSearchForm,
   StyledSearchFormBtn,
   StyledSearchFormDiv,
@@ -77,7 +78,7 @@ export function Search({ data, loading }) {
 
   return (
     <>
-      <div style={{ display: "flex", flexDirection: "column", margin: "0 20px", alignItems: "center" }}>
+      <StyledSearchDiv>
         <StyledSearchForm onSubmit={handleSubmit(onSubmit)}>
           <StyledSearchFormDiv
             minWidth="200px"
@@ -110,7 +111,7 @@ export function Search({ data, loading }) {
                   filteredResults.slice(0, 10).map((value) => {
                     return (
                       <div key={value.id}>
-                        <div value={value.attributes.title} id={value.id} onClick={() => handleSelect(value)}>
+                        <div className="search-result" value={value.attributes.title} id={value.id} onClick={() => handleSelect(value)}>
                           {value.attributes.title}
                         </div>
                       </div>
@@ -141,7 +142,7 @@ export function Search({ data, loading }) {
           </StyledSearchFormDiv>
           <StyledSearchFormBtn>Search</StyledSearchFormBtn>
         </StyledSearchForm>
-      </div>
+      </StyledSearchDiv>
     </>
   );
 }
