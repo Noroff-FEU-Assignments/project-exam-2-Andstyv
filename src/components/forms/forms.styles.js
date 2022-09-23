@@ -16,18 +16,6 @@ export const StyledLoginFieldset = styled.fieldset`
     border-radius: 0;
   }
 
-  button {
-    margin-top: 30px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #3b5053;
-    color: #ffda60;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 18px;
-    cursor: pointer;
-  }
   #form-error {
     color: red;
     margin-top: 3px;

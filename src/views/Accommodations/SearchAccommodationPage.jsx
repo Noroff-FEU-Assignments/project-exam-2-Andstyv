@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import "react-loading-skeleton/dist/skeleton.css";
 import PlaceHolderImg from "../../assets/img/placeholder_accommodation_img.jpg";
-
 import { ACCOMMODATIONS_SEARCH_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
 import {
@@ -21,7 +20,8 @@ import {
   StyledAccommodationsMainCardStayTotal,
   StyledAccommodationsMainImg,
 } from "./searchAccommodationsPage.styles";
-import { SkeletonSearchAccommodations } from "./SkeletonSearchAccommodations";
+
+import { SkeletonSearchAccommodations } from "../../components/search/SkeletonSearchAccommodations";
 
 export function SearchAccommodationPage() {
   const populateApi = "?populate[amenities][populate]=*&populate[images]=*";

@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
-import { loginSchema as schema } from "../validation/schemas";
+import { loginSchema as schema } from "../utils/validation/schemas";
 import { LOGIN_URL as url } from "../../constants/api";
-import { StyledLoginFieldset } from "../forms/forms.styles";
+import { StyledLoginFieldset } from "./forms.styles";
+import { SubmitFormBtn } from "../buttons/SubmitFormBtn";
 
 export function LoginForm() {
   const [loginError, setLoginError] = useState(null);
@@ -66,7 +67,7 @@ export function LoginForm() {
                 </div>
               )}
             </div>
-            <button style={{ marginTop: "50px" }}>{submitting ? "Logging in..." : "Log in"}</button>
+            <SubmitFormBtn style={{ marginTop: "50px" }}>{submitting ? "Logging in..." : "Log in"}</SubmitFormBtn>
           </StyledLoginFieldset>
         </form>
       </div>

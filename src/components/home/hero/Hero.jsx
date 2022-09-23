@@ -1,6 +1,6 @@
 import { StyledHeroH1, StyledHeroImg, StyledSecondaryHeaderText } from "./hero.styles";
 
-function Hero() {
+export function Hero() {
   return (
     <>
       <StyledHeroImg className="hero-img"></StyledHeroImg>
@@ -9,5 +9,3 @@ function Hero() {
     </>
   );
 }
-
-export default Hero;

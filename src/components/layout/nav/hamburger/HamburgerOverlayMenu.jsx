@@ -1,8 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "../../../../context/AuthContext";
 import { StyledHambOverlayUl, StyledNavLogoutBtn } from "./hamburgerOverlayMenu.styles";
 
 export const HamburgerOverlayMenu = ({ open, setOpen }) => {

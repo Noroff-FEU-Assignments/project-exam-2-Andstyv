@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-
 import { getAuth } from "../../constants/getAuth";
 import { StyledAdminBtn, StyledAdminBtnsContainer } from "./adminPage.styles";
 

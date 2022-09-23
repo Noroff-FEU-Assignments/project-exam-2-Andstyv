@@ -12,7 +12,7 @@ import {
 } from "./search.styles";
 import { useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
-import { searchSchema } from "../validation/schemas";
+import { searchSchema as schema } from "../utils/validation/schemas";
 
 export function Search({ data, loading }) {
   const [filteredResults, setFilteredResults] = useState([]);
@@ -24,7 +24,7 @@ export function Search({ data, loading }) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(searchSchema) });
+  } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data, e) => {
     e.preventDefault();

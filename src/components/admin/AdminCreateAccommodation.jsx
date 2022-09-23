@@ -7,7 +7,8 @@ import { useFetchData } from "../../hooks/useFetchData";
 import { BounceLoader } from "react-spinners";
 import styled from "styled-components";
 import { StyledLoginFieldset } from "../forms/forms.styles";
-import { adminCreateAccommodationSchema as schema } from "../validation/schemas";
+import { adminCreateAccommodationSchema as schema } from "../utils/validation/schemas";
+import { SubmitFormBtn } from "../buttons/SubmitFormBtn";
 
 const StyledAmenitiesLabels = styled.label`
   font-weight: 400 !important;
@@ -179,7 +180,7 @@ export const AdminCreateAccommodation = () => {
               style={{ borderBottom: "none", maxWidth: "200px" }}
             />
           </StyledCreateAccommodationColumn>
-          <button>{submitting ? "Creating..." : "Create Accommodation"}</button>
+          <SubmitFormBtn>{submitting ? "Creating..." : "Create Accommodation"}</SubmitFormBtn>
 
           <div className="message" style={{ textAlign: "center" }}>
             {message ? <p>{message}</p> : null}

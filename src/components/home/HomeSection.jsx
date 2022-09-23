@@ -2,7 +2,7 @@ import { StyledHomeDiv, StyledHomeText } from "./homeSection.styles";
 import AdventureImg from "../../assets/img/holidaze_home_adventure.jpg";
 import AccommodationsImg from "../../assets/img/holidaze_home_accommodations.jpg";
 
-function HomeSection() {
+export function HomeSection() {
   return (
     <div className="body-wrapper" style={{ margin: "0 20px", display: "flex", justifyContent: "center" }}>
       <div style={{ maxWidth: "900px" }}>
@@ -32,5 +32,3 @@ function HomeSection() {
     </div>
   );
 }
-
-export default HomeSection;

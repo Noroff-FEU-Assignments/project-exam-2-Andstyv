@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { HamburgerMenu } from "./HamburgerMenu";
+import { HamburgerMenu } from "./hamburger/HamburgerMenu";
 import { Nav } from "./nav.styles";
 
 const Navbar = () => {

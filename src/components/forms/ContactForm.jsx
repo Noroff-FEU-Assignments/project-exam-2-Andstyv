@@ -1,9 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { contactSchema as schema } from "../validation/schemas";
-import { StyledContactFormContainer, StyledContactFormInput, StyledLoginFieldset } from "../forms/forms.styles";
+
+import { contactSchema as schema } from "../utils/validation/schemas";
+import { StyledContactFormContainer, StyledContactFormInput, StyledLoginFieldset } from "./forms.styles";
 import { useState } from "react";
+import { SubmitFormBtn } from "../buttons/SubmitFormBtn";
 
 export function ContactForm() {
   const [submitting, setSubmitting] = useState(false);
@@ -90,7 +92,7 @@ export function ContactForm() {
               </div>
             )}
           </StyledContactFormContainer>
-          <button>{submitting ? "Sending" : "Send"}</button>
+          <SubmitFormBtn>{submitting ? "Sending" : "Send"}</SubmitFormBtn>
           <div style={{ textAlign: "center", marginTop: "10px", color: "darkgreen" }}>{submitForm ? "Sent successfully" : ""}</div>
           <div style={{ textAlign: "center", marginTop: "10px", color: "red" }}>{submitError ? `Error: ${submitError}` : ""}</div>
         </StyledLoginFieldset>

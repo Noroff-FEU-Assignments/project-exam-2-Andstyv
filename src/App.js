@@ -4,20 +4,21 @@ import Accommodation from "./components/accommodations/Accommodation";
 import { AdminContactMessages } from "./components/admin/AdminContactMessages";
 import { AdminCreateAccommodation } from "./components/admin/AdminCreateAccommodation";
 import { AdminEnquiries } from "./components/admin/AdminEnquiries";
-import { AdminPage } from "./components/admin/AdminPage";
-import { ContactPage } from "./components/contact/ContactPage";
-import { HomePage } from "./components/home/HomePage";
-import Footer from "./components/layout/Footer";
-import Nav from "./components/layout/Nav";
-import { LoginPage } from "./components/login/LoginPage";
-import { SearchAccommodationPage } from "./components/search/SearchAccommodationPage";
+import { AdminPage } from "./views/Admin/AdminPage";
+import { ContactPage } from "./views/Contact/ContactPage";
+import { HomePage } from "./views/Home/HomePage";
+import Footer from "./components/layout/footer/Footer";
+import Nav from "./components/layout/nav/Nav";
+import { LoginPage } from "./views/Login/LoginPage";
+import { SearchAccommodationPage } from "./views/Accommodations/SearchAccommodationPage";
 import { AuthProvider } from "./context/AuthContext";
+import { ContentContainer } from "./components/layout/contentContainer/ContentContainer";
 
 function App() {
   return (
     <AuthProvider>
       <Nav />
-      <div className="container">
+      <ContentContainer>
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/contact" element={<ContactPage />} />
@@ -31,7 +32,7 @@ function App() {
           <Route path="accommodation/:id" element={<Accommodation />} />
           <Route path="search/accommodation/:id" element={<SearchAccommodationPage />} />
         </Routes>
-      </div>
+      </ContentContainer>
       <Footer />
     </AuthProvider>
   );
