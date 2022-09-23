@@ -6,9 +6,9 @@ export const StyledEnquiryModal = styled.div`
   left: 50%;
   height: auto;
   transform: translate(-50%, -50%);
-  max-width: 300px;
-  max-height: 600px;
-  padding: 20px 40px;
+  max-width: 275px;
+  width: 100%;
+  padding: 10px 20px;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
   overflowy: auto;
   background-color: #fff;
