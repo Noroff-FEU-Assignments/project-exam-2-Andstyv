@@ -73,6 +73,7 @@ export function SearchAccommodationPage() {
         to={`/accommodation/${mainResult[0].id}`}
         style={{
           textDecoration: "none",
+          color: "#000",
         }}
       >
         <StyledAccommodationsMain>

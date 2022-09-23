@@ -8,6 +8,7 @@ import { BounceLoader } from "react-spinners";
 import styled from "styled-components";
 import { StyledLoginFieldset } from "../forms/forms.styles";
 import { adminCreateAccommodationSchema as schema } from "../validation/schemas";
+
 const StyledAmenitiesLabels = styled.label`
   font-weight: 400 !important;
 `;
@@ -112,7 +113,7 @@ export const AdminCreateAccommodation = () => {
             )}
           </StyledCreateAccommodationColumn>
           <StyledCreateAccommodationColumn>
-            <label htmlFor="price">Price: </label>
+            <label htmlFor="price">Price per room: </label>
             <input type="number" id="price" {...register("price")} />
             {errors.price && (
               <span id="form-error">

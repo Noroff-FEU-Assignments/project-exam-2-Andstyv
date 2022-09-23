@@ -1,6 +1,13 @@
 import { ENQUIRIES_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
 import { BounceLoader } from "react-spinners";
+import {
+  StyledAdmindEnquiry,
+  StyledAdmindEnquiryContainer,
+  StyledAdminEnquiriesContainer,
+  StyledAdminEnquiryContactInfoContainer,
+  StyledAdminEnquiryLabel,
+} from "./adminEnquiries.styles";
 
 export function AdminEnquiries() {
   const { data, loading, error } = useFetchData(ENQUIRIES_URL);
@@ -26,58 +33,49 @@ export function AdminEnquiries() {
       <h1>Accommodation enquiries</h1>
       <p style={{ fontStyle: "italic" }}>(Most recent first)</p>
 
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", maxWidth: "400px" }}>
+      <StyledAdminEnquiriesContainer>
         {sortedAccommodations.map((enquiry) => {
           return (
-            <div
-              key={enquiry.id}
-              style={{
-                padding: "10px",
-                width: "100%",
-                marginBottom: "20px",
-                borderRadius: "10px",
-                boxShadow: "5px 5px 10px 2px rgba(0, 0, 0, 0.25)",
-              }}
-            >
+            <StyledAdmindEnquiry key={enquiry.id}>
               <div style={{ fontWeight: "bold", marginBottom: "10px", fontSize: "24px" }}>
                 {enquiry.attributes.accommodation.data?.attributes?.title}
               </div>
-              <div style={{ margin: "10px 0" }}>
-                <div style={{ display: "flex" }}>
-                  <div style={{ minWidth: "60px", fontWeight: "bold" }}>Name:</div>
+              <StyledAdminEnquiryContactInfoContainer>
+                <StyledAdmindEnquiryContainer>
+                  <StyledAdminEnquiryLabel>Name:</StyledAdminEnquiryLabel>
                   <div>{enquiry.attributes.name}</div>
-                </div>
-                <div style={{ display: "flex" }}>
-                  <div style={{ minWidth: "60px", fontWeight: "bold" }}>Email:</div>
+                </StyledAdmindEnquiryContainer>
+                <StyledAdmindEnquiryContainer>
+                  <StyledAdminEnquiryLabel>Email:</StyledAdminEnquiryLabel>
                   <div>{enquiry.attributes.email} </div>
-                </div>
-                <div style={{ display: "flex" }}>
-                  <div style={{ minWidth: "60px", fontWeight: "bold" }}>Tel:</div>
+                </StyledAdmindEnquiryContainer>
+                <StyledAdmindEnquiryContainer>
+                  <StyledAdminEnquiryLabel>Tel:</StyledAdminEnquiryLabel>
                   <div>{enquiry.attributes.telephone}</div>
-                </div>
-              </div>
+                </StyledAdmindEnquiryContainer>
+              </StyledAdminEnquiryContactInfoContainer>
               <div style={{ display: "flex", gap: "20px" }}>
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                  <div style={{ minWidth: "60px", fontWeight: "bold" }}>Check in:</div>
+                <StyledAdmindEnquiryContainer flexDirection="column">
+                  <StyledAdminEnquiryLabel>Check in:</StyledAdminEnquiryLabel>
                   <div>{enquiry.attributes.checkin} </div>
-                </div>
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                  <div style={{ minWidth: "60px", fontWeight: "bold" }}>Check out:</div>
+                </StyledAdmindEnquiryContainer>
+                <StyledAdmindEnquiryContainer flexDirection="column">
+                  <StyledAdminEnquiryLabel> Check out:</StyledAdminEnquiryLabel>
                   <div>{enquiry.attributes.checkout}</div>
-                </div>
+                </StyledAdmindEnquiryContainer>
               </div>
-              <div style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
-                <div style={{ minWidth: "60px", fontWeight: "bold" }}>No. of guests:</div>
+              <StyledAdmindEnquiryContainer flexDirection="column" marginTop="10px">
+                <StyledAdminEnquiryLabel>No. of guests:</StyledAdminEnquiryLabel>
                 <div>{enquiry.attributes.guests}</div>
-              </div>
+              </StyledAdmindEnquiryContainer>
               <div>
-                <div style={{ marginTop: "20px", fontWeight: "bold" }}>Message (optional):</div>
+                <StyledAdminEnquiryLabel marginTop="20px">Message (optional):</StyledAdminEnquiryLabel>
                 <div style={{ fontStyle: "italic", marginTop: "5px" }}> {enquiry.attributes.message} </div>
               </div>
-            </div>
+            </StyledAdmindEnquiry>
           );
         })}
-      </div>
+      </StyledAdminEnquiriesContainer>
     </>
   );
 }

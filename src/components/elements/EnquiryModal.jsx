@@ -64,21 +64,9 @@ function EnquiryModal({ amenity }) {
         <>
           <StyledEnquiryModalOverlay onClick={() => setShowModal(false)}></StyledEnquiryModalOverlay>
           <StyledEnquiryModal>
-            <button
-              className="modal-close"
-              type="button"
-              onClick={() => setShowModal(false)}
-              style={{
-                padding: "10px",
-                backgroundColor: "#3b5053",
-                color: "#ffda60",
-                border: "none",
-                borderRadius: "5px",
-                fontWeight: "bold",
-              }}
-            >
+            <StyledEnquiryBtn className="modal-close" type="button" onClick={() => setShowModal(false)}>
               Close
-            </button>
+            </StyledEnquiryBtn>
             <div className="modal-body">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <StyledLoginFieldset style={{ boxShadow: "none", padding: "5px" }} disabled={submitting}>

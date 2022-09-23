@@ -51,3 +51,12 @@ export const StyledEnquiryBtn = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const StyledModalCloseBtn = styled.button`
+  padding: 10px;
+  background-color: #3b5053;
+  color: ffda60;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+`;
