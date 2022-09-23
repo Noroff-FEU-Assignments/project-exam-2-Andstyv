@@ -6,6 +6,7 @@ import { ACCOMMODATIONS_SEARCH_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
 import { AccommodationEnquiryData } from "./AccommodationEnquiryData";
 import { AccommodationImageCarousel } from "./AccommodationImageCarousel";
+import { SkeletonAccommodation } from "./SkeletonAccommodation";
 
 const StyledAccommodationContainer = styled.div`
   display: flex;
@@ -18,11 +19,18 @@ const StyledAccommodationContainer = styled.div`
 
 const StyledAccommodationInfoContainer = styled.div`
   max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  min-height: 450px;
+
+  h2 {
+    margin-bottom: 5px;
+  }
+
   @media only screen and (min-width: 768px) {
-    display: flex;
-    flex-direction: column;
     padding: 0 20px;
-    min-width: 450px;
+    min-width: 400px;
+    width: 40%;
   }
 `;
 
@@ -37,11 +45,11 @@ function Accommodation() {
   const [showDesc, setShowDesc] = useState(true);
   const [showAms, setShowAms] = useState(false);
   if (loading) {
-    return <div>loading</div>;
+    return <SkeletonAccommodation />;
   }
 
   if (error) {
-    return <div>Error</div>;
+    return <div style={{ marginTop: "100px" }}>Error: {error}</div>;
   }
 
   return (
@@ -82,7 +90,7 @@ function Accommodation() {
             </div>
           </div>
           {showDesc ? (
-            <div style={{ maxWidth: "350px" }}>
+            <div style={{ width: "100%" }}>
               <p style={{ fontSize: "14px" }}>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur ipsum mollitia soluta sint sit eum architecto repellendus
                 tempora ad a! Perspiciatis consequatur id, laudantium error laboriosam obcaecati vero reprehenderit autem eaque ab delectus, ratione
@@ -91,7 +99,7 @@ function Accommodation() {
             </div>
           ) : null}
           {showAms ? (
-            <div style={{ display: "flex", flexDirection: "column", flexWrap: "wrap", maxHeight: "100px", marginTop: "14px" }}>
+            <div style={{ width: "100%", display: "flex", flexWrap: "wrap", gap: "10px", marginTop: "14px" }}>
               {accommodation.data.attributes.amenities
                 ? accommodation.data.attributes.amenities.data.map((amenity) => {
                     return <div key={amenity.id}>· {amenity.attributes.Amenity}</div>;

@@ -20,7 +20,7 @@ export const StyledCarouselMainImg = styled.div`
   border-radius: 6px;
 
   @media only screen and (min-width: 768px) {
-    width: 400px;
+    width: 100%;
     height: 400px;
   }
 `;

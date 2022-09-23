@@ -6,6 +6,7 @@ import {
   StyledCarouselSecondaryImgs,
   StyledSecondaryImgsContainer,
 } from "./accommodationImageCarousel.styles";
+import PlaceHolderImg from "../../assets/img/placeholder_accommodation_img.jpg";
 
 export function AccommodationImageCarousel({ accommodationImages }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -26,7 +27,7 @@ export function AccommodationImageCarousel({ accommodationImages }) {
   };
 
   const ImgBg = {
-    backgroundImage: `url(${accommodationImages[currentIndex].attributes.url})`,
+    backgroundImage: `url(${accommodationImages ? accommodationImages[currentIndex].attributes.url : PlaceHolderImg})`,
   };
 
   return (
@@ -44,16 +45,17 @@ export function AccommodationImageCarousel({ accommodationImages }) {
           <StyledCarouselMainImg key={accommodationImages[0].attributes.url} style={ImgBg}></StyledCarouselMainImg>
         </div>
         <StyledSecondaryImgsContainer>
-          {" "}
-          {accommodationImages.map((image, imageIndex) => {
-            return (
-              <StyledCarouselSecondaryImgs
-                onClick={() => goToSlide(imageIndex)}
-                key={image.attributes.url}
-                style={{ backgroundImage: `url(${image.attributes.url})` }}
-              ></StyledCarouselSecondaryImgs>
-            );
-          })}
+          {accommodationImages
+            ? accommodationImages.map((image, imageIndex) => {
+                return (
+                  <StyledCarouselSecondaryImgs
+                    onClick={() => goToSlide(imageIndex)}
+                    key={image.attributes.url}
+                    style={{ backgroundImage: `url(${image.attributes.url})` }}
+                  ></StyledCarouselSecondaryImgs>
+                );
+              })
+            : PlaceHolderImg}
         </StyledSecondaryImgsContainer>
       </StyledCarouselContainer>
     </>

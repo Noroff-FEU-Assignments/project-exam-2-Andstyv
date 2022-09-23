@@ -5,6 +5,8 @@ export const StyledHambOverlayUl = styled.ul`
   display: flex;
   flex-flow: row nowrap;
   gap: 50px;
+  align-items: baseline;
+  cursor: pointer;
   li {
     padding: 18px 10px;
 

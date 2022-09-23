@@ -2,7 +2,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { StyledSearchDiv, StyledSearchForm, StyledSearchFormBtn, StyledSearchFormDiv } from "./search.styles";
 
-export function SkeletonSearch() {
+export function SkeletonSearch(loading) {
   return (
     <>
       <StyledSearchDiv style={{ textAlign: "start" }}>
@@ -31,9 +31,7 @@ export function SkeletonSearch() {
             <Skeleton width={50} height={18}></Skeleton>
             <Skeleton width={20} height={15}></Skeleton>
           </StyledSearchFormDiv>
-          <StyledSearchFormBtn>
-            <Skeleton width={120} height={40}></Skeleton>
-          </StyledSearchFormBtn>
+          <StyledSearchFormBtn style={{ fontSize: "32px" }}>{loading ? "Loading" : ""}</StyledSearchFormBtn>
         </StyledSearchForm>
       </StyledSearchDiv>
     </>

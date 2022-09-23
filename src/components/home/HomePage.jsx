@@ -12,7 +12,7 @@ export function HomePage() {
     return (
       <div className="container" style={{ textAlign: "center" }}>
         <Hero />
-        <SkeletonSearch />
+        <SkeletonSearch loading={loading} />
         <HomeSection />
       </div>
     );
