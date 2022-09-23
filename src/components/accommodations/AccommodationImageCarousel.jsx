@@ -42,20 +42,28 @@ export function AccommodationImageCarousel({ accommodationImages }) {
           </StyledCarouselArrow>
         </div>
         <div>
-          <StyledCarouselMainImg key={accommodationImages[0].attributes.url} style={ImgBg}></StyledCarouselMainImg>
+          <StyledCarouselMainImg key={accommodationImages ? accommodationImages[0].id : null} style={ImgBg}></StyledCarouselMainImg>
         </div>
         <StyledSecondaryImgsContainer>
-          {accommodationImages
-            ? accommodationImages.map((image, imageIndex) => {
-                return (
-                  <StyledCarouselSecondaryImgs
-                    onClick={() => goToSlide(imageIndex)}
-                    key={image.attributes.url}
-                    style={{ backgroundImage: `url(${image.attributes.url})` }}
-                  ></StyledCarouselSecondaryImgs>
-                );
-              })
-            : PlaceHolderImg}
+          {accommodationImages ? (
+            accommodationImages.map((image, imageIndex) => {
+              return (
+                <StyledCarouselSecondaryImgs
+                  onClick={() => goToSlide(imageIndex)}
+                  key={image.attributes.url}
+                  style={{ backgroundImage: `url(${image.attributes.url})` }}
+                ></StyledCarouselSecondaryImgs>
+              );
+            })
+          ) : (
+            <>
+              <StyledCarouselSecondaryImgs style={ImgBg}></StyledCarouselSecondaryImgs>
+              <StyledCarouselSecondaryImgs style={ImgBg}></StyledCarouselSecondaryImgs>
+              <StyledCarouselSecondaryImgs style={ImgBg}></StyledCarouselSecondaryImgs>
+              <StyledCarouselSecondaryImgs style={ImgBg}></StyledCarouselSecondaryImgs>
+              <StyledCarouselSecondaryImgs style={ImgBg}></StyledCarouselSecondaryImgs>
+            </>
+          )}
         </StyledSecondaryImgsContainer>
       </StyledCarouselContainer>
     </>

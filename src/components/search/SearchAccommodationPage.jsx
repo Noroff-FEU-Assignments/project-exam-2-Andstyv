@@ -46,8 +46,6 @@ export function SearchAccommodationPage() {
   const parsedCheckIn = checkIn.toLocaleDateString();
   const parsedCheckOut = checkOut.toLocaleDateString();
 
-  console.log(parsedCheckIn);
-
   const searchInput = newId;
   let mainResult = [];
   const rooms = Math.ceil(loc.guests / 2);
@@ -71,70 +69,77 @@ export function SearchAccommodationPage() {
 
   return (
     <div className="searc-acc-wrap" style={{ margin: "50px 20px 0 20px", maxWidth: "900px" }}>
-      <StyledAccommodationsMain>
-        <div>
-          <StyledAccommodationsMainImg
-            src={mainResult[0].attributes.images.data ? mainResult[0].attributes.images.data[0].attributes.url : PlaceHolderImg}
-            alt={mainResult[0].attributes.title}
-          />
-        </div>
-        <StyledAccommodationsMainCardInfo>
-          <h2 style={{ marginTop: "0", marginBottom: "5px" }}>{mainResult[0].attributes.title}</h2>
-          <StyledAccommodationsMainCardAmenitiesIcons>
-            {mainResult[0].attributes.amenities
-              ? mainResult[0].attributes.amenities.data.map((amenity) => {
-                  return (
-                    <div key={amenity.id}>
-                      <img src={amenity.attributes.Icon.data[0].attributes.url} alt={amenity.attributes.Amenity}></img>{" "}
-                    </div>
-                  );
-                })
-              : ""}
-          </StyledAccommodationsMainCardAmenitiesIcons>
-          <StyledAccommodationsMainCardDesc>
-            <p style={{ margin: "10px 0" }}>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil sunt deleniti sit, quasi facere repellendus quaerat voluptate aspernatur
-              assumenda evenie ...
-            </p>
-            <p style={{ fontWeight: "900", margin: "10px 0" }}>Amenities:</p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+      <Link
+        to={`/accommodation/${mainResult[0].id}`}
+        style={{
+          textDecoration: "none",
+        }}
+      >
+        <StyledAccommodationsMain>
+          <div>
+            <StyledAccommodationsMainImg
+              src={mainResult[0].attributes.images.data ? mainResult[0].attributes.images.data[0].attributes.url : PlaceHolderImg}
+              alt={mainResult[0].attributes.title}
+            />
+          </div>
+          <StyledAccommodationsMainCardInfo>
+            <h2 style={{ marginTop: "0", marginBottom: "5px" }}>{mainResult[0].attributes.title}</h2>
+            <StyledAccommodationsMainCardAmenitiesIcons>
               {mainResult[0].attributes.amenities
                 ? mainResult[0].attributes.amenities.data.map((amenity) => {
-                    return <div key={amenity.id}>· {amenity.attributes.Amenity}</div>;
+                    return (
+                      <div key={amenity.id}>
+                        <img src={amenity.attributes.Icon.data[0].attributes.url} alt={amenity.attributes.Amenity}></img>{" "}
+                      </div>
+                    );
                   })
                 : ""}
-            </div>
-          </StyledAccommodationsMainCardDesc>
-          <StyledAccommodationsMainCardStayData borderTop="1px solid #000">
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <div>From:</div>
-              <div>{parsedCheckIn}</div>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <div>To:</div>
-              <div>{parsedCheckOut}</div>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", width: "50px" }}>
-              <div>Nights:</div>
-              <div>{loc.days}</div>
-            </div>
-          </StyledAccommodationsMainCardStayData>
-          <StyledAccommodationsMainCardStayData marginTop="0">
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <div>Guests:</div>
-              <div>{loc.guests}</div>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <div>Rooms:</div>
-              <div>{rooms}</div>
-            </div>
-            <StyledAccommodationsMainCardStayTotal>
-              <div>Total:</div>
-              <div>${mainResult[0].attributes.price * loc.days * rooms}</div>
-            </StyledAccommodationsMainCardStayTotal>
-          </StyledAccommodationsMainCardStayData>
-        </StyledAccommodationsMainCardInfo>
-      </StyledAccommodationsMain>
+            </StyledAccommodationsMainCardAmenitiesIcons>
+            <StyledAccommodationsMainCardDesc>
+              <p style={{ margin: "10px 0" }}>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil sunt deleniti sit, quasi facere repellendus quaerat voluptate
+                aspernatur assumenda evenie ...
+              </p>
+              <p style={{ fontWeight: "900", margin: "10px 0" }}>Amenities:</p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+                {mainResult[0].attributes.amenities
+                  ? mainResult[0].attributes.amenities.data.map((amenity) => {
+                      return <div key={amenity.id}>· {amenity.attributes.Amenity}</div>;
+                    })
+                  : ""}
+              </div>
+            </StyledAccommodationsMainCardDesc>
+            <StyledAccommodationsMainCardStayData borderTop="1px solid #000">
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <div>From:</div>
+                <div>{parsedCheckIn}</div>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <div>To:</div>
+                <div>{parsedCheckOut}</div>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", width: "50px" }}>
+                <div>Nights:</div>
+                <div>{loc.days}</div>
+              </div>
+            </StyledAccommodationsMainCardStayData>
+            <StyledAccommodationsMainCardStayData marginTop="0">
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <div>Guests:</div>
+                <div>{loc.guests}</div>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <div>Rooms:</div>
+                <div>{rooms}</div>
+              </div>
+              <StyledAccommodationsMainCardStayTotal>
+                <div>Total:</div>
+                <div>${mainResult[0].attributes.price * loc.days * rooms}</div>
+              </StyledAccommodationsMainCardStayTotal>
+            </StyledAccommodationsMainCardStayData>
+          </StyledAccommodationsMainCardInfo>
+        </StyledAccommodationsMain>
+      </Link>
       <StyledAccommodationsAltCards>
         <h3 style={{ marginTop: "40px", marginBottom: "10px" }}>Other alternatives:</h3>
         {results &&

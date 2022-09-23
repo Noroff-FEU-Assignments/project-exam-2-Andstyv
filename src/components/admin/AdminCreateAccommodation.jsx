@@ -1,5 +1,4 @@
 import axios from "axios";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -8,20 +7,18 @@ import { useFetchData } from "../../hooks/useFetchData";
 import { BounceLoader } from "react-spinners";
 import styled from "styled-components";
 import { StyledLoginFieldset } from "../forms/forms.styles";
-
+import { adminCreateAccommodationSchema as schema } from "../validation/schemas";
 const StyledAmenitiesLabels = styled.label`
   font-weight: 400 !important;
 `;
 
-const schema = yup.object().shape({
-  title: yup.string().required("Enter title"),
-  description: yup.string().required("Enter description"),
-  price: yup.number().required("Enter price").typeError("Enter a number"),
-  type: yup.string().required("Select type of accommodation"),
-});
+const StyledCreateAccommodationColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: ${(props) => props.marginTop || "10px"};
+`;
 
 export const AdminCreateAccommodation = () => {
-  //eslint-disable-next-line
   const [message, setMessage] = useState("");
   const [images, setImages] = useState([]);
   const [submitting, setSubmitting] = useState(false);
@@ -46,7 +43,7 @@ export const AdminCreateAccommodation = () => {
   }
 
   if (error) {
-    return <div>Error</div>;
+    return <div>Error: {error}</div>;
   }
   const formData = new FormData();
 
@@ -89,7 +86,7 @@ export const AdminCreateAccommodation = () => {
     <div className="create-acc-container" style={{ borderRadius: "10px", marginBottom: "40px" }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <StyledLoginFieldset disabled={submitting}>
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <StyledCreateAccommodationColumn marginTop={"0"}>
             <label htmlFor="title">Title: </label>
             <input type="text" id="title" {...register("title")} />
             {errors.title && (
@@ -100,9 +97,9 @@ export const AdminCreateAccommodation = () => {
                 </div>
               </span>
             )}
-          </div>
+          </StyledCreateAccommodationColumn>
 
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <StyledCreateAccommodationColumn>
             <label htmlFor="description">Description: </label>
             <input type="text" id="description" {...register("description")} />
             {errors.description && (
@@ -113,8 +110,8 @@ export const AdminCreateAccommodation = () => {
                 </div>
               </span>
             )}
-          </div>
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          </StyledCreateAccommodationColumn>
+          <StyledCreateAccommodationColumn>
             <label htmlFor="price">Price: </label>
             <input type="number" id="price" {...register("price")} />
             {errors.price && (
@@ -125,10 +122,10 @@ export const AdminCreateAccommodation = () => {
                 </div>
               </span>
             )}
-          </div>
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          </StyledCreateAccommodationColumn>
+          <StyledCreateAccommodationColumn>
             <label htmlFor="type">Type: </label>
-            <select id="type" {...register("type")}>
+            <select id="type" {...register("type")} style={{ marginTop: "10px" }}>
               <option value="Hotel">Hotel</option>
               <option value="Guesthouse">Guesthouse</option>
               <option value="BnB">BnB</option>
@@ -141,8 +138,8 @@ export const AdminCreateAccommodation = () => {
                 </div>
               </span>
             )}
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", marginTop: "20px" }}>
+          </StyledCreateAccommodationColumn>
+          <StyledCreateAccommodationColumn>
             <label htmlFor="amenities">Amenities: </label>
             <div>
               {amenities.data.map((amenity) => {
@@ -168,9 +165,9 @@ export const AdminCreateAccommodation = () => {
                 </div>
               </span>
             )}
-          </div>
+          </StyledCreateAccommodationColumn>
 
-          <div style={{ display: "flex", flexDirection: "column", marginTop: "20px" }}>
+          <StyledCreateAccommodationColumn>
             <label htmlFor="images">Images: </label>
             <input
               type="file"
@@ -180,24 +177,8 @@ export const AdminCreateAccommodation = () => {
               onChange={(e) => setImages(e.target.files)}
               style={{ borderBottom: "none", maxWidth: "200px" }}
             />
-          </div>
-          <button
-            style={{
-              marginTop: "30px",
-              padding: "10px",
-              background: "#",
-              border: "none",
-              borderRadius: "5px",
-              backgroundColor: "#3b5053",
-              color: "#ffda60",
-              fontWeight: "bold",
-              textTransform: "uppercase",
-              fontSize: "18px",
-              cursor: "pointer",
-            }}
-          >
-            {submitting ? "Creating..." : "Create Accommodation"}
-          </button>
+          </StyledCreateAccommodationColumn>
+          <button>{submitting ? "Creating..." : "Create Accommodation"}</button>
 
           <div className="message" style={{ textAlign: "center" }}>
             {message ? <p>{message}</p> : null}

@@ -38,3 +38,16 @@ export const StyledHambOverlayUl = styled.ul`
     }
   }
 `;
+
+export const StyledNavLogoutBtn = styled.button`
+  background-color: yellow;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: 0px;
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    margin-left: 5px;
+  }
+`;

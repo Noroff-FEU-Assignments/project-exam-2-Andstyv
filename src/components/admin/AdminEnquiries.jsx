@@ -15,13 +15,11 @@ export function AdminEnquiries() {
   }
 
   if (error) {
-    return <div>Error</div>;
+    return <div>Error: {error}</div>;
   }
 
   const getEnquiriesData = getEnquiries.data;
-  let sortedAccommodations = getEnquiriesData.sort((a, b) => b.id - a.id);
-
-  console.log(sortedAccommodations);
+  const sortedAccommodations = getEnquiriesData.sort((a, b) => b.id - a.id);
 
   return (
     <>

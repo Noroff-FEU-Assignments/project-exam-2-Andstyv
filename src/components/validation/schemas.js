@@ -32,3 +32,11 @@ export const searchSchema = yup.object().shape({
   toDate: yup.date().required().min(yup.ref("fromDate"), "To date cannot be before start date").typeError("Enter to date"),
   guests: yup.number().min(1, "Must be at least 1 guest").required("Enter no. of guests").typeError("Enter no. of guests"),
 });
+
+export const adminCreateAccommodationSchema = yup.object().shape({
+  title: yup.string().required("Enter title"),
+  description: yup.string().required("Enter description"),
+  price: yup.number().required("Enter price").typeError("Enter a number"),
+  type: yup.string().required("Select type of accommodation"),
+  amenities: yup.array().min(1, "Select at least one amenity").of(yup.string().required()).required().typeError("Select at least one amenity"),
+});

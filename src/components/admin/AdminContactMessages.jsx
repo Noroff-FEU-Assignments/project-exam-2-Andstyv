@@ -2,6 +2,15 @@ import React from "react";
 import { MESSAGE_FORM_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
 import { BounceLoader } from "react-spinners";
+import {
+  StyledAdminContactMsgContainer,
+  StyledAdminContactMsgContainerDate,
+  StyledAdminContactMsgContainerMessage,
+  StyledAdminContactMsgContainerMsg,
+  StyledAdminContactMsgContainerNames,
+  StyledAdminContactMsgH1,
+  StyledAdminContactMsgP,
+} from "./adminContactMessages.styles";
 
 export function AdminContactMessages() {
   const { data, loading, error } = useFetchData(MESSAGE_FORM_URL);
@@ -16,7 +25,7 @@ export function AdminContactMessages() {
   }
 
   if (error) {
-    return <div>Error</div>;
+    return <div>Error: {error}</div>;
   }
 
   function convertDate(date) {
@@ -26,36 +35,26 @@ export function AdminContactMessages() {
 
   const getMessagesData = getMessages.data;
   let sortedMessages = getMessagesData.sort((a, b) => b.id - a.id);
-  console.log(sortedMessages);
 
   return (
     <>
-      <h1 style={{ margin: "10px 0 5px 0" }}>Contact messages</h1>
-      <p style={{ margin: "0px 0 10px 0", fontStyle: "italic" }}>(Most recent first)</p>
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <StyledAdminContactMsgH1>Contact messages</StyledAdminContactMsgH1>
+      <StyledAdminContactMsgP>(Most recent first)</StyledAdminContactMsgP>
+      <StyledAdminContactMsgContainer>
         {sortedMessages.map((message) => {
           return (
-            <div
-              key={message.id}
-              style={{
-                borderRadius: "10px",
-                padding: "10px",
-                width: "100%",
-                marginBottom: "20px",
-                boxShadow: "5px 5px 10px 2px rgba(0, 0, 0, 0.25)",
-              }}
-            >
-              <div style={{ fontStyle: "italic", marginBottom: "10px" }}>{convertDate(message.attributes.createdAt)}</div>
-              <div style={{ display: "flex", gap: "5px" }}>
+            <StyledAdminContactMsgContainerMsg key={message.id}>
+              <StyledAdminContactMsgContainerDate>{convertDate(message.attributes.createdAt)}</StyledAdminContactMsgContainerDate>
+              <StyledAdminContactMsgContainerNames>
                 <div> {message.attributes.firstname} </div>
                 <div> {message.attributes.lastname} </div>
-              </div>
+              </StyledAdminContactMsgContainerNames>
               <div> {message.attributes.email} </div>
-              <div style={{ marginTop: "20px", fontStyle: "italic" }}> {message.attributes.message} </div>
-            </div>
+              <StyledAdminContactMsgContainerMessage> {message.attributes.message} </StyledAdminContactMsgContainerMessage>
+            </StyledAdminContactMsgContainerMsg>
           );
         })}
-      </div>
+      </StyledAdminContactMsgContainer>
     </>
   );
 }
