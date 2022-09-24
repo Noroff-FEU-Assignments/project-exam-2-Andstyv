@@ -30,7 +30,7 @@ const StyledSkeletonAltDiv = styled.div`
 
 export function SkeletonSearchAccommodations() {
   return (
-    <div className="searc-acc-wrap" style={{ margin: "0px 20px 0 20px", maxWidth: "900px", width: "90%" }}>
+    <div className="search-acc-wrap" style={{ margin: "0px 20px 0 20px", maxWidth: "900px", width: "90%" }}>
       <StyledSkeletonDiv>
         <StyledSkeletonInnerDiv>
           <Skeleton style={{ boxShadow: "5px 5px 10px 2px rgba(0, 0, 0, 0.25)", height: "100%" }} />

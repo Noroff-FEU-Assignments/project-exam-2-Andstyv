@@ -10,11 +10,11 @@ export function HomePage() {
 
   if (loading) {
     return (
-      <div className="container" style={{ textAlign: "center" }}>
+      <>
         <Hero />
         <SkeletonSearch loading={loading} />
         <HomeSection />
-      </div>
+      </>
     );
   }
 

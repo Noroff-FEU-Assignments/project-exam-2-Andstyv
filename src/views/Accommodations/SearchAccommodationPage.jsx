@@ -20,8 +20,7 @@ import {
   StyledAccommodationsMainCardStayTotal,
   StyledAccommodationsMainImg,
 } from "./searchAccommodationsPage.styles";
-
-import { SkeletonSearchAccommodations } from "../../components/search/SkeletonSearchAccommodations";
+import { SkeletonSearchAccommodations } from "./SkeletonSearchAccommodations";
 
 export function SearchAccommodationPage() {
   const populateApi = "?populate[amenities][populate]=*&populate[images]=*";
@@ -29,37 +28,35 @@ export function SearchAccommodationPage() {
   const { data, loading, error } = useFetchData(url);
   const { id } = useParams();
 
-  let newId = parseFloat(id);
-  console.log(newId);
-
+  const parsedId = parseFloat(id);
+  const searchInput = parsedId;
   let results = data;
+  let mainResult = [];
 
   if (loading) {
     return <SkeletonSearchAccommodations />;
   }
-  const item = window.localStorage.getItem("stay");
-  const loc = JSON.parse(item);
+  const item = window.locoalStorage.getItem("stay");
+  const accommodation = JSON.parse(item);
 
-  const checkIn = new Date(loc.fromDate);
-  const checkOut = new Date(loc.toDate);
+  const checkIn = new Date(accommodation.fromDate);
+  const checkOut = new Date(accommodation.toDate);
 
   const parsedCheckIn = checkIn.toLocaleDateString();
   const parsedCheckOut = checkOut.toLocaleDateString();
 
-  const searchInput = newId;
-  let mainResult = [];
-  const rooms = Math.ceil(loc.guests / 2);
+  const rooms = Math.ceil(accommodation.guests / 2);
 
   function filterAccommodations() {
     const searchFilter = results.data.filter((value) => {
       return value.id === searchInput;
     });
 
-    const restFilter = results.data.filter((value) => {
+    const filteredRemainingResults = results.data.filter((value) => {
       return value.id !== searchInput;
     });
     mainResult = searchFilter;
-    results = restFilter;
+    results = filteredRemainingResults;
   }
   filterAccommodations();
 
@@ -68,7 +65,7 @@ export function SearchAccommodationPage() {
   }
 
   return (
-    <div className="searc-acc-wrap" style={{ margin: "50px 20px 0 20px", maxWidth: "900px" }}>
+    <div className="search-acc-wrap" style={{ margin: "50px 20px 0 20px", maxWidth: "900px" }}>
       <Link
         to={`/accommodation/${mainResult[0].id}`}
         style={{
@@ -121,13 +118,13 @@ export function SearchAccommodationPage() {
               </div>
               <div style={{ display: "flex", flexDirection: "column", width: "50px" }}>
                 <div>Nights:</div>
-                <div>{loc.days}</div>
+                <div>{accommodation.days}</div>
               </div>
             </StyledAccommodationsMainCardStayData>
             <StyledAccommodationsMainCardStayData marginTop="0">
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <div>Guests:</div>
-                <div>{loc.guests}</div>
+                <div>{accommodation.guests}</div>
               </div>
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <div>Rooms:</div>
@@ -135,7 +132,7 @@ export function SearchAccommodationPage() {
               </div>
               <StyledAccommodationsMainCardStayTotal>
                 <div>Total:</div>
-                <div>${mainResult[0].attributes.price * loc.days * rooms}</div>
+                <div>${mainResult[0].attributes.price * accommodation.days * rooms}</div>
               </StyledAccommodationsMainCardStayTotal>
             </StyledAccommodationsMainCardStayData>
           </StyledAccommodationsMainCardInfo>
@@ -185,7 +182,7 @@ export function SearchAccommodationPage() {
                         : ""}
                     </StyledAccommodationsAltCardInfoAmenitiesText>
                     <StyledAccommodationsAltCardInfoTotal>
-                      Total: ${accommodation.attributes.price * loc.days * rooms}
+                      Total: ${accommodation.attributes.price * accommodation.days * rooms}
                     </StyledAccommodationsAltCardInfoTotal>
                   </StyledAccommodationsAltCardInfo>
                 </StyledAccommodationsAltCard>
