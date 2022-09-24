@@ -1,6 +1,6 @@
 import React from "react";
-import { ACCOMMODATIONS_SEARCH_URL } from "../../constants/api";
-import { useFetchData } from "../../hooks/useFetchData";
+import { ACCOMMODATIONS_SEARCH_URL } from "../../../constants/api";
+import { useFetchData } from "../../../hooks/useFetchData";
 
 export function Accommodations() {
   const populateApi = "?populate[amenities][populate]=*&populate[images]=*";
