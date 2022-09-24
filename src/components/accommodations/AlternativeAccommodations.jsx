@@ -2,14 +2,14 @@ import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
 import PlaceHolderImg from "../../assets/img/placeholder_accommodation_img.jpg";
 import {
-  StyledAccommodationsAltCard,
-  StyledAccommodationsAltCardImgContainer,
   StyledAccommodationsAltCards,
+  StyledAccommodationsAltCardImgContainer,
   StyledAccommodationsAltCardInfo,
   StyledAccommodationsAltCardInfoAmenities,
   StyledAccommodationsAltCardInfoAmenitiesText,
   StyledAccommodationsAltCardInfoTotal,
-} from "../../views/Accommodations/searchAccommodationsPage.styles";
+  StyledAccommodationsAltCard,
+} from "../../views/SearchAccommodations/searchAccommodationsPage.styles";
 
 export function AlternativeAccommodations({ results, accommodationData, rooms }) {
   console.log(results);

@@ -9,9 +9,11 @@ import {
   StyledAccommodationsMainCardStayData,
   StyledAccommodationsMainCardStayTotal,
   StyledAccommodationsMainImg,
-} from "../../views/Accommodations/searchAccommodationsPage.styles";
+} from "../../views/SearchAccommodations/searchAccommodationsPage.styles";
+import { AccommodationAmenitiesIcons } from "./AccommodationAmenitiesIcons";
 
 export function MainAccommodations({ accommodation, parsedCheckIn, parsedCheckOut, rooms, accommodationData }) {
+  console.log(accommodation);
   return (
     <Link
       to={`/accommodation/${accommodation.id}`}
@@ -30,15 +32,7 @@ export function MainAccommodations({ accommodation, parsedCheckIn, parsedCheckOu
         <StyledAccommodationsMainCardInfo>
           <h2 style={{ marginTop: "0", marginBottom: "5px" }}>{accommodation.attributes.title}</h2>
           <StyledAccommodationsMainCardAmenitiesIcons>
-            {accommodation.attributes.amenities
-              ? accommodation.attributes.amenities.data.map((amenity) => {
-                  return (
-                    <div key={amenity.id}>
-                      <img src={amenity.attributes.Icon.data[0].attributes.url} alt={amenity.attributes.Amenity}></img>{" "}
-                    </div>
-                  );
-                })
-              : ""}
+            <AccommodationAmenitiesIcons accommodation={accommodation} />
           </StyledAccommodationsMainCardAmenitiesIcons>
           <StyledAccommodationsMainCardDesc>
             <p style={{ margin: "10px 0" }}>

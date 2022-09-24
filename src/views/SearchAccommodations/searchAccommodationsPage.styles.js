@@ -45,7 +45,6 @@ export const StyledAccommodationsMainCardInfo = styled.div`
 export const StyledAccommodationsMainCardAmenitiesIcons = styled.div`
   display: flex;
   gap: 10px;
-
   img {
     width: 16px;
   }

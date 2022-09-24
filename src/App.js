@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Accommodation from "./components/accommodations/Accommodation";
 import { AdminContactMessages } from "./components/admin/AdminContactMessages";
 import { AdminCreateAccommodation } from "./components/admin/AdminCreateAccommodation";
 import { AdminEnquiries } from "./components/admin/AdminEnquiries";
@@ -10,9 +9,10 @@ import { HomePage } from "./views/Home/HomePage";
 import Footer from "./components/layout/footer/Footer";
 import Nav from "./components/layout/nav/Nav";
 import { LoginPage } from "./views/Login/LoginPage";
-import { SearchAccommodationPage } from "./views/Accommodations/SearchAccommodationPage";
 import { AuthProvider } from "./context/AuthContext";
 import { ContentContainer } from "./components/layout/contentContainer/ContentContainer";
+import { SearchAccommodationPage } from "./views/SearchAccommodations/SearchAccommodationPage";
+import { AccommodationPage } from "./views/Accommodation/AccommodationPage";
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
             <Route path="create" element={<AdminCreateAccommodation />} />
           </Route>
           <Route path="/messages" element={<AdminPage />} />
-          <Route path="accommodation/:id" element={<Accommodation />} />
+          <Route path="accommodation/:id" element={<AccommodationPage />} />
           <Route path="search/accommodation/:id" element={<SearchAccommodationPage />} />
         </Routes>
       </ContentContainer>
