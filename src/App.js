@@ -12,13 +12,12 @@ import Nav from "./components/layout/nav/Nav";
 import { LoginPage } from "./views/Login/LoginPage";
 import { SearchAccommodationPage } from "./views/Accommodations/SearchAccommodationPage";
 import { AuthProvider } from "./context/AuthContext";
-import { ContentContainer } from "./components/layout/contentContainer/ContentContainer";
 
 function App() {
   return (
     <AuthProvider>
       <Nav />
-      <ContentContainer>
+      <div className="container">
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/contact" element={<ContactPage />} />
@@ -32,7 +31,7 @@ function App() {
           <Route path="accommodation/:id" element={<Accommodation />} />
           <Route path="search/accommodation/:id" element={<SearchAccommodationPage />} />
         </Routes>
-      </ContentContainer>
+      </div>
       <Footer />
     </AuthProvider>
   );

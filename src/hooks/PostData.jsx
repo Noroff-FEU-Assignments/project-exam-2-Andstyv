@@ -1,8 +1,8 @@
 // import axios from "axios";
 // import { useEffect, useState } from "react";
 
-// export const usePostData = (url, payload) => {
-//   const [data, setData] = useState(null);
+// export const PostData = (url, payload) => {
+//   const [postData, setPostData] = useState(null);
 //   const [error, setError] = useState("");
 //   const [loading, setLoading] = useState(false);
 
@@ -10,13 +10,14 @@
 //     (async () => {
 //       try {
 //         const response = await axios.post(url, payload);
-//         setData(response.data);
+//         setPostData(response.data);
 //       } catch (error) {
 //         setError(error.message);
 //       } finally {
 //         setLoading(true);
 //       }
 //     })();
+//     //eslint-disable-next-line
 //   }, []);
-//   return { data, error, loading };
+//   return { postData, error, loading };
 // };

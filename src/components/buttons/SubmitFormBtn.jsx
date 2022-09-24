@@ -13,6 +13,6 @@ const StyledSubmitFormBtn = styled.button`
   cursor: pointer;
 `;
 
-export function SubmitFormBtn() {
-  return <StyledSubmitFormBtn />;
-}
+export const SubmitFormBtn = ({ children }) => {
+  return <StyledSubmitFormBtn>{children}</StyledSubmitFormBtn>;
+};
