@@ -1,4 +1,3 @@
-import React from "react";
 import { MESSAGE_FORM_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
 import { BounceLoader } from "react-spinners";

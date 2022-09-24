@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -24,3 +25,7 @@ export function useFetchData(url) {
   }, [url]);
   return { data, error, loading };
 }
+
+useFetchData.propTypes = {
+  url: PropTypes.number.isRequired,
+};

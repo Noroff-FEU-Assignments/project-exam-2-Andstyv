@@ -1,10 +1,10 @@
-import React from "react";
+import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { useState } from "react";
 import { EnquiryForm } from "../forms/EnquiryForm";
 import { StyledEnquiryBtn, StyledEnquiryModal, StyledEnquiryModalOverlay } from "./enquiryModal.styles";
 
-function EnquiryModal({ amenity }) {
+export function EnquiryModal({ amenity }) {
   const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     document.addEventListener("keydown", (e) => {
@@ -36,4 +36,6 @@ function EnquiryModal({ amenity }) {
   );
 }
 
-export default EnquiryModal;
+EnquiryModal.propTypes = {
+  amenity: PropTypes.object.isRequired,
+};

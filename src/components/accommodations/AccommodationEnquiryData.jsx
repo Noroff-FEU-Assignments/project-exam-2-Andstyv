@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import EnquiryModal from "../elements/EnquiryModal";
+
+import { EnquiryModal } from "../elements/EnquiryModal";
 
 const StyledEnquiryContainer = styled.div`
   display: grid;
