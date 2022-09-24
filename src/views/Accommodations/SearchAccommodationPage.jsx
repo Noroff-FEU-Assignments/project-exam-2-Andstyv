@@ -36,7 +36,7 @@ export function SearchAccommodationPage() {
   if (loading) {
     return <SkeletonSearchAccommodations />;
   }
-  const item = window.locoalStorage.getItem("stay");
+  const item = window.localStorage.getItem("stay");
   const accommodation = JSON.parse(item);
 
   const checkIn = new Date(accommodation.fromDate);
