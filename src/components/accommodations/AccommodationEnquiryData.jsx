@@ -1,7 +1,8 @@
-import React from "react";
+import { PropTypes } from "prop-types";
 import styled from "styled-components";
 
 import { EnquiryModal } from "../elements/EnquiryModal";
+import { dateConverter } from "../utils/converters/dateConverter";
 
 const StyledEnquiryContainer = styled.div`
   display: grid;
@@ -19,14 +20,9 @@ const StyledEnquiryContainer = styled.div`
 export function AccommodationEnquiryData({ data }) {
   const item = window.localStorage.getItem("stay");
   const accommodationData = JSON.parse(item);
-  const checkIn = new Date(accommodationData.fromDate);
-  const checkOut = new Date(accommodationData.toDate);
-  console.log(data);
-
   const accommodation = data;
+  let { parsedCheckIn, parsedCheckOut, rooms } = dateConverter(accommodationData);
 
-  const parsedCheckIn = checkIn.toLocaleDateString();
-  const parsedCheckOut = checkOut.toLocaleDateString();
   return (
     <StyledEnquiryContainer style={{ borderRadius: "10px" }}>
       {accommodationData && (
@@ -46,7 +42,7 @@ export function AccommodationEnquiryData({ data }) {
           <div style={{ display: "flex", flexDirection: "column", padding: "5px", alignItems: "center" }}>
             <label htmlFor="total-price">Total:</label>
             <div id="total-price" style={{ fontWeight: "bold" }}>
-              ${accommodationData.days * accommodation.data.attributes.price}
+              ${accommodationData.days * accommodation.data.attributes.price * rooms}
             </div>
           </div>
         </>
@@ -55,3 +51,19 @@ export function AccommodationEnquiryData({ data }) {
     </StyledEnquiryContainer>
   );
 }
+
+AccommodationEnquiryData.propTypes = {
+  data: PropTypes.shape({
+    data: PropTypes.shape({
+      attributes: PropTypes.shape({
+        amenities: PropTypes.object,
+        description: PropTypes.string,
+        images: PropTypes.object,
+        price: PropTypes.number,
+        title: PropTypes.string,
+        type: PropTypes.string,
+      }),
+      id: PropTypes.number,
+    }),
+  }),
+};

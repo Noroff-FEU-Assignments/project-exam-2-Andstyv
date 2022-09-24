@@ -37,5 +37,5 @@ export function EnquiryModal({ amenity }) {
 }
 
 EnquiryModal.propTypes = {
-  amenity: PropTypes.object.isRequired,
+  amenity: PropTypes.object,
 };
