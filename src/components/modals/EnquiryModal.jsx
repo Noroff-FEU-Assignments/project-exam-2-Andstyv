@@ -4,7 +4,7 @@ import { useState } from "react";
 import { EnquiryForm } from "../forms/EnquiryForm";
 import { StyledEnquiryBtn, StyledEnquiryModal, StyledEnquiryModalOverlay } from "./enquiryModal.styles";
 
-export function EnquiryModal({ amenity }) {
+export function EnquiryModal({ accommodation }) {
   const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     document.addEventListener("keydown", (e) => {
@@ -27,7 +27,7 @@ export function EnquiryModal({ amenity }) {
               Close
             </StyledEnquiryBtn>
             <div className="modal-body">
-              <EnquiryForm amenity={amenity} />
+              <EnquiryForm accommodation={accommodation} />
             </div>
           </StyledEnquiryModal>
         </>
@@ -37,5 +37,5 @@ export function EnquiryModal({ amenity }) {
 }
 
 EnquiryModal.propTypes = {
-  amenity: PropTypes.object,
+  accommodation: PropTypes.object,
 };

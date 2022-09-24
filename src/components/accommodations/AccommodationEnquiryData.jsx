@@ -1,7 +1,6 @@
 import { PropTypes } from "prop-types";
 import styled from "styled-components";
-
-import { EnquiryModal } from "../elements/EnquiryModal";
+import { EnquiryModal } from "../modals/EnquiryModal";
 import { dateConverter } from "../utils/converters/dateConverter";
 
 const StyledEnquiryContainer = styled.div`
@@ -47,7 +46,7 @@ export function AccommodationEnquiryData({ data }) {
           </div>
         </>
       )}
-      <EnquiryModal amenity={accommodationData} />
+      <EnquiryModal accommodation={accommodationData} />
     </StyledEnquiryContainer>
   );
 }

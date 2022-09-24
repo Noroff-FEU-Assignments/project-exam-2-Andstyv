@@ -3,20 +3,17 @@ import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { StyledEnquiryModalInput } from "../elements/enquiryModal.styles";
 import { enquirySchema as schema } from "../utils/validation/schemas";
 import { StyledLoginFieldset } from "../forms/forms.styles";
 import { SubmitFormBtn } from "../buttons/SubmitFormBtn";
+import { StyledEnquiryModalInput } from "../modals/enquiryModal.styles";
+import { dateConverter } from "../utils/converters/dateConverter";
 
-export function EnquiryForm({ amenity }) {
+export function EnquiryForm({ accommodation }) {
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  const checkIn = new Date(amenity.fromDate);
-  const checkOut = new Date(amenity.toDate);
-
-  const parsedCheckIn = checkIn.toLocaleDateString();
-  const parsedCheckOut = checkOut.toLocaleDateString();
+  let { parsedCheckIn, parsedCheckOut } = dateConverter(accommodation);
 
   const {
     register,
@@ -50,29 +47,29 @@ export function EnquiryForm({ amenity }) {
       <StyledLoginFieldset style={{ boxShadow: "none", padding: "5px" }} disabled={submitting}>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <label htmlFor="accommodation">Accommodation</label>
-          <StyledEnquiryModalInput readOnly id="accommodation" value={amenity.location} />
+          <StyledEnquiryModalInput readOnly id="accommodation" value={accommodation.location} />
           <StyledEnquiryModalInput
             {...register("accommodation")}
             hidden
-            placeholder={amenity.location}
-            id={amenity.accommodationId}
+            placeholder={accommodation.location}
+            id={accommodation.accommodationId}
             readOnly
-            value={amenity.accommodationId}
+            value={accommodation.accommodationId}
           />
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <label htmlFor="checkin">From</label>
-          <StyledEnquiryModalInput {...register("checkin")} id="checkin" hidden readOnly value={amenity.fromDate} />
+          <StyledEnquiryModalInput {...register("checkin")} id="checkin" hidden readOnly value={accommodation.fromDate} />
           <StyledEnquiryModalInput readOnly value={parsedCheckIn} />
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <label htmlFor="checkout">To</label>
-          <StyledEnquiryModalInput {...register("checkout")} id="checkout" hidden eadOnly value={amenity.toDate} />
+          <StyledEnquiryModalInput {...register("checkout")} id="checkout" hidden eadOnly value={accommodation.toDate} />
           <StyledEnquiryModalInput readOnly value={parsedCheckOut} />
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <label htmlFor="guests">Guests</label>
-          <StyledEnquiryModalInput {...register("guests")} id="guests" readOnly value={amenity.guests} />
+          <StyledEnquiryModalInput {...register("guests")} id="guests" readOnly value={accommodation.guests} />
         </div>
         <div style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
           <label htmlFor="name">Name</label>
