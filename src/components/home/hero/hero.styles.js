@@ -16,13 +16,13 @@ export const StyledHeroH1 = styled.h1`
   left: 50%;
   transform: translate(-50%, 0);
   text-align: center;
-  font-size: 48px;
+  font-size: var(--font-size-hero-main-sm);
   width: 100%;
-  color: #ffda60;
+  color: var(--color-yellow);
   font-weight: bold;
 
   @media only screen and (min-width: 768px) {
-    font-size: 64px;
+    font-size: var(--font-size-hero-main-lg);
   }
 `;
 
@@ -32,12 +32,12 @@ export const StyledSecondaryHeaderText = styled.p`
   left: 50%;
   transform: translate(-50%, 0);
   text-align: center;
-  font-size: 36px;
+  font-size: var(--font-size-hero-secondary-lg);
   color: #fff;
   font-weight: bold;
   width: 100%;
 
   @media only screen and (min-width: 768px) {
-    font-size: 36px;
+    top: 175px;
   }
 `;

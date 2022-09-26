@@ -17,7 +17,7 @@ export function EnquiryModal({ accommodation }) {
   return (
     <>
       <StyledEnquiryBtn onClick={() => setShowModal(true)}>
-        <div style={{ color: "#ffda60", fontWeight: "bold" }}>Enquire about this accommodation</div>
+        <div style={{ color: "var(--color-yellow)", fontWeight: "bold" }}>Enquire about this accommodation</div>
       </StyledEnquiryBtn>
       {showModal && (
         <>

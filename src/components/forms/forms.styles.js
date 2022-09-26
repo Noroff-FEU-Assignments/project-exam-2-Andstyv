@@ -11,7 +11,7 @@ export const StyledLoginFieldset = styled.fieldset`
   input {
     border: none;
     border-bottom: 1px solid #000;
-    font-size: 16px;
+    font-size: var(--font-size-input)
     margin-top: 5px;
     border-radius: 0;
   }
@@ -30,7 +30,7 @@ export const StyledContactFormInput = styled.input`
   border: none;
   border-bottom: 1px solid #333;
   margin-top: 10px;
-  font-size: 16px;
+  font-size: var(--font-size-input)
   border-radius: 0;
 `;
 

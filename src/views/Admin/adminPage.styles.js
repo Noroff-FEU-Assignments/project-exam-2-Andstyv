@@ -25,6 +25,6 @@ export const StyledAdminBtn = styled.div`
   flex-wrap: ${(props) => props.flexWrap || ""};
   max-width: ${(props) => props.maxWidth || ""};
   color: #000;
-  background: #ffda60;
+  background: var(--color-yellow);
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.25);
 `;

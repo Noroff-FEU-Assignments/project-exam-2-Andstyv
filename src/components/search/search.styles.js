@@ -69,7 +69,7 @@ export const StyledSearchFormResults = styled.div`
     border-top: 1px solid #000;
 
     :hover {
-      background-color: #ffda60;
+      background-color: var(color-yellow);
       cursor: pointer;
     }
   }
@@ -84,9 +84,9 @@ export const StyledSearchFormBtn = styled.button`
   grid-column: 1/4;
   border: none;
   border-top: 1px solid #000;
-  background: #3b5053;
-  color: #ffda60;
-  font-size: 36px;
+  background-color: var(--color-light-black);
+  color: var(--color-yellow);
+  font-size: var(--font-size-search-btn);
   font-weight: bold;
 
   @media only screen and (min-width: 768px) {

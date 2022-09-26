@@ -33,8 +33,7 @@ export function LoginForm() {
       setAuth(response.data);
       history("/admin/messages");
     } catch (error) {
-      setLoginError(error.toString());
-      console.log(loginError);
+      setLoginError(error.response.data.error.message);
     } finally {
       setSubmitting(false);
     }
@@ -44,7 +43,11 @@ export function LoginForm() {
     <>
       <div className="login-wrap" style={{ margin: "50px 20px 0 20px", maxWidth: "900px" }}>
         <form className="login-form" onSubmit={handleSubmit(tryToLogin)}>
-          {loginError && <div className="login-error">{loginError}</div>}
+          {loginError && (
+            <div className="login-error" style={{ textAlign: "center", color: "red" }}>
+              {loginError}
+            </div>
+          )}
           <StyledLoginFieldset className="login-fieldset" disabled={submitting}>
             <h1 style={{ marginTop: "0" }}>Log in as admin:</h1>
             <div style={{ display: "flex", flexDirection: "column" }}>

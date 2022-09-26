@@ -17,7 +17,7 @@ export const StyledHambOverlayUl = styled.ul`
   }
   @media (max-width: 768px) {
     flex-flow: column nowrap;
-    background-color: #3b5053;
+    background-color: var(--color-black);
     position: fixed;
     gap: 10px;
     transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};

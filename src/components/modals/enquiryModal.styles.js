@@ -15,9 +15,6 @@ export const StyledEnquiryModal = styled.div`
   z-index: 99;
   border-radius: 20px;
 
-  input {
-    font-size: 16px;
-  }
   button {
     margin: 20px 0;
   }
@@ -45,7 +42,7 @@ export const StyledEnquiryModalInput = styled.input`
 export const StyledEnquiryBtn = styled.div`
   grid-row: 2;
   grid-column: 1/5;
-  background: #3b5053;
+  background-color: var(--color-light-black);
   border-radius: 0 0 7.5px 7.5px;
   display: flex;
   justify-content: center;
@@ -54,7 +51,7 @@ export const StyledEnquiryBtn = styled.div`
 
 export const StyledModalCloseBtn = styled.button`
   padding: 10px;
-  background-color: #3b5053;
+  background-color: var(--color-light-black);
   color: ffda60;
   border: none;
   border-radius: 5px;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledFooter = styled.footer`
   width: 100%;
   height: 150px;
-  background: #3b5053;
+  background: #222831;
   flex-shrink: 0;
   margin-top: 100px;
   display: flex;
@@ -25,7 +25,7 @@ export const StyledFooterMainDiv = styled.div`
   max-width: 940px;
   align-self: center;
   color: #fff;
-
+  font-family: var(--font-primary);
   @media only screen and (min-width: 768px) {
     flex-direction: row;
     margin: 0 20px;

@@ -1,0 +1,40 @@
+:root {
+  --main-bg-color: #ffffff;
+  --color-black: #222831;
+  --color-light-black: #393e46;
+  --color-yellow: #ffd369;
+  --color-grey: #eeeeee;
+
+  --font-primary: "Sansita", serif;
+  --font-secondary: "Lora", sans-serif;
+  --font-input: "PT Sans", sans-serif;
+
+  --font-size-hero-main-lg: 64px;
+  --font-size-hero-main-sm: 48px;
+  --font-size-hero-secondary-lg: 36px;
+  --font-size-hero-secondary-sm: 24px;
+
+  --font-size-h1: 32px;
+  --font-size-h2: 24px;
+  --font-size-p: 18px;
+  --font-size-label: 18px;
+  --font-size-input: 16px;
+
+  --font-size-logo: 32px;
+
+  --font-size-search-btn: 36px;
+}
+
+/* $font-primary: "Staatliches", cursive, serif;
+$font-secondary: "Roboto Serif", sans-serif;
+
+$colors: (
+  primary: #985d68,
+  secondary: #5d988d,
+  text-black: #000,
+  bg-white: #fff,
+);
+
+@function getColor($color) {
+  @return map-get($colors, $color);
+} */

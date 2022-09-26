@@ -5,8 +5,8 @@ const StyledSubmitFormBtn = styled.button`
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #3b5053;
-  color: #ffda60;
+  background-color: var(--color-light-black);
+  color: var(--color-yellow);
   font-weight: bold;
   text-transform: uppercase;
   font-size: 18px;
