@@ -40,7 +40,8 @@ export const StyledHambOverlayUl = styled.ul`
 `;
 
 export const StyledNavLogoutBtn = styled.button`
-  background-color: yellow;
+  background-color: var(--color-yellow);
+  color: var(--color-black);
   border: none;
   padding: 10px;
   border-radius: 5px;

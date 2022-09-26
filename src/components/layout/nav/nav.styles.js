@@ -9,6 +9,9 @@ export const Nav = styled.nav`
   background-color: #222831;
   border-bottom: 0;
   font-family: var(--font-primary);
+  ul {
+    text-transform: uppercase;
+  }
 
   .logo {
     padding: 0;

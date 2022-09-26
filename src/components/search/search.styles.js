@@ -21,7 +21,7 @@ export const StyledSearchForm = styled.form`
   max-width: 600px;
   box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
   background-color: #fff;
-  border-radius: 2px;
+  border-radius: 5px;
   border: none;
   margin-top: -100px;
   width: 100%;
@@ -83,11 +83,11 @@ export const StyledSearchFormBtn = styled.button`
   padding: 10px;
   grid-column: 1/4;
   border: none;
-  border-top: 1px solid #000;
   background-color: var(--color-light-black);
   color: var(--color-yellow);
   font-size: var(--font-size-search-btn);
   font-weight: bold;
+  border-radius: 0 5px 5px 0;
 
   @media only screen and (min-width: 768px) {
     grid-row: 1;
