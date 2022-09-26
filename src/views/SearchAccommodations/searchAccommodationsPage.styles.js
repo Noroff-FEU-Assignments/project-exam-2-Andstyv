@@ -95,8 +95,15 @@ export const StyledAccommodationsAltCards = styled.div`
 export const StyledAccommodationsAltCard = styled.div`
   display: flex;
   gap: 10px;
+  height: 150px;
+  cursor: pointer;
+
+  :hover {
+    padding: 5px;
+  }
 
   @media only screen and (min-width: 768px) {
+    height: 250px;
     max-height: 300px;
   }
 `;
@@ -120,7 +127,8 @@ export const StyledAccommodationsAltCardImgContainer = styled.div`
 export const StyledAccommodationsAltCardInfo = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 5px;
+  padding: 10px;
+  width: 100%;
 
   h4 {
     margin: 0;
@@ -142,7 +150,7 @@ export const StyledAccommodationsAltCardInfoAmenities = styled.div`
   align-items: center;
   gap: 5px;
   flex-wrap: wrap;
-
+  margin-top: 5px;
   @media only screen and (min-width: 768px) {
     div {
       margin: 0 5px 0 5px;
@@ -158,6 +166,7 @@ export const StyledAccommodationsAltCardInfoAmenitiesText = styled.div`
   flex-wrap: wrap;
   gap: 5px;
   font-size: 12px;
+  margin-top: 10px;
 
   @media only screen and (min-width: 768px) {
     font-size: 18px;
@@ -165,9 +174,13 @@ export const StyledAccommodationsAltCardInfoAmenitiesText = styled.div`
 `;
 
 export const StyledAccommodationsAltCardInfoTotal = styled.div`
+  display: flex;
+  justify-content: flex-end;
   font-size: 14px;
   margin-top: 25px;
-  justify-items: flex-end;
+  font-weight: bold;
+  margin-right: 10px;
+  margin-top: auto;
   @media only screen and (min-width: 768px) {
     font-size: 24px;
   }
