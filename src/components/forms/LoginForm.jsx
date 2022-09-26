@@ -52,7 +52,7 @@ export function LoginForm() {
             <h1 style={{ marginTop: "0" }}>Log in as admin:</h1>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <label htmlFor="admin-username">Username: </label>
-              <input className="login-form__input" placeholder="admin@admin.com" id="admin-username" {...register("identifier")} />
+              <input className="login-form__input" id="admin-username" {...register("identifier")} />
               {errors.identifier && (
                 <div id="form-error">
                   <i className="fas fa-exclamation-circle"></i>
@@ -62,7 +62,7 @@ export function LoginForm() {
             </div>
             <div style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
               <label htmlFor="admin-password">Password: </label>
-              <input className="login-form__input" type="password" placeholder="admin123" id="admin-password" {...register("password")} />
+              <input className="login-form__input" type="password" id="admin-password" {...register("password")} />
               {errors.password && (
                 <div id="form-error">
                   <i className="fas fa-exclamation-circle"></i>
