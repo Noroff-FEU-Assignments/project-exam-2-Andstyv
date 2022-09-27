@@ -32,7 +32,7 @@ export function AdminEnquiries() {
 
   return (
     <>
-      <h1>Accommodation enquiries</h1>
+      <h2>Accommodation enquiries</h2>
       <p style={{ fontStyle: "italic" }}>(Most recent first)</p>
       <StyledAdminEnquiriesContainer>
         {sortedAccommodations.map((enquiry) => {

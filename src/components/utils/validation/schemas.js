@@ -19,7 +19,7 @@ export const enquirySchema = yup.object().shape({
 });
 
 export const loginSchema = yup.object().shape({
-  identifier: yup.string().required("Please enter identifier"),
+  identifier: yup.string().required("Please enter username (email)"),
   password: yup.string().required("Please enter password"),
 });
 

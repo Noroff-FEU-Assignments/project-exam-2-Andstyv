@@ -7,7 +7,6 @@ import {
   StyledAdminContactMsgContainerMessage,
   StyledAdminContactMsgContainerMsg,
   StyledAdminContactMsgContainerNames,
-  StyledAdminContactMsgH1,
   StyledAdminContactMsgP,
   StyledBounceLoaderContainer,
 } from "./adminContactMessages.styles";
@@ -29,17 +28,12 @@ export function AdminContactMessages() {
     return <div>Error: {error}</div>;
   }
 
-  // function convertDate(date) {
-  //   const newDate = new Date(date);
-  //   return (date = newDate.toLocaleDateString());
-  // }
-
   const getMessagesData = getMessages.data;
   let sortedMessages = getMessagesData.sort((a, b) => b.id - a.id);
 
   return (
     <>
-      <StyledAdminContactMsgH1>Contact messages</StyledAdminContactMsgH1>
+      <h2>Contact messages</h2>
       <StyledAdminContactMsgP>(Most recent first)</StyledAdminContactMsgP>
       <StyledAdminContactMsgContainer>
         {sortedMessages.map((message) => {

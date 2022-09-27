@@ -88,6 +88,7 @@ export const AdminCreateAccommodation = () => {
 
   return (
     <div className="create-acc-container" style={{ borderRadius: "10px", marginBottom: "40px" }}>
+      <h2>Create new accommodation</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <StyledLoginFieldset disabled={submitting}>
           <StyledCreateAccommodationColumn marginTop={"0"}>

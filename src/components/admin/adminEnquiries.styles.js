@@ -4,7 +4,7 @@ export const StyledAdminEnquiriesContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  margin: 0 20px;
   max-width: 400px;
 `;
 export const StyledAdmindEnquiry = styled.div`

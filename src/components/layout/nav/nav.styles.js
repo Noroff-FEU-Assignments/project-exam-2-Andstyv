@@ -20,4 +20,9 @@ export const Nav = styled.nav`
     text-decoration: none;
     font-weight: bold;
   }
+
+  .active {
+    padding-bottom: 2px;
+    border-bottom: 2px solid var(--color-yellow);
+  }
 `;

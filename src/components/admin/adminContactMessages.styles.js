@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-export const StyledAdminContactMsgH1 = styled.h1`
-  margin: 10px 0 5px 0;
-`;
-
 export const StyledAdminContactMsgP = styled.p`
   margin: 0 0 10px 0;
   fonst-style: italic;
@@ -13,6 +9,7 @@ export const StyledAdminContactMsgContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 20px;
 `;
 
 export const StyledAdminContactMsgContainerMsg = styled.div`

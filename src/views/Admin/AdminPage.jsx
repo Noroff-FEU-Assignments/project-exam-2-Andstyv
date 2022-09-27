@@ -15,8 +15,11 @@ export function AdminPage() {
 
   return (
     <>
-      <div className="admin-wrap" style={{ margin: "50px 20px 0 20px", maxWidth: "900px" }}>
-        <h1 style={{ marginTop: "0" }}>Admin Home</h1>
+      <div
+        className="admin-wrap"
+        style={{ margin: "50px 20px 0 20px", maxWidth: "900px", display: "flex", flexDirection: "column", width: "100%", alignItems: "center" }}
+      >
+        <h1 style={{ marginTop: "0", alignSelf: "center" }}>Admin Home</h1>
         <StyledAdminBtnsContainer>
           <NavLink to="messages">
             <StyledAdminBtn>

@@ -12,6 +12,9 @@ export const StyledAdminBtnsContainer = styled.div`
   a {
     text-decoration: none;
   }
+  .active {
+    font-weight: bold;
+  }
 `;
 
 export const StyledAdminBtn = styled.div`

@@ -15,10 +15,7 @@ export function useFetchData(url) {
       } catch (err) {
         setError(err);
       } finally {
-        console.log("loading finished");
-        setTimeout(() => {
-          setLoading(false);
-        }, "2000");
+        setLoading(false);
       }
     }
     fetchData();
