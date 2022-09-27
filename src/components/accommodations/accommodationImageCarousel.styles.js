@@ -21,6 +21,7 @@ export const StyledCarouselMainImg = styled.div`
 
   @media only screen and (min-width: 768px) {
     width: 100%;
+    min-width: 325px;
     height: 400px;
   }
 `;
@@ -35,11 +36,10 @@ export const StyledSecondaryImgsContainer = styled.div`
 
   @media only screen and (min-width: 768px) {
     height: 75px;
+    display: flex;
     width: 100%;
     margin-top: 10px;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
     gap: 5px;
   }
 `;
@@ -54,7 +54,6 @@ export const StyledCarouselSecondaryImgs = styled.div`
   max-height: 50px;
   @media only screen and (min-width: 768px) {
     height: 100%;
-    width: 125px;
     max-height: 125px;
   }
 `;

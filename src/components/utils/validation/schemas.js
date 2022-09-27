@@ -35,7 +35,7 @@ export const searchSchema = yup.object().shape({
 
 export const adminCreateAccommodationSchema = yup.object().shape({
   title: yup.string().required("Enter title"),
-  description: yup.string().required("Enter description"),
+  description: yup.string().required("Enter description").max(150, "Max 150 letters"),
   price: yup.number().required("Enter price").typeError("Enter a number"),
   type: yup.string().required("Select type of accommodation"),
   amenities: yup.array().min(1, "Select at least one amenity").of(yup.string().required()).required().typeError("Select at least one amenity"),
