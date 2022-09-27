@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { useState } from "react";
 import { EnquiryForm } from "../forms/EnquiryForm";
-import { StyledEnquiryBtn, StyledEnquiryModal, StyledEnquiryModalOverlay } from "./enquiryModal.styles";
+import { StyledEnquiryBtn, StyledEnquiryCloseBtn, StyledEnquiryModal, StyledEnquiryModalOverlay } from "./enquiryModal.styles";
 
 export function EnquiryModal({ accommodation }) {
   const [showModal, setShowModal] = useState(false);
@@ -17,15 +17,15 @@ export function EnquiryModal({ accommodation }) {
   return (
     <>
       <StyledEnquiryBtn onClick={() => setShowModal(true)}>
-        <div style={{ color: "var(--color-yellow)", fontWeight: "bold" }}>Enquire about this accommodation</div>
+        <div style={{ color: "var(--color-yellow)", fontWeight: "bold", cursor: "pointer" }}>Enquire about this accommodation</div>
       </StyledEnquiryBtn>
       {showModal && (
         <>
           <StyledEnquiryModalOverlay onClick={() => setShowModal(false)}></StyledEnquiryModalOverlay>
           <StyledEnquiryModal>
-            <StyledEnquiryBtn className="modal-close" type="button" onClick={() => setShowModal(false)}>
+            <StyledEnquiryCloseBtn className="modal-close" type="button" onClick={() => setShowModal(false)}>
               Close
-            </StyledEnquiryBtn>
+            </StyledEnquiryCloseBtn>
             <div className="modal-body">
               <EnquiryForm accommodation={accommodation} />
             </div>

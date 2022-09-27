@@ -6,13 +6,13 @@ export const StyledHambOverlayUl = styled.ul`
   flex-flow: row nowrap;
   gap: 50px;
   align-items: baseline;
-  cursor: pointer;
   li {
     padding: 18px 10px;
 
     a  {
       color: #fff;
       text-decoration: none;
+      cursor: pointer;
     }
   }
   @media (max-width: 768px) {

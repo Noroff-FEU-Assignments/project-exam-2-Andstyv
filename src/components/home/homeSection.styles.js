@@ -36,3 +36,9 @@ export const StyledHomeText = styled.div`
     padding: ${(props) => props.homeTextPadding || "20px"};
   }
 `;
+
+export const StyledHomeWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 0 20px;
+`;

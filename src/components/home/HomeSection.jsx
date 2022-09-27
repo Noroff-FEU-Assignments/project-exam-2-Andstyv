@@ -1,10 +1,10 @@
-import { StyledHomeDiv, StyledHomeText } from "./homeSection.styles";
+import { StyledHomeDiv, StyledHomeText, StyledHomeWrapper } from "./homeSection.styles";
 import AdventureImg from "../../assets/img/holidaze_home_adventure.jpg";
 import AccommodationsImg from "../../assets/img/holidaze_home_accommodations.jpg";
 
 export function HomeSection() {
   return (
-    <div className="body-wrapper" style={{ margin: "0 20px", display: "flex", justifyContent: "center" }}>
+    <StyledHomeWrapper>
       <div style={{ maxWidth: "900px" }}>
         <StyledHomeDiv flexDirection="row">
           <StyledHomeText homeTextPadding="0 20px 0 0">
@@ -29,6 +29,6 @@ export function HomeSection() {
           <img src={AdventureImg} alt="Holidaze Adventures"></img>
         </StyledHomeDiv>
       </div>
-    </div>
+    </StyledHomeWrapper>
   );
 }

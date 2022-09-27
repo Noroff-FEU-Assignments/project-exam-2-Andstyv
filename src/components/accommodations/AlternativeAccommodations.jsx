@@ -12,10 +12,9 @@ import {
 } from "../../views/SearchAccommodations/searchAccommodationsPage.styles";
 
 export function AlternativeAccommodations({ results, accommodationData, rooms }) {
-  console.log(results);
   return (
     <StyledAccommodationsAltCards>
-      <h3 style={{ marginTop: "40px", marginBottom: "10px" }}>Other alternatives:</h3>
+      <h3>Other alternatives:</h3>
       {results &&
         results.map((accommodation) => {
           return (
@@ -44,7 +43,7 @@ export function AlternativeAccommodations({ results, accommodationData, rooms })
                       ? accommodation.attributes.amenities.data.map((amenity) => {
                           return (
                             <div key={amenity.id}>
-                              <img src={amenity.attributes.Icon.data[0].attributes.url} alt="Amenity icon" style={{ width: "12px" }}></img>{" "}
+                              <img src={amenity.attributes.Icon.data[0].attributes.url} alt={amenity.attributes.Amenity}></img>
                             </div>
                           );
                         })

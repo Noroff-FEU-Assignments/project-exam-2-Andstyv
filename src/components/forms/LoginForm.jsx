@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import { loginSchema as schema } from "../utils/validation/schemas";
 import { LOGIN_URL as url } from "../../constants/api";
-import { StyledLoginFieldset } from "./forms.styles";
+import { StyledLoginFieldset, StyledLoginFieldsetContainer, StyledLoginFormWrapper } from "./forms.styles";
 import { SubmitFormBtn } from "../buttons/SubmitFormBtn";
 
 export function LoginForm() {
@@ -41,7 +41,7 @@ export function LoginForm() {
 
   return (
     <>
-      <div className="login-wrap" style={{ margin: "50px 20px 0 20px", maxWidth: "900px" }}>
+      <StyledLoginFormWrapper>
         <form className="login-form" onSubmit={handleSubmit(tryToLogin)}>
           {loginError && (
             <div className="login-error" style={{ textAlign: "center", color: "red" }}>
@@ -50,7 +50,7 @@ export function LoginForm() {
           )}
           <StyledLoginFieldset className="login-fieldset" disabled={submitting}>
             <h1 style={{ marginTop: "0" }}>Log in as admin:</h1>
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <StyledLoginFieldsetContainer>
               <label htmlFor="admin-username">Username: </label>
               <input className="login-form__input" id="admin-username" {...register("identifier")} />
               {errors.identifier && (
@@ -59,8 +59,8 @@ export function LoginForm() {
                   {errors.identifier.message}
                 </div>
               )}
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
+            </StyledLoginFieldsetContainer>
+            <StyledLoginFieldsetContainer marginTop={"10px"}>
               <label htmlFor="admin-password">Password: </label>
               <input className="login-form__input" type="password" id="admin-password" {...register("password")} />
               {errors.password && (
@@ -69,11 +69,11 @@ export function LoginForm() {
                   {errors.password.message}
                 </div>
               )}
-            </div>
+            </StyledLoginFieldsetContainer>
             <SubmitFormBtn style={{ marginTop: "50px" }}>{submitting ? "Logging in..." : "Log in"}</SubmitFormBtn>
           </StyledLoginFieldset>
         </form>
-      </div>
+      </StyledLoginFormWrapper>
     </>
   );
 }

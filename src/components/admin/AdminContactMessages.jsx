@@ -9,7 +9,9 @@ import {
   StyledAdminContactMsgContainerNames,
   StyledAdminContactMsgH1,
   StyledAdminContactMsgP,
+  StyledBounceLoaderContainer,
 } from "./adminContactMessages.styles";
+import { dateFormatter } from "../utils/converters/dateFormatter";
 
 export function AdminContactMessages() {
   const { data, loading, error } = useFetchData(MESSAGE_FORM_URL);
@@ -17,9 +19,9 @@ export function AdminContactMessages() {
 
   if (loading) {
     return (
-      <div style={{ marginTop: "100px", display: "flex", justifyContent: "center" }}>
+      <StyledBounceLoaderContainer>
         <BounceLoader />
-      </div>
+      </StyledBounceLoaderContainer>
     );
   }
 
@@ -27,10 +29,10 @@ export function AdminContactMessages() {
     return <div>Error: {error}</div>;
   }
 
-  function convertDate(date) {
-    const newDate = new Date(date);
-    return (date = newDate.toLocaleDateString());
-  }
+  // function convertDate(date) {
+  //   const newDate = new Date(date);
+  //   return (date = newDate.toLocaleDateString());
+  // }
 
   const getMessagesData = getMessages.data;
   let sortedMessages = getMessagesData.sort((a, b) => b.id - a.id);
@@ -43,7 +45,7 @@ export function AdminContactMessages() {
         {sortedMessages.map((message) => {
           return (
             <StyledAdminContactMsgContainerMsg key={message.id}>
-              <StyledAdminContactMsgContainerDate>{convertDate(message.attributes.createdAt)}</StyledAdminContactMsgContainerDate>
+              <StyledAdminContactMsgContainerDate>{dateFormatter(message.attributes.createdAt)}</StyledAdminContactMsgContainerDate>
               <StyledAdminContactMsgContainerNames>
                 <div> {message.attributes.firstname} </div>
                 <div> {message.attributes.lastname} </div>

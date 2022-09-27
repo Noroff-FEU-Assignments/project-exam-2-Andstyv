@@ -14,10 +14,6 @@ export const StyledEnquiryModal = styled.div`
   background-color: #fff;
   z-index: 99;
   border-radius: 20px;
-
-  button {
-    margin: 20px 0;
-  }
 `;
 
 export const StyledEnquiryModalOverlay = styled.div`
@@ -49,11 +45,12 @@ export const StyledEnquiryBtn = styled.div`
   align-items: center;
 `;
 
-export const StyledModalCloseBtn = styled.button`
-  padding: 10px;
-  background-color: var(--color-light-black);
-  color: ffda60;
-  border: none;
+export const StyledEnquiryCloseBtn = styled.button`
+  color: var(--color-yellow);
+  background: var(--color-light-black);
   border-radius: 5px;
-  font-weight: bold;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin: 5px 0;
 `;

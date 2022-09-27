@@ -28,3 +28,9 @@ export const StyledAdmindEnquiryContainer = styled.div`
   flex-direction ${(props) => props.flexDirection || "row"};
   margin-top ${(props) => props.marginTop || "0"};
 `;
+
+export const StyledAdminEnquiryTitle = styled.div`
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 24px;
+`;

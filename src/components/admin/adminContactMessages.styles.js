@@ -35,3 +35,9 @@ export const StyledAdminContactMsgContainerMessage = styled.div`
   margin-top: 20px;
   font-style: italic;
 `;
+
+export const StyledBounceLoaderContainer = styled.div`
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+`;

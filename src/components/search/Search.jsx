@@ -116,7 +116,7 @@ export function Search({ data, loading }) {
                         </div>
                       </div>
                     );
-                  })}{" "}
+                  })}
               </StyledSearchFormResults>
             )}
           </StyledSearchFormDiv>
@@ -127,7 +127,7 @@ export function Search({ data, loading }) {
           </StyledSearchFormDiv>
           <StyledSearchFormDiv padding="5px" borderLeft="1px solid #000">
             <StyledSearchFormLabel htmlFor="toDate">To</StyledSearchFormLabel>
-            <StyledSearchFormInput type={"date"} {...register("toDate")} id="toDate" placeholder="yyyy-mm-dd" pattern="\d{4}-\d{2}-\d{2}" />
+            <StyledSearchFormInput type={"date"} {...register("toDate")} id="toDate" />
             {errors.toDate && <span id="contact-error">{errors.toDate.message}</span>}
           </StyledSearchFormDiv>
           <StyledSearchFormDiv padding="5px" borderLeft="1px solid #000">
@@ -136,7 +136,7 @@ export function Search({ data, loading }) {
               type={"number"}
               {...register("guests")}
               id="guests"
-              style={{ borderBottom: "1px solid black", width: "20px", textAlign: "center", margin: "5px auto", borderRadius: "0" }}
+              style={{ borderBottom: "1px solid black", width: "35px", textAlign: "center", margin: "5px auto", borderRadius: "0" }}
             />
             {errors.guests && <span id="contact-error">{errors.guests.message}</span>}
           </StyledSearchFormDiv>

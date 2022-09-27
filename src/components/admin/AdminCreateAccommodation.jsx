@@ -9,10 +9,7 @@ import styled from "styled-components";
 import { StyledLoginFieldset } from "../forms/forms.styles";
 import { adminCreateAccommodationSchema as schema } from "../utils/validation/schemas";
 import { SubmitFormBtn } from "../buttons/SubmitFormBtn";
-
-const StyledAmenitiesLabels = styled.label`
-  font-weight: 400 !important;
-`;
+import { StyledBounceLoaderContainer } from "./adminContactMessages.styles";
 
 const StyledCreateAccommodationColumn = styled.div`
   display: flex;
@@ -38,9 +35,9 @@ export const AdminCreateAccommodation = () => {
 
   if (loading) {
     return (
-      <div style={{ marginTop: "100px", display: "flex", justifyContent: "center" }}>
+      <StyledBounceLoaderContainer>
         <BounceLoader />
-      </div>
+      </StyledBounceLoaderContainer>
     );
   }
 
@@ -154,7 +151,7 @@ export const AdminCreateAccommodation = () => {
                       {...register("amenities")}
                       value={amenity.id}
                     />
-                    <StyledAmenitiesLabels htmlFor={amenity.id}>{amenity.attributes.Amenity}</StyledAmenitiesLabels>
+                    <label htmlFor={amenity.id}>{amenity.attributes.Amenity}</label>
                   </div>
                 );
               })}
@@ -177,7 +174,7 @@ export const AdminCreateAccommodation = () => {
               name="images"
               id="images"
               onChange={(e) => setImages(e.target.files)}
-              style={{ borderBottom: "none", maxWidth: "200px" }}
+              style={{ borderBottom: "none", maxWidth: "200px", cursor: "pointer" }}
             />
           </StyledCreateAccommodationColumn>
           <SubmitFormBtn>{submitting ? "Creating..." : "Create Accommodation"}</SubmitFormBtn>

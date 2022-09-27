@@ -7,7 +7,9 @@ import {
   StyledAdminEnquiriesContainer,
   StyledAdminEnquiryContactInfoContainer,
   StyledAdminEnquiryLabel,
+  StyledAdminEnquiryTitle,
 } from "./adminEnquiries.styles";
+import { StyledBounceLoaderContainer } from "./adminContactMessages.styles";
 
 export function AdminEnquiries() {
   const { data, loading, error } = useFetchData(ENQUIRIES_URL);
@@ -15,9 +17,9 @@ export function AdminEnquiries() {
 
   if (loading) {
     return (
-      <div style={{ marginTop: "100px", display: "flex", justifyContent: "center" }}>
+      <StyledBounceLoaderContainer>
         <BounceLoader />
-      </div>
+      </StyledBounceLoaderContainer>
     );
   }
 
@@ -32,14 +34,11 @@ export function AdminEnquiries() {
     <>
       <h1>Accommodation enquiries</h1>
       <p style={{ fontStyle: "italic" }}>(Most recent first)</p>
-
       <StyledAdminEnquiriesContainer>
         {sortedAccommodations.map((enquiry) => {
           return (
             <StyledAdmindEnquiry key={enquiry.id}>
-              <div style={{ fontWeight: "bold", marginBottom: "10px", fontSize: "24px" }}>
-                {enquiry.attributes.accommodation.data?.attributes?.title}
-              </div>
+              <StyledAdminEnquiryTitle>{enquiry.attributes.accommodation.data?.attributes?.title}</StyledAdminEnquiryTitle>
               <StyledAdminEnquiryContactInfoContainer>
                 <StyledAdmindEnquiryContainer>
                   <StyledAdminEnquiryLabel>Name:</StyledAdminEnquiryLabel>

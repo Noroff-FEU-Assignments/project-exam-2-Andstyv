@@ -18,3 +18,17 @@ export const StyledContactInfo = styled.div`
     max-width: 400px;
   }
 `;
+
+export const StyledContactInfoMainContainer = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+`;
+
+export const StyledContactInfoSecondaryContainer = styled.div`
+  display: flex;
+  align-item: center;
+  gap: 10px;
+  margin-top: ${(props) => props.marginTop || ""};
+`;

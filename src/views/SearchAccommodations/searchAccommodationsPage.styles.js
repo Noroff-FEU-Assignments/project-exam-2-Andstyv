@@ -90,6 +90,11 @@ export const StyledAccommodationsAltCards = styled.div`
   flex-direction: column;
   gap: 10px;
   border-radius: 5px;
+
+  h3 {
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const StyledAccommodationsAltCard = styled.div`
@@ -151,6 +156,10 @@ export const StyledAccommodationsAltCardInfoAmenities = styled.div`
   gap: 5px;
   flex-wrap: wrap;
   margin-top: 5px;
+
+  img {
+    width: 12px;
+  }
   @media only screen and (min-width: 768px) {
     div {
       margin: 0 5px 0 5px;

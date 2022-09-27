@@ -11,7 +11,6 @@ export const StyledLoginFieldset = styled.fieldset`
   input {
     border: none;
     border-bottom: 1px solid #000;
-    font-size: var(--font-size-input)
     margin-top: 5px;
     border-radius: 0;
   }
@@ -26,11 +25,16 @@ export const StyledLoginFieldset = styled.fieldset`
   }
 `;
 
+export const StyledLoginFieldsetContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: ${(props) => props.marginTop || ""};
+`;
+
 export const StyledContactFormInput = styled.input`
   border: none;
   border-bottom: 1px solid #333;
   margin-top: 10px;
-  font-size: var(--font-size-input)
   border-radius: 0;
 `;
 
@@ -41,4 +45,15 @@ export const StyledContactFormContainer = styled.div`
   @media (min-width: 768px) {
     min-width: 300px;
   }
+`;
+
+export const StyledLoginFormWrapper = styled.div`
+  margin: 50px 20px 0 20px;
+  max-width: 900px;
+`;
+
+export const StyledEnquiryFormRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
 `;
