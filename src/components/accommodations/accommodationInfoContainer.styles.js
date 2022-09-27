@@ -14,10 +14,6 @@ export const StyledAccommodationInfoContainer = styled.div`
     margin-bottom: 5px;
   }
 
-  p {
-    font-size: 14px;
-  }
-
   @media only screen and (min-width: 768px) {
     padding: 0 20px;
     min-width: 400px;

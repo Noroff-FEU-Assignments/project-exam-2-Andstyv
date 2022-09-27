@@ -54,7 +54,7 @@ export function MainAccommodations({ accommodation, parsedCheckIn, parsedCheckOu
               <div>To:</div>
               <div>{parsedCheckOut}</div>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", width: "50px" }}>
+            <div style={{ display: "flex", flexDirection: "column" }}>
               <div>Nights:</div>
               <div>{accommodationData.days}</div>
             </div>

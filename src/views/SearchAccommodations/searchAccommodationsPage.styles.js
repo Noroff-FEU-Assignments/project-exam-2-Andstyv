@@ -76,7 +76,6 @@ export const StyledAccommodationsMainCardStayTotal = styled.div`
   flex-direction: column;
   font-size: 16px;
   font-weight: 900;
-  width: 50px;
 
   @media only screen and (min-width: 768px) {
     font-size: 20px;
@@ -185,7 +184,6 @@ export const StyledAccommodationsAltCardInfoAmenitiesText = styled.div`
 export const StyledAccommodationsAltCardInfoTotal = styled.div`
   display: flex;
   justify-content: flex-end;
-  font-size: 14px;
   margin-top: 25px;
   font-weight: bold;
   margin-right: 10px;
