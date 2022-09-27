@@ -35,11 +35,7 @@ export function AccommodationInfoContainer({ accommodation }) {
       </div>
       {showDesc ? (
         <div style={{ width: "100%" }}>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur ipsum mollitia soluta sint sit eum architecto repellendus tempora ad
-            a! Perspiciatis consequatur id, laudantium error laboriosam obcaecati vero reprehenderit autem eaque ab delectus, ratione at cumque. Eum
-            dolor nemo blanditiis consectetur fuga nam quidem reprehenderit deleniti soluta reiciendis, magnam quibusdam.
-          </p>
+          <p>{accommodation.data.attributes.description}</p>
         </div>
       ) : null}
       {showAms ? <AccommodationAmenities accommodation={accommodation} /> : null}

@@ -35,10 +35,7 @@ export function MainAccommodations({ accommodation, parsedCheckIn, parsedCheckOu
             <AccommodationAmenitiesIcons accommodation={accommodation} />
           </StyledAccommodationsMainCardAmenitiesIcons>
           <StyledAccommodationsMainCardDesc>
-            <p style={{ margin: "10px 0" }}>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil sunt deleniti sit, quasi facere repellendus quaerat voluptate aspernatur
-              assumenda evenie ...
-            </p>
+            <p style={{ margin: "10px 0" }}>{accommodation.attributes.description}</p>
             <p style={{ fontWeight: "900", margin: "10px 0" }}>Amenities:</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
               {accommodation.attributes.amenities

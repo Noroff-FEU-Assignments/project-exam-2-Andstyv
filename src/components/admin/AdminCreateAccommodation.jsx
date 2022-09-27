@@ -10,6 +10,7 @@ import { StyledLoginFieldset } from "../forms/forms.styles";
 import { adminCreateAccommodationSchema as schema } from "../utils/validation/schemas";
 import { SubmitFormBtn } from "../buttons/SubmitFormBtn";
 import { StyledBounceLoaderContainer } from "./adminContactMessages.styles";
+import { getAuth } from "../../constants/getAuth";
 
 const StyledCreateAccommodationColumn = styled.div`
   display: flex;
@@ -24,6 +25,9 @@ export const AdminCreateAccommodation = () => {
 
   const url = AMENITIES_SEARCH_URL;
   const { data, loading, error } = useFetchData(url);
+  const auth = getAuth();
+  console.log(auth);
+  console.log(auth.jwt);
 
   let amenities = data;
 
@@ -69,13 +73,14 @@ export const AdminCreateAccommodation = () => {
       method: "post",
       url: "https://andsty-noroff-exam2.herokuapp.com/api/accommodations/?populate[amenities][populate]=*&populate[images]=*",
       data: formData,
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${auth.jwt}` },
     })
       .then(function () {
         setMessage("Accommodation added successfully");
         setSubmitting(false);
       })
       .catch(function (response) {
+        console.log(response);
         setMessage(response.message);
       });
     e.target.reset();
