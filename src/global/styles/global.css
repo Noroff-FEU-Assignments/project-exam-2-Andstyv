@@ -1,1 +1,30 @@
-@import url("./variables.css");
+:root {
+  --main-bg-color: #ffffff;
+  --color-black: #222831;
+  --color-light-black: #393e46;
+  --color-yellow: #ffd369;
+  --color-grey: #eeeeee;
+  --color-success: #4bb543;
+  --color-warning: #d0342c;
+  --color-default-black: #000000;
+
+  --font-primary: "Sansita", serif;
+  --font-secondary: "Lora", sans-serif;
+  --font-input: "PT Sans", sans-serif;
+
+  --font-size-hero-main-lg: 64px;
+  --font-size-hero-main-sm: 48px;
+  --font-size-hero-secondary-lg: 36px;
+  --font-size-hero-secondary-sm: 24px;
+
+  --font-size-h1: 32px;
+  --font-size-h2: 24px;
+  --font-size-p: 18px;
+  --font-size-label: 18px;
+  --font-size-input: 16px;
+
+  --font-size-logo: 32px;
+  --font-size-search-btn: 36px;
+
+  --default-box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
+}
