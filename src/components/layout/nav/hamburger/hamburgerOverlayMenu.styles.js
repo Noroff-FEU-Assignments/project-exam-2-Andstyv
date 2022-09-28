@@ -6,8 +6,9 @@ export const StyledHambOverlayUl = styled.ul`
   flex-flow: row nowrap;
   gap: 50px;
   align-items: baseline;
+  padding: 0;
   li {
-    padding: 18px 10px;
+    padding: 0;
 
     a  {
       color: var(--main-bg-color);
@@ -19,19 +20,25 @@ export const StyledHambOverlayUl = styled.ul`
     flex-flow: column nowrap;
     background-color: var(--color-black);
     position: fixed;
-    gap: 10px;
+    gap: 30px;
     transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
     top: 0;
     right: 0;
     height: 100vh;
     width: 200px;
-    padding-top: 3.5rem;
+    padding: 0;
     margin-top: 0;
+    padding-top: 100px;
     transition: transform 0.3s ease-in-out;
     z-index: 10;
+    align-items: center;
+
     li {
       text-align: center;
+      display: flex;
       margin-top: 30px;
+      width: 75%;
+      justify-content: center;
       a {
         color: var(--main-bg-color);
       }

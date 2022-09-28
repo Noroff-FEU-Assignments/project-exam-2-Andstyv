@@ -1,5 +1,6 @@
 import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import PlaceHolderImg from "../../assets/img/placeholder_accommodation_img.jpg";
 import {
   StyledAccommodationsMain,
@@ -12,6 +13,13 @@ import {
 } from "../../views/SearchAccommodations/searchAccommodationsPage.styles";
 import { AccommodationAmenitiesIcons } from "./AccommodationAmenitiesIcons";
 
+const StyledAccommodationsMainImgContainer = styled.div`
+  max-width: 100%;
+  @media only screen and (min-width: 768px) {
+    max-width: 350px;
+  }
+`;
+
 export function MainAccommodations({ accommodation, parsedCheckIn, parsedCheckOut, rooms, accommodationData }) {
   console.log(accommodation);
   return (
@@ -23,12 +31,12 @@ export function MainAccommodations({ accommodation, parsedCheckIn, parsedCheckOu
       }}
     >
       <StyledAccommodationsMain>
-        <div>
+        <StyledAccommodationsMainImgContainer>
           <StyledAccommodationsMainImg
             src={accommodation.attributes.images.data ? accommodation.attributes.images.data[0].attributes.url : PlaceHolderImg}
             alt={accommodation.attributes.title}
           />
-        </div>
+        </StyledAccommodationsMainImgContainer>
         <StyledAccommodationsMainCardInfo>
           <h2 style={{ marginTop: "0", marginBottom: "5px" }}>{accommodation.attributes.title}</h2>
           <StyledAccommodationsMainCardAmenitiesIcons>
@@ -59,7 +67,7 @@ export function MainAccommodations({ accommodation, parsedCheckIn, parsedCheckOu
               <div>{accommodationData.days}</div>
             </div>
           </StyledAccommodationsMainCardStayData>
-          <StyledAccommodationsMainCardStayData marginTop="0">
+          <StyledAccommodationsMainCardStayData marginTop="0 !important" style={{ width: "99%" }}>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div>Guests:</div>
               <div>{accommodationData.guests}</div>

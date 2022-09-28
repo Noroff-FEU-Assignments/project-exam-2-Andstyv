@@ -29,16 +29,17 @@ export const StyledAccommodationsMainImg = styled.img`
   @media only screen and (min-width: 768px) {
     height: 100%;
     max-height: 100%;
-    max-width: 350px;
-    width: auto;
     border-radius: 5px 0 0 5px;
   }
 `;
 
 export const StyledAccommodationsMainCardInfo = styled.div`
+  display: flex;
+  flex-direction: column;
   padding: 10px;
   @media only screen and (min-width: 768px) {
     padding: 20px;
+    width: 100%;
   }
 `;
 
@@ -55,6 +56,7 @@ export const StyledAccommodationsMainCardDesc = styled.div`
 
   @media only screen and (min-width: 768px) {
     font-size: var(--font-size-p);
+    margin-bottom: 20px;
   }
 `;
 
@@ -65,9 +67,11 @@ export const StyledAccommodationsMainCardStayData = styled.div`
   margin-top: ${(props) => props.marginTop || "20px"};
   border-top: ${(props) => props.borderTop || "none"};
   padding-top: 10px;
+  margin-top: 20px;
 
   @media only screen and (min-width: 768px) {
     font-size: var(--font-size-p);
+    margin-top: auto;
   }
 `;
 

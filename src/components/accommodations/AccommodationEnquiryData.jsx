@@ -13,7 +13,7 @@ export function AccommodationEnquiryData({ data }) {
     <StyledEnquiryContainer>
       {accommodationData && (
         <>
-          <StyledEnquiryLabelContainer>
+          <StyledEnquiryLabelContainer style={{ marginLeft: "5px" }}>
             <label htmlFor="checkin">From:</label>
             <div id="checkin">{parsedCheckIn}</div>
           </StyledEnquiryLabelContainer>
@@ -25,7 +25,7 @@ export function AccommodationEnquiryData({ data }) {
             <label htmlFor="guests">Guests:</label>
             <div id="guests">{accommodationData.guests}</div>
           </StyledEnquiryLabelContainer>
-          <StyledEnquiryLabelContainer alignItems={"center"}>
+          <StyledEnquiryLabelContainer alignItems={"end"} style={{ marginRight: "5px" }}>
             <label htmlFor="total-price">Total:</label>
             <div id="total-price" style={{ fontWeight: "bold" }}>
               ${accommodationData.days * accommodation.data.attributes.price * rooms}
