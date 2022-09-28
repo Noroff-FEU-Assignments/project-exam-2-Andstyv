@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledLoginFieldset = styled.fieldset`
   border-radius: 10px;
   padding: 25px;
-  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--default-box-shadow);
   border: none;
   display: flex;
   flex-direction: column;

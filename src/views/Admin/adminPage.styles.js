@@ -27,7 +27,7 @@ export const StyledAdminBtn = styled.div`
   justify-content: space-evenly;
   flex-wrap: ${(props) => props.flexWrap || ""};
   max-width: ${(props) => props.maxWidth || ""};
-  color: #000;
+  color: var(--color-default-black);
   background: var(--color-yellow);
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.25);
 `;

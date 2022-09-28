@@ -12,7 +12,7 @@ export const StyledAdmindEnquiry = styled.div`
   width: 100%;
   margin-bottom: 20px;
   border-radius: 10px;
-  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--default-box-shadow);
 `;
 export const StyledAdminEnquiryContactInfoContainer = styled.div`
   margin: 10px 0;
@@ -32,5 +32,5 @@ export const StyledAdmindEnquiryContainer = styled.div`
 export const StyledAdminEnquiryTitle = styled.div`
   font-weight: bold;
   margin-bottom: 10px;
-  font-size: 24px;
+  font-size: var(--font-size-h2);
 `;

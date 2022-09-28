@@ -9,7 +9,7 @@ export const StyledContactInfo = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  color: #fff;
+  color: var(--main-bg-color);
   font-size: 20px;
 
   @media (min-width: 768px) {

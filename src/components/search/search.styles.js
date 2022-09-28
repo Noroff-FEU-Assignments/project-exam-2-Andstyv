@@ -19,8 +19,8 @@ export const StyledSearchForm = styled.form`
   grid-template-columns: 1fr 1fr 80px;
   grid-template-rows: 1fr 1fr 1fr;
   max-width: 600px;
-  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
-  background-color: #fff;
+  box-shadow: var(--default-box-shadow);
+  background-color: var(--main-bg-color);
   border-radius: 5px;
   border: none;
   margin-top: -100px;
@@ -60,7 +60,7 @@ export const StyledSearchFormResults = styled.div`
   min-width: 200px;
   width: 100%;
   margin-left: -10px;
-  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--default-box-shadow);
   text-align: start;
 
   .search-result {

@@ -33,7 +33,7 @@ export const StyledSecondaryHeaderText = styled.p`
   transform: translate(-50%, 0);
   text-align: center;
   font-size: var(--font-size-hero-secondary-lg);
-  color: #fff;
+  color: var(--main-bg-color);
   font-weight: bold;
   width: 100%;
 

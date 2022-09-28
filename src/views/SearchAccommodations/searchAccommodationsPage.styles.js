@@ -10,7 +10,7 @@ export const StyledAccommodationsWrapper = styled.div`
 export const StyledAccommodationsMain = styled.div`
   display: flex;
   flex-direction: column;
-  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--default-box-shadow);
   border-radius: 5px;
 
   @media only screen and (min-width: 768px) {
@@ -54,7 +54,7 @@ export const StyledAccommodationsMainCardDesc = styled.div`
   font-size: 14px;
 
   @media only screen and (min-width: 768px) {
-    font-size 18px
+    font-size: var(--font-size-p);
   }
 `;
 
@@ -67,7 +67,7 @@ export const StyledAccommodationsMainCardStayData = styled.div`
   padding-top: 10px;
 
   @media only screen and (min-width: 768px) {
-    font-size: 18px;
+    font-size: var(--font-size-p);
   }
 `;
 
@@ -177,7 +177,7 @@ export const StyledAccommodationsAltCardInfoAmenitiesText = styled.div`
   margin-top: 10px;
 
   @media only screen and (min-width: 768px) {
-    font-size: 18px;
+    font-size: var(--font-size-p);
   }
 `;
 
@@ -189,6 +189,6 @@ export const StyledAccommodationsAltCardInfoTotal = styled.div`
   margin-right: 10px;
   margin-top: auto;
   @media only screen and (min-width: 768px) {
-    font-size: 24px;
+    font-size: var(--font-size-h2);
   }
 `;

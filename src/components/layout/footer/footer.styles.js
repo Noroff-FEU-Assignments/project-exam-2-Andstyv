@@ -24,8 +24,9 @@ export const StyledFooterMainDiv = styled.div`
   justify-content: space-around;
   max-width: 940px;
   align-self: center;
-  color: #fff;
+  color: var(--main-bg-color);
   font-family: var(--font-primary);
+
   @media only screen and (min-width: 768px) {
     flex-direction: row;
     margin: 0 20px;

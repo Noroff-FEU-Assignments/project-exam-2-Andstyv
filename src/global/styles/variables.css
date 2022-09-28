@@ -6,6 +6,7 @@
   --color-grey: #eeeeee;
   --color-success: #4bb543;
   --color-warning: #d0342c;
+  --color-default-black: #000000;
 
   --font-primary: "Sansita", serif;
   --font-secondary: "Lora", sans-serif;
@@ -23,6 +24,7 @@
   --font-size-input: 16px;
 
   --font-size-logo: 32px;
-
   --font-size-search-btn: 36px;
+
+  --default-box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
 }

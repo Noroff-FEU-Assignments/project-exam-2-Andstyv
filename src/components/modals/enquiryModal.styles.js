@@ -11,7 +11,7 @@ export const StyledEnquiryModal = styled.div`
   padding: 10px 20px;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
   overflowy: auto;
-  background-color: #fff;
+  background-color: var(--main-bg-color);
   z-index: 99;
   border-radius: 20px;
 `;

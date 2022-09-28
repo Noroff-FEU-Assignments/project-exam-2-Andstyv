@@ -9,7 +9,7 @@ const StyledSubmitFormBtn = styled.button`
   color: var(--color-yellow);
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: var(--font-size-p)
   cursor: pointer;
 `;
 

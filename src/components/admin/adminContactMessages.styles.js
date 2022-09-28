@@ -17,7 +17,7 @@ export const StyledAdminContactMsgContainerMsg = styled.div`
   padding: 10px;
   width: 100%;
   margin-bottom: 20px;
-  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--default-box-shadow);
 `;
 
 export const StyledAdminContactMsgContainerDate = styled.div`

@@ -10,7 +10,7 @@ export const StyledHambOverlayUl = styled.ul`
     padding: 18px 10px;
 
     a  {
-      color: #fff;
+      color: var(--main-bg-color);
       text-decoration: none;
       cursor: pointer;
     }
@@ -33,7 +33,7 @@ export const StyledHambOverlayUl = styled.ul`
       text-align: center;
       margin-top: 30px;
       a {
-        color: #fff;
+        color: var(--main-bg-color);
       }
     }
   }

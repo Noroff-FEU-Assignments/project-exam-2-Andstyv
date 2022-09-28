@@ -15,7 +15,7 @@ export const Nav = styled.nav`
 
   .logo {
     padding: 0;
-    color: #fff;
+    color: var(--main-bg-color);
     font-size: var(--font-size-logo);
     text-decoration: none;
     font-weight: bold;
