@@ -89,6 +89,11 @@ export const StyledSearchFormBtn = styled.button`
   font-weight: bold;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
+  transition: all 0.5s;
+
+  :hover {
+    font-size: 30px;
+  }
 
   @media only screen and (min-width: 768px) {
     grid-row: 1;

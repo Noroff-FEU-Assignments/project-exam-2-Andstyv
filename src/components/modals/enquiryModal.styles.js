@@ -43,6 +43,13 @@ export const StyledEnquiryBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  transition: all 0.5s;
+
+  :hover {
+    font-size: 110%;
+    transition: 0.5s;
+  }
 `;
 
 export const StyledEnquiryCloseBtn = styled.button`

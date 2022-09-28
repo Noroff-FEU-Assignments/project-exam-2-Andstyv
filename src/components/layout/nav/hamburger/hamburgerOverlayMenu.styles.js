@@ -14,6 +14,11 @@ export const StyledHambOverlayUl = styled.ul`
       color: var(--main-bg-color);
       text-decoration: none;
       cursor: pointer;
+      transition: all 0.5s;
+
+      :hover {
+        font-size: 110%;
+      }
     }
   }
   @media (max-width: 768px) {
