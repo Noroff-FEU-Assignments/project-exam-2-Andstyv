@@ -1,9 +1,7 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import "react-loading-skeleton/dist/skeleton.css";
 import { ACCOMMODATIONS_SEARCH_URL } from "../../constants/api";
 import { useFetchData } from "../../hooks/useFetchData";
-
 import { SkeletonSearchAccommodations } from "./SkeletonSearchAccommodations";
 import { MainAccommodations } from "../../components/accommodations/MainAccommodations";
 import { AlternativeAccommodations } from "../../components/accommodations/AlternativeAccommodations";

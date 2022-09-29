@@ -16,7 +16,7 @@ export const StyledHamburgerMenu = styled.div`
 
   div {
     width: 20px;
-    height: 10px;
+    height: 2px;
     background-color: ${({ open }) => (open ? "#ccc" : "#fff")};
     border-radius: 10px;
     transform-origin: 1px;

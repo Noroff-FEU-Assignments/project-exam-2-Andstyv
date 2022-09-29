@@ -87,7 +87,7 @@ export const StyledSearchFormBtn = styled.button`
   color: var(--color-yellow);
   font-size: var(--font-size-search-btn);
   font-weight: bold;
-  border-radius: 0 5px 5px 0;
+  border-radius: 5px;
   cursor: pointer;
   transition: all 0.5s;
 
@@ -99,6 +99,7 @@ export const StyledSearchFormBtn = styled.button`
     grid-row: 1;
     grid-column: 5;
     border: none;
+    border-radius: 0 5px 5px 0;
   }
 `;
 
