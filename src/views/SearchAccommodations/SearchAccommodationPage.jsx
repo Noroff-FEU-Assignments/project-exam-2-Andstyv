@@ -8,6 +8,7 @@ import { SkeletonSearchAccommodations } from "./SkeletonSearchAccommodations";
 import { MainAccommodations } from "../../components/accommodations/MainAccommodations";
 import { AlternativeAccommodations } from "../../components/accommodations/AlternativeAccommodations";
 import { dateConverter } from "../../components/utils/converters/dateConverter";
+import { ErrorComponent } from "../../components/layout/error/ErrorComponent";
 
 export function SearchAccommodationPage() {
   const populateApi = "?populate[amenities][populate]=*&populate[images]=*";
@@ -41,7 +42,7 @@ export function SearchAccommodationPage() {
   filterAccommodations();
 
   if (error) {
-    return <div>Error</div>;
+    return <ErrorComponent error={error} />;
   }
 
   return (

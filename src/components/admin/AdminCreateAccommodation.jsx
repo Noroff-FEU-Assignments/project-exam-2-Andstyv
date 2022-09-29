@@ -11,6 +11,7 @@ import { adminCreateAccommodationSchema as schema } from "../utils/validation/sc
 import { SubmitFormBtn } from "../buttons/SubmitFormBtn";
 import { StyledBounceLoaderContainer } from "./adminContactMessages.styles";
 import { getAuth } from "../../constants/getAuth";
+import { ErrorComponent } from "../layout/error/ErrorComponent";
 
 const StyledCreateAccommodationColumn = styled.div`
   display: flex;
@@ -26,8 +27,6 @@ export const AdminCreateAccommodation = () => {
   const url = AMENITIES_SEARCH_URL;
   const { data, loading, error } = useFetchData(url);
   const auth = getAuth();
-  console.log(auth);
-  console.log(auth.jwt);
 
   let amenities = data;
 
@@ -46,7 +45,7 @@ export const AdminCreateAccommodation = () => {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <ErrorComponent error={error} />;
   }
   const formData = new FormData();
 
@@ -80,7 +79,6 @@ export const AdminCreateAccommodation = () => {
         setSubmitting(false);
       })
       .catch(function (response) {
-        console.log(response);
         setMessage(response.message);
       });
     e.target.reset();

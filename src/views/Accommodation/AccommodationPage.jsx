@@ -5,6 +5,7 @@ import { useFetchData } from "../../hooks/useFetchData";
 import { SkeletonAccommodation } from "../../components/accommodations/SkeletonAccommodation";
 import { AccommodationImageCarousel } from "../../components/accommodations/AccommodationImageCarousel";
 import { AccommodationInfoContainer } from "../../components/accommodations/AcommodationInfoContainer";
+import { ErrorComponent } from "../../components/layout/error/ErrorComponent";
 
 const StyledAccommodationContainer = styled.div`
   display: flex;
@@ -29,12 +30,12 @@ export function AccommodationPage() {
 
   const accommodation = data;
 
-  if (loading) {
-    return <SkeletonAccommodation />;
+  if (error) {
+    return <ErrorComponent error={error} />;
   }
 
-  if (error) {
-    return <div style={{ marginTop: "100px" }}>Error: {error}</div>;
+  if (loading) {
+    return <SkeletonAccommodation />;
   }
 
   return (

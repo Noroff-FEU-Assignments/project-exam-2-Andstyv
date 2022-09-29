@@ -1,5 +1,4 @@
 export function dateConverter(accommodationData) {
-  console.log(accommodationData);
   const checkIn = new Date(accommodationData.fromDate);
   const checkOut = new Date(accommodationData.toDate);
 

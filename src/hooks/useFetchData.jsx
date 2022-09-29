@@ -24,5 +24,5 @@ export function useFetchData(url) {
 }
 
 useFetchData.propTypes = {
-  url: PropTypes.number.isRequired,
+  url: PropTypes.string.isRequired,
 };

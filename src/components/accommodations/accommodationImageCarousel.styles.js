@@ -64,7 +64,7 @@ export const StyledCarouselArrow = styled.div`
   z-index: 1;
   left: ${(props) => props.leftPx || ""};
   right: ${(props) => props.rightPx || ""};
-  color: #000;
+  color: var(--color-default-black);
   padding: 3px;
   text-shadow: 1px 1px 3px #000;
   font-size: 36px;

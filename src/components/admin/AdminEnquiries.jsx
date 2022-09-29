@@ -10,6 +10,7 @@ import {
   StyledAdminEnquiryTitle,
 } from "./adminEnquiries.styles";
 import { StyledBounceLoaderContainer } from "./adminContactMessages.styles";
+import { ErrorComponent } from "../layout/error/ErrorComponent";
 
 export function AdminEnquiries() {
   const { data, loading, error } = useFetchData(ENQUIRIES_URL);
@@ -24,7 +25,7 @@ export function AdminEnquiries() {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <ErrorComponent error={error} />;
   }
 
   const getEnquiriesData = getEnquiries.data;

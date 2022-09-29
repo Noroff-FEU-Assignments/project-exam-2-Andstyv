@@ -92,8 +92,8 @@ export function ContactForm() {
             )}
           </StyledContactFormContainer>
           <SubmitFormBtn>{submitting ? "Sending" : "Send"}</SubmitFormBtn>
-          <div style={{ textAlign: "center", marginTop: "10px", color: "darkgreen" }}>{submitForm ? "Sent successfully" : ""}</div>
-          <div style={{ textAlign: "center", marginTop: "10px", color: "red" }}>{submitError ? `Error: ${submitError}` : ""}</div>
+          <div style={{ textAlign: "center", marginTop: "10px", color: "var(--color-success)" }}>{submitForm ? "Sent successfully" : ""}</div>
+          <div style={{ textAlign: "center", marginTop: "10px", color: "var(--color-warning)" }}>{submitError ? `Error: ${submitError}` : ""}</div>
         </StyledLoginFieldset>
       </form>
     </div>

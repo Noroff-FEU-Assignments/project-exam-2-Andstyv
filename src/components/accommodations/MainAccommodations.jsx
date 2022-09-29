@@ -21,7 +21,6 @@ const StyledAccommodationsMainImgContainer = styled.div`
 `;
 
 export function MainAccommodations({ accommodation, parsedCheckIn, parsedCheckOut, rooms, accommodationData }) {
-  console.log(accommodation);
   return (
     <Link
       to={`/accommodation/${accommodation.id}`}

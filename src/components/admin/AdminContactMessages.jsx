@@ -11,6 +11,7 @@ import {
   StyledBounceLoaderContainer,
 } from "./adminContactMessages.styles";
 import { dateFormatter } from "../utils/converters/dateFormatter";
+import { ErrorComponent } from "../layout/error/ErrorComponent";
 
 export function AdminContactMessages() {
   const { data, loading, error } = useFetchData(MESSAGE_FORM_URL);
@@ -25,7 +26,7 @@ export function AdminContactMessages() {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <ErrorComponent error={error} />;
   }
 
   const getMessagesData = getMessages.data;

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const StyledHamburgerMenu = styled.div`
-  width: 2rem;
-  height: 2rem;
+  width: 20px;
+  height: 20px;
   top: 20px;
   right: 20px;
   z-index: 20;
@@ -15,8 +15,8 @@ export const StyledHamburgerMenu = styled.div`
   }
 
   div {
-    width: 2rem;
-    height: 0.25rem;
+    width: 20px;
+    height: 10px;
     background-color: ${({ open }) => (open ? "#ccc" : "#fff")};
     border-radius: 10px;
     transform-origin: 1px;
