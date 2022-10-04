@@ -5,7 +5,7 @@ Password: admin123
 
 # Project Exam 2
 
-![image](https://user-images.githubusercontent.com/52622303/164316813-4b12d99f-aeb7-4069-85cf-e72b3a50ac99.png)
+![image](https://user-images.githubusercontent.com/74601625/193782631-b56a946c-1076-4cee-b969-cc3d3467bd3b.png)
 
 A hotel booking website for a made-up local tourism agency based in Bergen, Norway.
 
