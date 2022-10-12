@@ -24,8 +24,6 @@ The goal for this project was to build a website named "Holidaze" for visitors t
 
 ## Built With
 
-You can list a the tech stack that you've used over here
-
 - [React](https://reactjs.org/)
 - [Node.js](https://nodejs.org/en/)
 - [CSS Styled Components](https://styled-components.com/)
